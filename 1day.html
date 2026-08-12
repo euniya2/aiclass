@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1일차 프롬프트 모음 · 그대로 쓸 수 있는 초안 만들기</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#1a1d21; --dim:#5b636d;
+    --line:#e3e6ea; --accent:#1f3a68; --accent2:#2f6fd0; --warn:#c2410c;
+    --code:#f2f4f7; --ok:#0f766e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Malgun Gothic","맑은 고딕",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.7;font-size:15px}
+  header{background:var(--accent);color:#fff;padding:28px 20px}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  header h1{margin:0 0 6px;font-size:22px}
+  header p{margin:0;opacity:.85;font-size:14px}
+
+  nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);
+    padding:10px 0;z-index:10;overflow-x:auto;white-space:nowrap}
+  nav a{display:inline-block;margin-right:6px;padding:6px 12px;border-radius:20px;
+    font-size:13px;color:var(--accent);text-decoration:none;background:var(--code)}
+  nav a:hover{background:var(--accent);color:#fff}
+
+  section{background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:20px;margin:18px 0}
+  h2{font-size:18px;margin:0 0 4px;color:var(--accent)}
+  .sub{color:var(--dim);font-size:13px;margin:0 0 14px}
+  h3{font-size:15px;margin:18px 0 6px}
+
+  .badge{display:inline-block;background:var(--accent2);color:#fff;font-size:12px;
+    padding:2px 9px;border-radius:4px;margin-right:6px;vertical-align:2px}
+  .badge.new{background:var(--warn)}
+  .badge.same{background:var(--ok)}
+
+  .box{position:relative;background:var(--code);border:1px solid var(--line);
+    border-radius:8px;padding:14px 14px 14px;margin:10px 0}
+  pre{margin:0;white-space:pre-wrap;word-break:break-word;
+    font-family:Consolas,"D2Coding",monospace;font-size:13.5px;line-height:1.6}
+  .copy{position:absolute;top:8px;right:8px;border:1px solid var(--line);
+    background:#fff;color:var(--accent);border-radius:6px;padding:4px 10px;
+    font-size:12px;cursor:pointer}
+  .copy:hover{background:var(--accent);color:#fff}
+  .copy.done{background:var(--ok);color:#fff;border-color:var(--ok)}
+
+  .note{border-left:3px solid var(--accent2);background:#f0f5fd;padding:10px 14px;
+    margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
+  .warn{border-left:3px solid var(--warn);background:#fff5ef;padding:10px 14px;
+    margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
+  .key{font-weight:700;color:var(--accent)}
+
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  th{background:var(--code);font-weight:700}
+
+  footer{color:var(--dim);font-size:13px;text-align:center;padding:30px 20px}
+  @media print{nav{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>1일차 · 그대로 쓸 수 있는 초안 만들기</h1>
+    <p>문구가 아니라 재료입니다 — 프롬프트 모음</p>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#set">시작 전 설정</a>
+  <a href="#s0">STEP00</a>
+  <a href="#s1">STEP01</a>
+  <a href="#s2">STEP02</a>
+  <a href="#s3">STEP03</a>
+  <a href="#s4">STEP04 검수</a>
+  <a href="#mine">나의 초안</a>
+  <a href="#data">실습 자료</a>
+  <a href="#extra">부록</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="set">
+  <h2>시작 전 설정 (2분)</h2>
+  <p class="sub">실습 결과에 직접 영향을 줍니다. 먼저 확인해 주세요.</p>
+  <table>
+    <tr><th>설정</th><th>조치</th><th>이유</th></tr>
+    <tr><td>과거 대화 참조</td><td><b>끔</b></td><td>켜져 있으면 새 채팅이어도 앞 결과를 끌어와 비교가 안 됩니다</td></tr>
+    <tr><td>요청사항 · 저장된 정보</td><td><b>비움</b></td><td>사람마다 결과가 달라지고, 3단계 효과가 흐려집니다</td></tr>
+  </table>
+  <div class="note">
+    요청사항에 적어두신 게 있으면 <b>메모장에 복사해두고</b> 지우세요.
+    수업이 끝난 뒤 다시 넣으시면 됩니다. 설정하신 적이 없으면 그냥 넘어가셔도 됩니다.
+  </div>
+
+  <h3>채팅 분리 규칙</h3>
+  <div class="note"><b>단계를 올릴 때는 새 채팅, 결과를 고칠 때는 같은 채팅.</b></div>
+  <table>
+    <tr><th>구간</th><th>채팅</th></tr>
+    <tr><td>STEP00 → 01 → 02 → 03</td><td><b>매번 새 채팅</b></td></tr>
+    <tr><td>STEP04-1 검수</td><td><b>새 채팅</b></td></tr>
+    <tr><td>STEP04-2 확정</td><td>검수한 채팅에서 이어서</td></tr>
+  </table>
+</section>
+
+<section id="s0">
+  <h2><span class="badge">STEP00</span>맨몸</h2>
+  <p class="sub">새 채팅 · 준비 없이 한 줄만 던집니다</p>
+  <div class="box"><button class="copy">복사</button><pre>홈쇼핑 상품 소개 문구 써줘.</pre></div>
+  <div class="note">어느 상품 얘긴지도 모르는 결과가 나옵니다. <b>못 쓸 결과가 나오는 게 정상입니다.</b></div>
+</section>
+
+<section id="s1">
+  <h2><span class="badge">STEP01</span>+ 상품정보</h2>
+  <p class="sub">새 채팅 · 첫 문장은 그대로, 자료만 붙입니다</p>
+  <div class="box"><button class="copy">복사</button><pre>홈쇼핑 상품 소개 문구 써줘.
+
+[1 - 상품정보]
+■ 제주 은갈치 특대사이즈 300g*6마리 분량 (총 24토막)
+
+■ 100% 국내산 100% 자연산 제주 은갈치
+- 제주도 내 수협에서 수매
+- 채낚기 방식으로 1마리씩 어획
+- 자사기준 [특대] 사이즈 : 손질 후 300g 이상
+- 남녀노소 누구나 즐겨 찾는 우리 수산물 제주 은갈치
+
+■ 깔끔하고 위생적인 HACCP 인증 시설에서 손질 &amp; 포장
+- 먹기 좋고 보관이 편리하게 머리 &amp; 꼬리 제거
+- 깔끔하고 간편하게 한 팩씩 포장
+
+■ 우수 제품 품질인증(JQ) 확인 (2026.04.01 ~ 2029.03.31)
+
+구성: 6마리 분량 / 1팩당 4토막(마리당 4토막) / 총 24토막(6팩)
+중량: 1팩당 300g × 총 6팩 / 총 중량 1.8kg</pre></div>
+  <div class="note"><span class="key">문장은 한 글자도 안 바꿨습니다. 붙여넣은 것만 다릅니다.</span></div>
+  <div class="warn">결과 안에 <b>자료에 없는 말이 몇 개나</b> 있는지 세어보세요.</div>
+</section>
+
+<section id="s2">
+  <h2><span class="badge">STEP02</span>+ 예시</h2>
+  <p class="sub">새 채팅 · 우리가 전에 쓴 문서를 보여줍니다</p>
+  <div class="box"><button class="copy">복사</button><pre>당신은 공영쇼핑에서 15년간 일한 MD입니다.
+
+아래 상품의 방송 소개 문구 초안을 작성하세요.
+
+[1 - 상품정보]
+■ 제주 은갈치 특대사이즈 300g*6마리 분량 (총 24토막)
+
+■ 100% 국내산 100% 자연산 제주 은갈치
+- 제주도 내 수협에서 수매
+- 채낚기 방식으로 1마리씩 어획
+- 자사기준 [특대] 사이즈 : 손질 후 300g 이상
+- 남녀노소 누구나 즐겨 찾는 우리 수산물 제주 은갈치
+
+■ 깔끔하고 위생적인 HACCP 인증 시설에서 손질 &amp; 포장
+- 먹기 좋고 보관이 편리하게 머리 &amp; 꼬리 제거
+- 깔끔하고 간편하게 한 팩씩 포장
+
+■ 우수 제품 품질인증(JQ) 확인 (2026.04.01 ~ 2029.03.31)
+
+구성: 6마리 분량 / 1팩당 4토막(마리당 4토막) / 총 24토막(6팩)
+중량: 1팩당 300g × 총 6팩 / 총 중량 1.8kg
+
+[2 - 예시]
+아래는 공영쇼핑에서 잘 썼다고 평가받은 같은 유형의 상품 소개입니다.
+문체, 문단 구성, 용어 선택, 격식 수준을 그대로 따라 하세요.
+내용은 베끼지 말고, 예시에 나온 상품은 언급하지 마세요.
+
+■ 26년 천사의땅 해남 햇고춧가루 500g*8봉 / 총 4kg
+
+- 26년 수확한 햇고추 사용
+- 26년 7월 이후 생산분
+- 해남고춧가루 전문 영농조합 : 천사의땅영농조합 (2013년 설립)
+- 100% 땅끝마을 해남 고추 사용
+  · 영양 풍부한 황토땅과 해풍의 영향, 풍부한 일조량으로 작물 재배에
+    최적화된 해남
+  · 해남농가 직접 수매
+- 황토방에서 건조한 고춧가루
+  · 황토방에서 건조해 매운맛을 줄이고, 빛깔을 살림
+- HACCP
+- 깐깐한 관리 노하우
+  · 햇홍고추 수매 후 직접 세척·건조
+  · 농산물품질관리사 직접 선별
+  · 수매 &gt; 세척 &gt; 건조 &gt; 분쇄 &gt; 포장 전 과정 책임관리
+  · 3회 선별(입고후, 건조후, 가공전) 및 3단계 세척(브러쉬, 에어세척 2회)
+  · 자외선살균 등 공정으로 위생, 안전 겸비 (UV살균 2회)
+- 보통맛, 중간굵기의 입자로 범용적으로 사용 가능</pre></div>
+  <div class="note"><span class="key">AI한테 글을 잘 쓰라고 하지 마시고, 우리처럼 쓰라고 하십시오.</span></div>
+  <div class="warn">
+    <b>문체는 따라오지만 예시의 내용까지 따라옵니다.</b><br>
+    "깐깐한 관리 노하우", "수매 &gt; 손질 &gt; 세척 &gt; 급속동결" 같은 게
+    갈치 자료엔 없는데 넘어옵니다. 그래서 3단계가 필요합니다.
+  </div>
+</section>
+
+<section id="s3">
+  <h2><span class="badge">STEP03</span>+ 기준</h2>
+  <p class="sub">새 채팅 · STEP02 전체에 기준과 출력 형식을 더합니다</p>
+  <div class="box"><button class="copy">복사</button><pre>당신은 공영쇼핑에서 15년간 일한 MD입니다.
+
+아래 상품의 방송 소개 문구 초안을 작성하세요.
+
+[1 - 상품정보]
+■ 제주 은갈치 특대사이즈 300g*6마리 분량 (총 24토막)
+
+■ 100% 국내산 100% 자연산 제주 은갈치
+- 제주도 내 수협에서 수매
+- 채낚기 방식으로 1마리씩 어획
+- 자사기준 [특대] 사이즈 : 손질 후 300g 이상
+- 남녀노소 누구나 즐겨 찾는 우리 수산물 제주 은갈치
+
+■ 깔끔하고 위생적인 HACCP 인증 시설에서 손질 &amp; 포장
+- 먹기 좋고 보관이 편리하게 머리 &amp; 꼬리 제거
+- 깔끔하고 간편하게 한 팩씩 포장
+
+■ 우수 제품 품질인증(JQ) 확인 (2026.04.01 ~ 2029.03.31)
+
+구성: 6마리 분량 / 1팩당 4토막(마리당 4토막) / 총 24토막(6팩)
+중량: 1팩당 300g × 총 6팩 / 총 중량 1.8kg
+
+[2 - 예시]
+아래는 공영쇼핑에서 잘 썼다고 평가받은 같은 유형의 상품 소개입니다.
+문체, 문단 구성, 용어 선택, 격식 수준을 그대로 따라 하세요.
+내용은 베끼지 말고, 예시에 나온 상품은 언급하지 마세요.
+
+■ 26년 천사의땅 해남 햇고춧가루 500g*8봉 / 총 4kg
+
+- 26년 수확한 햇고추 사용
+- 26년 7월 이후 생산분
+- 해남고춧가루 전문 영농조합 : 천사의땅영농조합 (2013년 설립)
+- 100% 땅끝마을 해남 고추 사용
+  · 영양 풍부한 황토땅과 해풍의 영향, 풍부한 일조량으로 작물 재배에
+    최적화된 해남
+  · 해남농가 직접 수매
+- 황토방에서 건조한 고춧가루
+  · 황토방에서 건조해 매운맛을 줄이고, 빛깔을 살림
+- HACCP
+- 깐깐한 관리 노하우
+  · 햇홍고추 수매 후 직접 세척·건조
+  · 농산물품질관리사 직접 선별
+  · 수매 &gt; 세척 &gt; 건조 &gt; 분쇄 &gt; 포장 전 과정 책임관리
+  · 3회 선별(입고후, 건조후, 가공전) 및 3단계 세척(브러쉬, 에어세척 2회)
+  · 자외선살균 등 공정으로 위생, 안전 겸비 (UV살균 2회)
+- 보통맛, 중간굵기의 입자로 범용적으로 사용 가능
+
+[3 - 기준]
+반드시 지킬 것
+- 효능·효과를 단정하거나 암시하는 표현을 쓰지 마세요
+- "최고", "유일한", "1위", "국내 최초" 등 최상급 표현을 쓰지 마세요
+- 근거 없는 수치나 비교 표현을 쓰지 마세요
+- 자료에 없는 내용을 추가하지 마세요 (조리법, 맛, 식감, 사용감, 포장 형태 포함)
+- 수치를 쓸 때는 자료에 있는 기준을 함께 밝히세요
+- 중소기업·농축수산물 판매 채널의 취지에 맞는 담백한 표현을 쓰세요
+- 자료에 있더라도 근거 없는 일반화 표현은 쓰지 마세요
+
+다음 경우에는 "[확인 필요]"로 표시하세요.
+- 자료에 없는 정보를 써야 하는 경우
+- 표현이 규정에 걸릴지 판단이 어려운 경우
+- 자료의 수치나 기간이 최신인지 확인이 필요한 경우
+
+[출력 형식]
+| 소구 포인트 | 문안 | 검토 시 주의할 점 |
+표로 5개 작성하세요.
+
+문안 작성 규칙
+- 고객이 읽는 완성된 문장으로 쓰세요. 스펙 나열이 아닙니다.
+- 한 문안은 40~60자로 하세요.
+- 좋은 예: 제주도 수협에서 수매해, 채낚기로 한 마리씩 낚아 올렸습니다.
+- 나쁜 예: 제주 수협 수매, 채낚기 어획</pre></div>
+  <div class="note"><span class="key">이제 이건 검토만 하면 되는 초안입니다.</span></div>
+  <div class="warn">
+    금지 조항만 잔뜩 주면 AI가 <b>사실 나열</b>로 도망갑니다.
+    "하지 마라"와 함께 <b>"어떻게 하라"</b>를 반드시 주십시오.
+    좋은 예 / 나쁜 예 한 줄씩이 가장 강력합니다.
+  </div>
+</section>
+
+<section id="s4">
+  <h2><span class="badge new">STEP04-1</span>검수</h2>
+  <p class="sub">반드시 새 채팅 · 같은 채팅에서는 AI가 자기 글을 감쌀 수 있습니다</p>
+
+  <h3>먼저 — 문안 옮기기</h3>
+  <table>
+    <tr><th>방법</th><th>난이도</th></tr>
+    <tr><td><b>화면 캡처해서 붙여넣기</b></td><td>가장 쉬움</td></tr>
+    <tr><td>텍스트로 뽑아 복사 (아래 프롬프트)</td><td>보통</td></tr>
+    <tr><td>표 그대로 복사</td><td>서식 깨짐</td></tr>
+  </table>
+  <div class="box"><button class="copy">복사</button><pre>방금 문안만 번호 붙여서 일반 텍스트로 출력해줘. 표 없이.</pre></div>
+  <div class="warn">
+    <b>「검토 시 주의할 점」 칸은 가져가지 마십시오.</b> 답을 베낍니다.<br>
+    검수 <b>전</b> 문안을 넣어야 합니다.
+  </div>
+
+  <h3>검수 프롬프트</h3>
+  <p class="sub">원본 자료는 이미 들어 있습니다. 맨 아래에 문안만 붙이세요.</p>
+  <div class="box"><button class="copy">복사</button><pre>아래 [작성된 문안]을 [원본 자료]와 대조해 검수하세요.
+
+[검수 기준]
+1. 원본 자료에 없는 사실이 추가된 부분
+2. 원본에는 있지만 다르게 바뀐 부분
+3. 근거 없는 최상급·단정 표현
+4. 원본에 있더라도 근거 없는 일반화 표현
+5. 원본에 없는 수식어(형용사·부사)가 추가된 부분
+
+[출력 형식]
+| 유형 | 해당 표현 | 원본 근거 | 조치 |
+표로 정리하고, 유형은 [없는 사실] [변형] [과장] [일반화] [수식어] 중
+하나로 표시하세요.
+원본에 근거가 있으면 해당 문장을 그대로 인용하세요.
+근거가 없으면 "근거 없음"이라고 쓰세요.
+문제가 없으면 "지적 사항 없음"이라고 명시하세요.
+
+[원본 자료]
+■ 제주 은갈치 특대사이즈 300g*6마리 분량 (총 24토막)
+
+■ 100% 국내산 100% 자연산 제주 은갈치
+- 제주도 내 수협에서 수매
+- 채낚기 방식으로 1마리씩 어획
+- 자사기준 [특대] 사이즈 : 손질 후 300g 이상
+- 남녀노소 누구나 즐겨 찾는 우리 수산물 제주 은갈치
+
+■ 깔끔하고 위생적인 HACCP 인증 시설에서 손질 &amp; 포장
+- 먹기 좋고 보관이 편리하게 머리 &amp; 꼬리 제거
+- 깔끔하고 간편하게 한 팩씩 포장
+
+■ 우수 제품 품질인증(JQ) 확인 (2026.04.01 ~ 2029.03.31)
+
+구성: 6마리 분량 / 1팩당 4토막(마리당 4토막) / 총 24토막(6팩)
+중량: 1팩당 300g × 총 6팩 / 총 중량 1.8kg
+
+[작성된 문안]
+여기에 STEP03 결과를 붙여넣으세요</pre></div>
+
+  <h2 style="margin-top:26px"><span class="badge same">STEP04-2</span>최종 확정</h2>
+  <p class="sub">검수한 채팅에서 이어서 · 검수만 하고 안 고치면 의미가 없습니다</p>
+  <div class="box"><button class="copy">복사</button><pre>검수 결과를 반영해 최종 문안 5개를 확정해주세요.
+지적 사항이 없던 문안은 그대로 두고, 지적된 것만 수정하세요.
+수정한 문안에는 무엇을 왜 고쳤는지 한 줄로 표시해주세요.</pre></div>
+  <div class="note">
+    <b>왜 검수합니까?</b><br>
+    지시는 요청이지 보장이 아닙니다. STEP02에서 "베끼지 마세요"라고 했지만
+    고춧가루 공정이 갈치로 넘어왔습니다.<br>
+    <span class="key">그리고 책임은 AI가 지지 않습니다.</span>
+  </div>
+</section>
+
+<section id="mine">
+  <h2>실습 — 나의 초안</h2>
+  <p class="sub">0단계부터 다시 안 하셔도 됩니다. <b>3단계 틀 하나만</b> 쓰시면 됩니다.</p>
+  <table>
+    <tr><th>카드</th><th>넣을 자료</th></tr>
+    <tr><td><b>A</b> 방송 문안</td><td>본인이 담당하는 상품 하나</td></tr>
+    <tr><td><b>B</b> 협력사 안내문</td><td>최근에 보낸 안내 건 하나</td></tr>
+    <tr><td><b>C</b> 회의록</td><td>지난주 회의 메모</td></tr>
+  </table>
+  <div class="warn">
+    <b>[2 - 예시]에는 다른 건을 넣으세요.</b> 지금 만들려는 것과 같은 건을 넣으면
+    문체를 배우는 게 아니라 그대로 베낍니다.<br>
+    대외비 자료는 넣지 마십시오.
+  </div>
+
+  <h3>카드 A · 방송 문안</h3>
+  <div class="box"><button class="copy">복사</button><pre>당신은 공영쇼핑에서 15년간 일한 MD입니다.
+
+아래 상품의 방송 소개 문구 초안을 작성하세요.
+
+[1 - 상품정보]
+여기에 상품 정보를 붙여넣으세요
+( 상품명 / 산지·생산자 / 원료·성분 / 중량·구성 / 가격 / 인증 / 배송 )
+※ 공영쇼핑 사이트에서 가져오실 경우 상세페이지 이미지 말고
+   아래쪽 "상품 일반 정보" 표를 복사하세요. 이미지는 복사되지 않습니다.
+※ "고시정보" 표도 함께 넣으면 소비기한·보관방법을 지어내지 않습니다.
+
+[2 - 예시]
+아래는 공영쇼핑에서 잘 썼다고 평가받은 같은 유형의 상품 소개입니다.
+문체, 문단 구성, 용어 선택, 격식 수준을 그대로 따라 하세요.
+내용은 베끼지 말고, 예시에 나온 상품은 언급하지 마세요.
+
+여기에 다른 상품의 소개 자료를 붙여넣으세요
+
+[3 - 기준]
+반드시 지킬 것
+- 효능·효과를 단정하거나 암시하는 표현을 쓰지 마세요
+- "최고", "유일한", "1위", "국내 최초" 등 최상급 표현을 쓰지 마세요
+- 근거 없는 수치나 비교 표현을 쓰지 마세요
+- 자료에 없는 내용을 추가하지 마세요
+- 수치를 쓸 때는 자료에 있는 기준을 함께 밝히세요
+- 중소기업·농축수산물 판매 채널의 취지에 맞는 담백한 표현을 쓰세요
+
+다음 경우에는 "[확인 필요]"로 표시하세요.
+- 자료에 없는 정보를 써야 하는 경우
+- 표현이 규정에 걸릴지 판단이 어려운 경우
+
+[출력 형식]
+| 소구 포인트 | 문안 | 검토 시 주의할 점 |
+표로 5개 작성하세요.
+
+문안 작성 규칙
+- 고객이 읽는 완성된 문장으로 쓰세요. 스펙 나열이 아닙니다.
+- 한 문안은 40~60자로 하세요.</pre></div>
+
+  <h3>카드 B · 협력사 안내문</h3>
+  <div class="box"><button class="copy">복사</button><pre>당신은 공영쇼핑에서 협력사를 응대하는 담당자입니다.
+
+아래 내용을 협력사에 안내하는 문서 초안을 작성하세요.
+
+[1 - 자료]
+여기에 관련 공지·규정·일정·결정 사항을 붙여넣으세요
+
+[2 - 예시]
+아래는 우리가 전에 보낸 안내문입니다.
+문체, 문단 구성, 용어 선택, 격식 수준을 그대로 따라 하세요.
+내용은 베끼지 마세요.
+
+여기에 전에 보낸 다른 안내문을 붙여넣으세요
+
+[3 - 기준]
+반드시 지킬 것
+- 업계 전문용어·내부 약어를 쓰지 마세요 (상대는 중소기업 담당자입니다)
+- 확정되지 않은 사항은 단정하지 마세요
+- 자료에 없는 일정이나 조건을 추가하지 마세요
+- 정중하되 지나치게 길지 않게 쓰세요
+- 공공기관 문서이므로 과도한 판촉 어조는 피하세요
+
+애매한 경우 임의로 판단하지 말고 "[확인 필요]"로 표시하세요.
+
+[출력 형식]
+제목
+본문 — 안내 항목별로 번호를 붙여 5문단 이내
+문의처
+마지막에 "예상 문의 3가지"를 따로 정리</pre></div>
+
+  <h3>카드 C · 회의록</h3>
+  <div class="box"><button class="copy">복사</button><pre>당신은 회의록을 정리하는 담당자입니다.
+
+아래 회의 내용을 회의록으로 정리하세요.
+
+[1 - 자료]
+여기에 회의 메모·채팅 기록을 그대로 붙여넣으세요
+
+[2 - 예시]
+아래는 우리 부서에서 쓰는 회의록입니다.
+항목 구성, 문체, 상세 수준, 표기 방식을 그대로 따라 하세요.
+내용은 베끼지 마세요.
+
+여기에 전에 쓴 다른 회의의 회의록을 붙여넣으세요
+
+[3 - 기준]
+반드시 지킬 것
+- 회의에서 나온 말만 쓰고, 없는 내용을 만들지 마세요
+- 결론이 나지 않은 사항은 반드시 "미결"로 분류하세요
+- 추정과 사실을 구분하세요. 추정은 "~로 추정" 또는 "의견"으로 표기하세요
+- 기한이 명시되지 않은 항목은 임의로 날짜를 만들지 마세요
+- 발언자는 직책으로만 표기하세요
+
+다음 경우에는 "[확인 필요]"로 표시하세요.
+- 기한·담당자가 명확하지 않은 경우
+- 결론인지 의견인지 애매한 경우
+
+[출력 형식]
+1. 한 줄 요약
+2. 결정 사항
+3. 실행 항목 — | 담당 | 할 일 | 기한 |
+4. 미결 사항
+5. 다음 회의 안건</pre></div>
+</section>
+
+<section id="data">
+  <h2>실습 자료</h2>
+  <p class="sub">붙일 자료가 없으실 때 쓰세요</p>
+
+  <h3>제주 은갈치 — [1 - 상품정보]용</h3>
+  <div class="box"><button class="copy">복사</button><pre>■ 제주 은갈치 특대사이즈 300g*6마리 분량 (총 24토막)
+
+■ 100% 국내산 100% 자연산 제주 은갈치
+- 제주도 내 수협에서 수매
+- 채낚기 방식으로 1마리씩 어획
+- 자사기준 [특대] 사이즈 : 손질 후 300g 이상
+- 남녀노소 누구나 즐겨 찾는 우리 수산물 제주 은갈치
+
+■ 깔끔하고 위생적인 HACCP 인증 시설에서 손질 &amp; 포장
+- 먹기 좋고 보관이 편리하게 머리 &amp; 꼬리 제거
+- 깔끔하고 간편하게 한 팩씩 포장
+
+■ 우수 제품 품질인증(JQ) 확인 (2026.04.01 ~ 2029.03.31)
+
+구성: 6마리 분량 / 1팩당 4토막(마리당 4토막) / 총 24토막(6팩)
+중량: 1팩당 300g × 총 6팩 / 총 중량 1.8kg</pre></div>
+
+  <h3>해남 고춧가루 — [2 - 예시]용</h3>
+  <div class="box"><button class="copy">복사</button><pre>■ 26년 천사의땅 해남 햇고춧가루 500g*8봉 / 총 4kg
+
+- 26년 수확한 햇고추 사용
+- 26년 7월 이후 생산분
+- 해남고춧가루 전문 영농조합 : 천사의땅영농조합 (2013년 설립)
+- 100% 땅끝마을 해남 고추 사용
+  · 영양 풍부한 황토땅과 해풍의 영향, 풍부한 일조량으로 작물 재배에
+    최적화된 해남
+  · 해남농가 직접 수매
+- 황토방에서 건조한 고춧가루
+  · 황토방에서 건조해 매운맛을 줄이고, 빛깔을 살림
+- HACCP
+- 깐깐한 관리 노하우
+  · 햇홍고추 수매 후 직접 세척·건조
+  · 농산물품질관리사 직접 선별
+  · 수매 &gt; 세척 &gt; 건조 &gt; 분쇄 &gt; 포장 전 과정 책임관리
+  · 3회 선별(입고후, 건조후, 가공전) 및 3단계 세척(브러쉬, 에어세척 2회)
+  · 자외선살균 등 공정으로 위생, 안전 겸비 (UV살균 2회)
+- 보통맛, 중간굵기의 입자로 범용적으로 사용 가능</pre></div>
+
+  <h3>해남 고춧가루 고시정보 — [1 - 상품정보]에 함께</h3>
+  <div class="box"><button class="copy">복사</button><pre>[고시정보]
+- 용량: 500g × 8봉 / 총 4kg
+- 생산자: 천사의땅 영농조합법인 / 전남 해남군 황산면 남리길 109
+- 수확일: 26년 7월 이후
+- 소비기한: 제조일로부터 12개월
+- 원산지: 건고추 100% (국내산)
+- 품목: 고춧가루
+- 보관방법: 직사광선을 피해 서늘한 곳에 보관, 개봉 후에는 밀봉하여 냉장보관
+- 소비자 주의사항: 눈이나 피부 등 민감한 곳에 접촉을 피하십시오
+- 소비자상담: 공영쇼핑 고객센터 080-815-7777</pre></div>
+</section>
+
+<section id="extra">
+  <h2>부록</h2>
+
+  <h3>부족한 재료 찾기 — 같은 채팅에서</h3>
+  <p class="sub">최종 문안이 밋밋하게 느껴질 때</p>
+  <div class="box"><button class="copy">복사</button><pre>이 문안이 정확하지만 밋밋합니다.
+자료에 없는 내용을 넣을 수는 없으니, 자료를 더 채워야 합니다.
+
+더 매력적인 문안을 쓰려면 어떤 정보가 추가로 필요한지 알려주세요.
+- 어떤 정보가 있으면 좋은지
+- 그 정보를 어디서 구할 수 있는지
+- 그 정보로 어떤 소구 포인트를 만들 수 있는지
+
+표로 정리해주세요.</pre></div>
+  <div class="note">
+    <span class="key">AI가 대단한 게 아닙니다. 제가 준 만큼 나온 겁니다.
+    밋밋한 건 AI 탓이 아니라 재료 탓입니다.</span>
+  </div>
+
+  <h3>딱딱할 때 — 다듬기 (수업 후 활용)</h3>
+  <div class="box"><button class="copy">복사</button><pre>지금 문안이 정확하지만 딱딱합니다.
+고객이 읽기 좋게 문장만 다듬어주세요.
+
+지킬 것
+- 새로운 사실을 추가하지 마세요
+- 새로운 수식어를 만들지 마세요
+  (엄선한, 정성껏, 프리미엄, 온 가족 등 자료에 없는 형용사·부사 금지)
+- 자료에 있는 사실을 문장으로 자연스럽게 잇는 것까지만 하세요
+- 어떤 단어를 새로 넣었는지 표 아래에 목록으로 알려주세요.
+  추가한 단어가 없으면 "추가 없음"이라고 명시하세요.</pre></div>
+  <div class="warn"><b>다듬은 뒤에는 검수를 한 번 더</b> 돌리십시오. 없던 수식어가 슬쩍 들어옵니다.</div>
+
+  <h3>후속질문 5문장</h3>
+  <div class="box"><button class="copy">복사</button><pre>더 짧게, 핵심만 남겨주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>공영쇼핑 톤에 맞게, 신뢰감 있는 표현으로 바꿔주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>이 결과에서 가장 약한 부분을 지적하고 대안을 주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>자료에 근거가 없는 문장이 있으면 표시해주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>같은 내용을 임원 보고용 3줄로 줄여주세요.</pre></div>
+
+  <h3>축을 고정하려면</h3>
+  <p class="sub">마음에 드는 축이 나왔다면 다음부터는 고정하세요</p>
+  <div class="box"><button class="copy">복사</button><pre>아래 5개 소구 포인트별로 각각 작성하세요.
+① 원료·산지 ② 제조 공정 ③ 생산자·상생 ④ 상품 구성 ⑤ 방송 혜택</pre></div>
+
+  <h3>3단계 기준을 매번 붙이기 귀찮다면</h3>
+  <p class="sub">Gemini 요청사항(저장된 정보)에 넣어두면 자동 적용됩니다</p>
+  <div class="box"><button class="copy">복사</button><pre>나는 공영쇼핑에서 상품 관련 문서를 작성합니다.
+문안을 작성할 때는 항상 아래를 지켜주세요.
+- 효능·효과를 단정하거나 암시하는 표현 금지
+- 최상급 표현 금지
+- 자료에 없는 내용 추가 금지
+- 애매한 경우 "[확인 필요]"로 표시</pre></div>
+  <div class="warn">
+    팀이 공유해야 하는 기준이라면 개인 요청사항이 아니라 <b>공유 문서</b>로 관리하십시오.
+    개인 계정에만 저장되어 다른 사람에게는 적용되지 않습니다.
+  </div>
+
+  <h3>입력 금지 3가지</h3>
+  <table>
+    <tr><td><b>1</b></td><td>개인 식별 정보 — 이름 · 연락처 · 주민번호 · 계좌번호 · 주문번호</td></tr>
+    <tr><td><b>2</b></td><td>거래처 비공개 정보 — 계약 조건 · 원가 · 미공개 상품 정보</td></tr>
+    <tr><td><b>3</b></td><td>미발표 경영 정보 — 내부 실적 · 미공개 수치</td></tr>
+  </table>
+
+  <h3>결과를 믿기 전 3문항</h3>
+  <table>
+    <tr><td><b>1</b></td><td>이 숫자, 출처가 있습니까?</td></tr>
+    <tr><td><b>2</b></td><td>원문에 없는 말이 섞이지 않았습니까?</td></tr>
+    <tr><td><b>3</b></td><td>우리 규정에 실제로 해당됩니까?</td></tr>
+  </table>
+</section>
+
+<footer>
+  AI 모닝 클래스 · 1일차 프롬프트 모음<br>
+  ※ 해당 문서는 배포 및 공유를 제한합니다
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var txt = btn.parentElement.querySelector('pre').innerText;
+    var done = function(){
+      btn.textContent = '복사됨';
+      btn.classList.add('done');
+      setTimeout(function(){ btn.textContent='복사'; btn.classList.remove('done'); }, 1400);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){ alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.'); }
+      document.body.removeChild(ta);
+    }
+  });
+});
+</script>
+</body>
+</html>
