@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2일차 프롬프트 모음 · 출처있는 조사표 만들기</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#1a1d21; --dim:#5b636d;
+    --line:#e3e6ea; --accent:#1f3a68; --accent2:#2f6fd0; --warn:#c2410c;
+    --code:#f2f4f7; --ok:#0f766e;
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,
+      "Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;
+    --mono:"D2Coding",Consolas,"Courier New",monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.72;font-size:15.5px;letter-spacing:-0.011em;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  header{background:var(--accent);color:#fff;padding:28px 20px}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  header h1{margin:0 0 6px;font-size:23px;font-weight:700;letter-spacing:-0.02em}
+  header p{margin:0;opacity:.85;font-size:14px}
+
+  nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);
+    padding:10px 0;z-index:10;overflow-x:auto;white-space:nowrap}
+  nav a{display:inline-block;margin-right:6px;padding:6px 12px;border-radius:20px;
+    font-size:13px;color:var(--accent);text-decoration:none;background:var(--code)}
+  nav a:hover{background:var(--accent);color:#fff}
+
+  section{background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:20px;margin:18px 0}
+  h2{font-size:19px;margin:0 0 4px;color:var(--accent);font-weight:700;letter-spacing:-0.02em}
+  .sub{color:var(--dim);font-size:13.5px;margin:0 0 14px}
+  h3{font-size:15.5px;margin:18px 0 6px;font-weight:600}
+
+  .badge{display:inline-block;background:var(--accent2);color:#fff;font-size:12px;
+    padding:2px 9px;border-radius:4px;margin-right:6px;vertical-align:2px}
+  .badge.new{background:var(--warn)}
+  .badge.same{background:var(--ok)}
+
+  .box{position:relative;background:var(--code);border:1px solid var(--line);
+    border-radius:8px;padding:14px 14px 14px;margin:10px 0}
+  pre{margin:0;white-space:pre-wrap;word-break:break-word;
+    font-family:var(--mono);font-size:13.5px;line-height:1.62;letter-spacing:0}
+  .copy{position:absolute;top:8px;right:8px;border:1px solid var(--line);
+    background:#fff;color:var(--accent);border-radius:6px;padding:4px 10px;
+    font-size:12px;cursor:pointer}
+  .copy:hover{background:var(--accent);color:#fff}
+  .copy.done{background:var(--ok);color:#fff;border-color:var(--ok)}
+
+  .note{border-left:3px solid var(--accent2);background:#f0f5fd;padding:10px 14px;
+    margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
+  .warn{border-left:3px solid var(--warn);background:#fff5ef;padding:10px 14px;
+    margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
+  .key{font-weight:700;color:var(--accent)}
+
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  th{background:var(--code);font-weight:700}
+
+  footer{color:var(--dim);font-size:13px;text-align:center;padding:30px 20px}
+  @media print{nav{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>2일차 · 출처있는 조사표 만들기</h1>
+    <p>조사하는 법이 아니라, 쓸 수 있는지 판단하는 법 — 프롬프트 모음</p>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#set">시작 전 설정</a>
+  <a href="#s0">STEP00 넓은 질문</a>
+  <a href="#s1">STEP01 좁은 질문</a>
+  <a href="#s2">STEP02 표</a>
+  <a href="#move">표 옮기기</a>
+  <a href="#s3">STEP03 검증</a>
+  <a href="#s4">STEP04 문장</a>
+  <a href="#job">부서별 한 줄</a>
+  <a href="#mine">나의 주제로</a>
+  <a href="#extra">부록</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="set">
+  <h2>시작 전 설정 (2분)</h2>
+  <p class="sub">실습 결과에 직접 영향을 줍니다. 먼저 확인해 주세요.</p>
+  <table>
+    <tr><th>설정</th><th>조치</th><th>이유</th></tr>
+    <tr><td>과거 대화 참조</td><td><b>끔</b></td><td>켜져 있으면 새 채팅이어도 앞 결과를 끌어와 비교가 안 됩니다</td></tr>
+    <tr><td>요청사항 · 저장된 정보</td><td><b>비움</b></td><td>사람마다 결과가 달라집니다</td></tr>
+  </table>
+
+  <h3>딥리서치 켜는 곳</h3>
+  <div class="note">
+    입력창 <b>왼쪽 [ + ]</b> → 도구 목록 → <b>[ Deep Research ]</b><br>
+    모델 고르는 드롭다운이 아닙니다.
+  </div>
+  <div class="warn">
+    딥리서치는 <b>한 번 돌리는 데 5~8분</b> 걸립니다. 돌려놓고 다음 설명을 들으시면 됩니다.<br>
+    사용량이 걸리면 <b>딥리서치는 1·2단계까지만</b> 쓰고, 3단계부터는 일반 채팅으로 진행합니다.
+  </div>
+
+  <h3>채팅 분리 규칙 — 오늘 가장 헷갈리는 곳</h3>
+  <div class="note"><b>조사를 새로 시킬 때는 새 채팅, 받은 걸 가공할 때는 같은 채팅.</b></div>
+  <table>
+    <tr><th>단계</th><th>채팅</th><th>딥리서치</th></tr>
+    <tr><td>STEP00 넓은 질문</td><td><b>새 채팅</b></td><td><b>켬</b></td></tr>
+    <tr><td>STEP01 좁은 질문</td><td><b>새 채팅</b></td><td><b>켬</b></td></tr>
+    <tr><td>STEP02 표로 정리</td><td>STEP01 채팅에서 <b>이어서</b></td><td>―</td></tr>
+    <tr><td>STEP03 검증</td><td><b>새 채팅</b></td><td><b>끔</b></td></tr>
+    <tr><td>STEP03-2 성격 분류</td><td>검증한 채팅에서 <b>이어서</b></td><td>―</td></tr>
+    <tr><td>STEP04 문장으로</td><td>검증한 채팅에서 <b>이어서</b></td><td>―</td></tr>
+  </table>
+  <div class="warn">
+    <b>STEP02는 새 채팅이 아닙니다.</b> 새 채팅에서 하면 딥리서치가 다시 돌아갑니다.<br>
+    <b>STEP03은 반드시 새 채팅입니다.</b> 같은 채팅에서는 AI가 자기 결과를 감쌉니다.
+  </div>
+</section>
+
+<section id="s0">
+  <h2><span class="badge">STEP00</span>넓은 질문</h2>
+  <p class="sub">새 채팅 · 딥리서치 켬 · 일부러 대충 던집니다</p>
+  <div class="box"><button class="copy">복사</button><pre>홈쇼핑 경쟁사 동향에 대해 조사해서 보고서로 정리해 주세요.</pre></div>
+  <div class="note">
+    <b>조사 계획서가 뜨면 읽지 마시고 바로 [ 연구 시작 ]을 누르세요.</b>
+    계획서는 다음 단계에서 다룹니다.
+  </div>
+  <div class="warn">
+    <b>못 쓸 결과가 나오는 게 정상입니다.</b><br>
+    「경쟁사」가 누구인지 안 정해줬으니 AI가 알아서 정합니다.
+    기간·출처·형식도 안 줬으니 시키지 않은 전망과 제언까지 해옵니다.
+  </div>
+</section>
+
+<section id="s1">
+  <h2><span class="badge">STEP01</span>좁은 질문</h2>
+  <p class="sub">새 채팅 · 딥리서치 켬 · 같은 주제, 조건만 붙였습니다</p>
+  <div class="box"><button class="copy">복사</button><pre>국내 TV홈쇼핑 사업자의 실적과 사업 구조를 2021년부터 2025년까지 조사해 주세요.
+조사 대상은 CJ온스타일, GS샵, 현대홈쇼핑, 롯데홈쇼핑, 공영홈쇼핑 5개사입니다.
+T커머스 단독 사업자와 해외 법인 실적은 조사 대상에서 빼 주세요.
+
+조사 범위는 다음 5가지로 한정합니다.
+1. 각 사의 취급고가 연도별로 어떻게 변했는지
+2. 각 사의 매출액과 영업이익이 연도별로 어떻게 변했는지
+3. 각 사의 취급고에서 TV 방송과 모바일이 차지하는 비중이 연도별로 어떻게 변했는지. TV와 모바일로 나눠 주세요.
+4. 각 사가 지급한 방송 송출수수료의 규모와 매출 대비 비중이 연도별로 어떻게 변했는지
+5. 공영홈쇼핑이 나머지 4개사와 뚜렷하게 다른 점
+
+출처 조건입니다.
+- 매년 반복해서 공시되거나 조사되는 자료를 우선으로 사용해 주세요. 금융감독원 전자공시시스템의 사업보고서와 감사보고서, 과학기술정보통신부 방송산업실태조사, 방송통신위원회 방송시장경쟁상황평가가 여기 해당합니다.
+- 정부와 공공기관 통계, 공시 자료, 국책연구기관 보고서, 주요 경제지 보도만 사용해 주세요.
+- 개인 블로그, 업체 홍보용 보도자료, 증권사 종목 리포트는 쓰지 마세요. 불가피하게 썼다면 그 항목 옆에 업체자료라고 표시해 주세요.
+- 모든 수치에 발표 기관과 자료 이름, 조사한 시점과 발표한 시점을 함께 적어 주세요.
+- 회사별로 나눠서 밝혀진 자료가 있으면 나눠서 적고, 모회사나 사업부문 단위로 묶여 있는 자료라면 어느 단위의 수치인지 반드시 표시해 주세요.
+
+출력은 위 5가지 항목별로 나누고, 각 항목 끝에 근거 링크를 붙여 주세요.
+
+마지막에 찾지 못한 것이라는 항목을 따로 만들어, 위 5가지 중에서 신뢰할 만한 출처를 찾지 못한 부분을 그대로 적어 주세요. 없으면 없음이라고 쓰세요.</pre></div>
+  <div class="note">
+    <span class="key">주제는 아까와 똑같습니다. 조건 네 가지만 붙였습니다.</span><br>
+    ① 범위 · ② 기간 · ③ 출처 · ④ 형식
+  </div>
+
+  <h3>조사 계획서 고치기 — 여기서만 합니다</h3>
+  <p class="sub">계획서가 뜨면 [ 계획 수정 ]을 누르고 아래 한 줄을 넣은 뒤 [ 연구 시작 ]</p>
+  <div class="box"><button class="copy">복사</button><pre>50대와 60대 고객을 겨냥해 각 사가 최근에 새로 시작한 서비스나 혜택도 함께 조사해 주세요.</pre></div>
+  <div class="note">
+    <span class="key">시킨 뒤에도 한 번 더 끼어들 수 있습니다.</span>
+    계획서 항목이 늘어나는 게 보입니다.
+  </div>
+  <div class="warn">
+    계획서가 안 뜨고 바로 조사가 시작될 때가 있습니다. <b>그냥 두세요. 결과는 나옵니다.</b>
+  </div>
+</section>
+
+<section id="s2">
+  <h2><span class="badge same">STEP02</span>표로 정리</h2>
+  <p class="sub">새 채팅이 아닙니다 · STEP01 결과 아래에 그대로 이어 붙입니다</p>
+  <div class="box"><button class="copy">복사</button><pre>위 조사 결과를 표 하나로 정리해 주세요.
+
+열은 다음 6개입니다.
+항목 / 수치와 내용 / 출처(기관명과 자료명) / 데이터 시점 / 발표 시점 / 신뢰도
+
+데이터 시점과 발표 시점을 반드시 나눠 주세요.
+데이터 시점은 그 수치가 실제로 조사되거나 집계된 때이고, 발표 시점은 그 자료가 공개된 때입니다.
+둘이 다르면 다른 대로 적고, 데이터 시점을 알 수 없으면 알 수 없음이라고 쓰세요.
+
+신뢰도는 아래 기준으로 A, B, C 중 하나를 적어 주세요.
+A - 정부와 공공기관 통계, 상장사 공시
+B - 협회와 연구기관 자료, 주요 언론 보도
+C - 업체 보도자료, 판매 페이지, 블로그, 출처를 특정할 수 없는 것
+
+규칙입니다.
+- 한 행에는 하나의 사실만 담아 주세요. 두 가지가 섞이면 행을 나누세요.
+- 수치가 없는 서술형 내용도 행으로 넣되, 수치와 내용 칸에 요약해서 적어 주세요.
+- 출처를 특정할 수 없는 행도 삭제하지 말고 신뢰도 C로 남겨 주세요.
+- 표는 신뢰도 A가 위로 오도록 정렬해 주세요.
+
+표 아래에 C등급이 몇 행인지 세어서 적어 주세요.
+
+그 아래에 어긋나는 숫자라는 항목을 따로 만들어 주세요.
+같은 내용을 다루는데 출처마다 수치가 다르게 나온 것이 있으면 모아서 적어 주세요.
+어느 쪽이 맞는지는 판단하지 마세요. 어긋난다는 사실과 각각의 수치, 각각의 출처만 나열해 주세요.
+없으면 없음이라고 쓰세요.</pre></div>
+  <div class="note">
+    <span class="key">읽는 자료에서, 고르는 자료로.</span>
+    등급이 붙는 순간 쓸 것과 안 쓸 것이 갈립니다.
+  </div>
+  <table>
+    <tr><th>등급</th><th>무엇</th><th>어떻게</th></tr>
+    <tr><td><b>A</b></td><td>정부·공공기관 통계, 상장사 공시</td><td>출처 밝히고 그대로 씁니다</td></tr>
+    <tr><td><b>B</b></td><td>협회·연구기관 자료, 주요 언론 보도</td><td>원 출처가 어딘지 한 번 더 봅니다</td></tr>
+    <tr><td><b>C</b></td><td>업체 보도자료, 블로그, 출처 불명</td><td>확인 전에는 안 씁니다</td></tr>
+  </table>
+  <div class="warn">
+    <b>이 등급 기준은 강사가 임의로 정한 것입니다.</b>
+    회사에 자료 인용 기준이 있으면 그걸 넣으십시오.
+  </div>
+</section>
+
+<section id="move">
+  <h2>표 옮기기</h2>
+  <p class="sub">STEP03으로 넘어가기 전에 · 3분</p>
+  <table>
+    <tr><th>순서</th><th>할 일</th></tr>
+    <tr><td>1</td><td>표 위 <b>[ Sheets로 내보내기 ]</b> 클릭</td></tr>
+    <tr><td>2</td><td><b>새 채팅</b>을 엽니다 (딥리서치 끔)</td></tr>
+    <tr><td>3</td><td>입력창 <b>[ + ]</b> → <b>드라이브에서 추가</b> → 방금 만든 시트 선택</td></tr>
+  </table>
+  <div class="warn">
+    회사 계정에서 드라이브 연동이 막히면 <b>표를 그대로 복사해 붙여넣으셔도</b> 됩니다.
+  </div>
+</section>
+
+<section id="s3">
+  <h2><span class="badge new">STEP03</span>검증</h2>
+  <p class="sub">반드시 새 채팅 · 딥리서치 끔 · 시트를 첨부한 뒤 실행</p>
+  <div class="box"><button class="copy">복사</button><pre>아래는 다른 AI가 조사해서 만든 표입니다. 저는 이 표를 회사 보고서에 쓰려고 합니다.
+표를 그대로 믿지 말고, 각 행마다 아래 4가지를 점검해 주세요.
+
+1. 출처로 적힌 기관과 자료가 실제로 존재하는지
+2. 그 출처에 정말 그 수치가 있는지, 아니면 다른 자료의 수치가 잘못 붙은 것인지
+3. 발표 시점이 비어 있는지, 또는 최신처럼 보이지만 실제로는 오래된 자료인지
+4. 통계가 아닌 것이 통계처럼 적혀 있는지. 업체 홍보자료나 기사 속 업계 관계자 발언이 이에 해당합니다.
+
+점검 결과를 표로 주세요.
+열은 항목 / 판정 / 근거 입니다.
+판정은 확인됨, 확인 불가, 수정 필요 중 하나로만 적어 주세요.
+
+마지막에 이 표에서 제가 직접 확인해야 하는 것이라는 목록을 만들어 주세요.
+확인이 필요한 것이 하나도 없으면 없음이라고 쓰세요.
+
+표는 첨부한 시트에 있습니다.</pre></div>
+  <table>
+    <tr><th>판정</th><th>무엇을 뜻하나</th></tr>
+    <tr><td><b>확인됨</b></td><td>그대로 씁니다</td></tr>
+    <tr><td><b>수정 필요</b></td><td>고쳐서 씁니다</td></tr>
+    <tr><td><b>확인 불가</b></td><td>원문을 봐야 압니다</td></tr>
+  </table>
+
+  <h2 style="margin-top:26px"><span class="badge same">STEP03-2</span>성격 분류</h2>
+  <p class="sub">검증한 채팅에서 이어서 · 어디를 봐야 하는지 좁힙니다</p>
+  <div class="box"><button class="copy">복사</button><pre>마지막으로, 수정 필요로 판정한 항목들을 아래 4가지 성격으로 묶고 각각 몇 행인지 세어 주세요.
+1. 누구를 조사했는지가 틀렸거나 빠진 것
+2. 출처 표기를 고쳐야 하는 것
+3. 시점 표기를 고쳐야 하는 것
+4. 아예 삭제해야 하는 것
+그리고 이 중 원문을 직접 열어봐야만 확인할 수 있는 것이 몇 개인지 따로 적어 주세요.</pre></div>
+  <div class="note">
+    <span class="key">AI가 확인을 대신 해주는 게 아닙니다. 어디를 봐야 하는지 알려주는 겁니다.</span>
+  </div>
+  <div class="warn">
+    <b>그럼 다 확인해야 하나요?</b> 아닙니다.<br>
+    C등급은 안 씁니다. 확인됨은 출처 밝히고 그냥 씁니다.
+    <b>고쳐 쓸 것만 원문을 봅니다.</b>
+  </div>
+</section>
+
+<section id="s4">
+  <h2><span class="badge same">STEP04</span>문장으로</h2>
+  <p class="sub">검증한 채팅에서 이어서 · 보고서에 바로 붙일 수 있는 형태로</p>
+  <div class="box"><button class="copy">복사</button><pre>점검결과 표에서 신뢰도가 A이고 검증에서 확인됨으로 나온 행 중, 홈쇼핑 사업자의 실적과 사업 구조에 직접 관련된 것만 골라 보고서에 바로 넣을 수 있는 문장으로 만들어 주세요.
+
+같은 항목이 여러 연도에 걸쳐 있으면 한 문장에 두 시점을 함께 넣어 변화를 보여 주세요.
+
+각 문장에 다음을 반드시 넣어 주세요.
+- 수치
+- 발표 기관과 자료 이름
+- 데이터 시점
+- 조사 대상이 누구인지
+
+한 문장은 두 줄을 넘기지 마세요.
+
+결과를 두 방향으로 나눠 주세요.
+첫째는 조건 없이 바로 쓸 수 있는 문장입니다.
+둘째는 조건을 밝히면 쓸 수 있는 문장입니다. 수치의 단위가 개별 회사가 아니라 모회사나 사업부문인 경우, 또는 가장 최근 수치가 3년 이상 지난 경우가 여기 해당합니다. 문장 끝에 괄호로 그 조건을 적어 주세요.
+
+원문을 직접 열어봐야만 알 수 있는 부분이 있을 때만 [확인 필요]라고 표시해 주세요.</pre></div>
+  <div class="note">
+    <b>조건이 붙은 문장은 못 쓰는 문장이 아닙니다.</b>
+    어느 단위의 숫자인지만 밝히면 그대로 씁니다.
+  </div>
+  <div class="warn">
+    <b>문장 개수를 못 박지 마십시오.</b> 다섯 개 달라고 하면 억지로 채웁니다.
+  </div>
+</section>
+
+<section id="job">
+  <h2>부서별 한 줄</h2>
+  <p class="sub">STEP04 프롬프트를 붙이고 엔터 친 다음, 맨 아래에 본인 부서 한 줄을 더 붙이세요</p>
+
+  <h3>방송심의</h3>
+  <div class="box"><button class="copy">복사</button><pre>각 문장 옆에, 이 내용을 방송에서 말할 때 심의상 주의할 점을 한 줄로 적어 주세요.</pre></div>
+
+  <h3>영상아트</h3>
+  <div class="box"><button class="copy">복사</button><pre>각 문장 옆에, 이 내용을 화면이나 자막으로 보여준다면 어떻게 할지 한 줄로 적어 주세요.</pre></div>
+
+  <h3>공영라방</h3>
+  <div class="box"><button class="copy">복사</button><pre>각 문장 옆에, 이 내용이 방송 편성이나 소구 포인트에 주는 시사점을 한 줄로 적어 주세요.</pre></div>
+
+  <h3>인재육성</h3>
+  <div class="box"><button class="copy">복사</button><pre>각 문장 옆에, 이 내용이 직원 교육 기획에 주는 시사점을 한 줄로 적어 주세요.</pre></div>
+
+  <h3>경영지원</h3>
+  <div class="box"><button class="copy">복사</button><pre>각 문장 옆에, 이 내용이 경영 보고에 주는 시사점을 한 줄로 적어 주세요.</pre></div>
+
+  <div class="note"><span class="key">재료는 같은데 관점이 다릅니다.</span></div>
+</section>
+
+<section id="mine">
+  <h2>나의 주제로 바꾸기</h2>
+  <p class="sub">STEP02 · 03 · 04는 주제가 바뀌어도 그대로 씁니다. <b>STEP01만</b> 바꾸시면 됩니다.</p>
+
+  <table>
+    <tr><th>단계</th><th>다음에 쓸 때</th></tr>
+    <tr><td>STEP00 넓은 질문</td><td>안 해도 됩니다 (오늘은 비교하려고 한 것)</td></tr>
+    <tr><td><b>STEP01 좁은 질문</b></td><td><b>주제에 맞게 고쳐 씁니다</b></td></tr>
+    <tr><td>STEP02 표로 정리</td><td>그대로</td></tr>
+    <tr><td>STEP03 검증</td><td>그대로</td></tr>
+    <tr><td>STEP04 문장으로</td><td>주제 이름 한 곳만 바꿉니다</td></tr>
+  </table>
+
+  <h3>좁은 질문 틀</h3>
+  <p class="sub">파란 안내문 자리를 본인 주제로 채우세요</p>
+  <div class="box"><button class="copy">복사</button><pre>여기에 무엇을 언제부터 언제까지 조사할지 한 문장으로 쓰세요.
+여기에 조사 대상을 구체적으로 적으세요.
+여기에 조사에서 뺄 것을 적으세요.
+
+조사 범위는 다음 5가지로 한정합니다.
+1. 여기에 연도별로 어떻게 변했는지 볼 항목을 쓰세요
+2. 여기에 연도별로 어떻게 변했는지 볼 항목을 쓰세요
+3. 여기에 연도별로 어떻게 변했는지 볼 항목을 쓰세요
+4. 여기에 연도별로 어떻게 변했는지 볼 항목을 쓰세요
+5. 여기에 비교하고 싶은 대상과 뚜렷하게 다른 점을 쓰세요
+
+출처 조건입니다.
+- 매년 반복해서 공시되거나 조사되는 자료를 우선으로 사용해 주세요.
+- 정부와 공공기관 통계, 공시 자료, 국책연구기관 보고서, 주요 경제지 보도만 사용해 주세요.
+- 개인 블로그, 업체 홍보용 보도자료는 쓰지 마세요. 불가피하게 썼다면 그 항목 옆에 업체자료라고 표시해 주세요.
+- 모든 수치에 발표 기관과 자료 이름, 조사한 시점과 발표한 시점을 함께 적어 주세요.
+- 조사 대상이 묶여서 뭉뚱그려진 자료라면 어느 단위의 수치인지 반드시 표시해 주세요.
+
+출력은 위 5가지 항목별로 나누고, 각 항목 끝에 근거 링크를 붙여 주세요.
+
+마지막에 찾지 못한 것이라는 항목을 따로 만들어, 위 5가지 중에서 신뢰할 만한 출처를 찾지 못한 부분을 그대로 적어 주세요. 없으면 없음이라고 쓰세요.</pre></div>
+
+  <h3>항목을 고를 때 — 데이터가 두꺼운 축 / 얇은 축</h3>
+  <table>
+    <tr><th>잘 나옵니다 (매년 조사·공시)</th><th>잘 안 나옵니다 (일회성)</th></tr>
+    <tr><td>매출·영업이익·거래액</td><td>특정 캠페인 성과</td></tr>
+    <tr><td>이용률·보유율·경험률</td><td>1회 평균 구매 금액</td></tr>
+    <tr><td>산업 전체 규모·비중</td><td>「~할 때 겪는 어려움」</td></tr>
+    <tr><td>정부 규제·승인 조건</td><td>UI/UX 트렌드, 디자인 사례</td></tr>
+  </table>
+  <div class="warn">
+    <b>얇은 축을 항목에 넣으면 그 자리가 빕니다.</b>
+    그리고 남은 항목 주변으로 결과가 몰려 최종 문장이 초라해집니다.
+  </div>
+  <div class="note">
+    <span class="key">기간은 5년으로 잡으세요.</span>
+    최신 자료만 받으려는 게 아니라 <b>변화를 보려는 것</b>입니다.
+    한 해만 물으면 숫자 하나로 끝납니다.
+  </div>
+</section>
+
+<section id="extra">
+  <h2>부록</h2>
+
+  <h3>딥리서치는 언제 쓸까요</h3>
+  <table>
+    <tr><th>이럴 때 씁니다</th><th>이럴 때 쓰지 마세요</th></tr>
+    <tr><td>사내에 없는 걸 물어야 할 때</td><td>사내 자료로 답이 되는 것 (규정, 지난 실적)</td></tr>
+    <tr><td>숫자를 보고서에 넣어야 할 때</td><td>답이 하나로 정해진 것 (환율, 법 조항)</td></tr>
+    <tr><td>여러 출처를 비교해야 할 때</td><td>문안·기획 쓰기 — 어제 방식</td></tr>
+    <tr><td>내가 모르는 분야일 때</td><td>급할 때 — 5~10분 걸립니다</td></tr>
+  </table>
+
+  <h3>보고서에 들어갈 수치의 조건 4가지</h3>
+  <table>
+    <tr><th></th><th>무엇</th><th>없으면</th></tr>
+    <tr><td><b>① 얼마</b></td><td>수치</td><td>주장일 뿐</td></tr>
+    <tr><td><b>② 누가</b></td><td>어느 기관의 무슨 자료</td><td>출처 불명</td></tr>
+    <tr><td><b>③ 언제</b></td><td>조사한 때 (발표한 때가 아님)</td><td>옛날 걸 지금처럼</td></tr>
+    <tr><td><b>④ 누구를</b></td><td>조사 대상이 누구인지</td><td>가장 자주 빠집니다</td></tr>
+  </table>
+  <div class="note">
+    <span class="key">한 줄씩은 맞아도 두 줄을 붙이면 틀립니다.</span>
+    같은 A등급이라도 <b>어느 단위를 센 숫자인지</b>가 다를 수 있습니다.
+  </div>
+
+  <h3>표가 너무 길 때 — 같은 채팅에서</h3>
+  <div class="box"><button class="copy">복사</button><pre>이 표에서 신뢰도 A인 행만 남기고 다시 보여주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>이 표를 항목이 아니라 연도 순으로 다시 정렬해 주세요.</pre></div>
+
+  <h3>결과가 부실할 때 — 같은 채팅에서</h3>
+  <div class="box"><button class="copy">복사</button><pre>찾지 못한 것으로 적으신 항목에 대해, 왜 공식 자료가 없는지 이유를 설명해 주세요.
+그리고 그 대신 확인할 수 있는 가장 가까운 자료가 무엇인지 알려 주세요.</pre></div>
+  <div class="note">
+    <b>없다는 것도 결과입니다.</b> 왜 없는지를 알면 다음에 어디를 볼지 정해집니다.
+  </div>
+
+  <h3>후속질문 5문장</h3>
+  <div class="box"><button class="copy">복사</button><pre>이 표에서 가장 신뢰도가 낮은 행 세 개를 골라 이유를 알려주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>같은 지표인데 출처마다 숫자가 다른 것이 있으면 모아서 보여주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>이 문장들을 임원 보고용 3줄로 줄여주세요. 출처는 유지하세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>이 표에서 우리 회사와 직접 비교 가능한 행만 골라주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>이 결과에서 가장 약한 부분을 지적하고 무엇을 더 조사해야 하는지 알려주세요.</pre></div>
+
+  <h3>입력 금지 3가지</h3>
+  <table>
+    <tr><td><b>1</b></td><td>개인 식별 정보 — 이름 · 연락처 · 주민번호 · 계좌번호 · 주문번호</td></tr>
+    <tr><td><b>2</b></td><td>거래처 비공개 정보 — 계약 조건 · 원가 · 미공개 상품 정보</td></tr>
+    <tr><td><b>3</b></td><td>미발표 경영 정보 — 내부 실적 · 미공개 수치</td></tr>
+  </table>
+
+  <h3>결과를 믿기 전 3문항</h3>
+  <table>
+    <tr><td><b>1</b></td><td>이 숫자, 누가 조사한 겁니까?</td></tr>
+    <tr><td><b>2</b></td><td>언제 조사한 겁니까? (발표한 때 말고)</td></tr>
+    <tr><td><b>3</b></td><td>누구를 조사한 겁니까? 우리와 같은 단위입니까?</td></tr>
+  </table>
+</section>
+
+<footer>
+  AI 모닝 클래스 · 2일차 프롬프트 모음<br>
+  ※ 해당 문서는 배포 및 공유를 제한합니다
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var txt = btn.parentElement.querySelector('pre').innerText;
+    var done = function(){
+      btn.textContent = '복사됨';
+      btn.classList.add('done');
+      setTimeout(function(){ btn.textContent='복사'; btn.classList.remove('done'); }, 1400);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){ alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.'); }
+      document.body.removeChild(ta);
+    }
+  });
+});
+</script>
+</body>
+</html>
