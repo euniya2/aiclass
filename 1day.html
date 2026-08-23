@@ -16,7 +16,7 @@
     --mono:"D2Coding",Consolas,"Courier New",monospace;
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:var(--navh,76px)}
+  html{scroll-behavior:smooth;scroll-padding-top:var(--navh,124px)}
   body{margin:0;background:var(--bg);color:var(--ink);
     font-family:var(--sans);
     line-height:1.72;font-size:15.5px;letter-spacing:-0.011em;
@@ -29,6 +29,15 @@
   nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);
     padding:10px 0;z-index:10}
   nav>.wrap{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+
+  nav>.urlbar{max-width:900px;margin:0 auto 9px;padding:0 20px 9px;
+    display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+    border-bottom:1px dashed var(--line)}
+  .urlbar .label{font-size:12px;font-weight:700;color:#fff;background:var(--accent);
+    padding:3px 9px;border-radius:4px;align-self:center}
+  .urlbar .addr{font-family:var(--sans);font-size:19px;font-weight:700;
+    color:var(--warn);letter-spacing:-0.011em}
+  @media (max-width:520px){ .urlbar .addr{font-size:16px} }
   nav a{display:inline-block;padding:6px 12px;border-radius:20px;
     font-size:13px;color:var(--accent);text-decoration:none;background:var(--code)}
   nav a:hover{background:var(--accent);color:#fff}
@@ -105,7 +114,12 @@ h4{font-size:14px;margin:14px 0 4px;font-weight:600}
   </div>
 </header>
 
-<nav><div class="wrap">
+<nav>
+<div class="urlbar">
+  <span class="label">실습 페이지</span>
+  <span class="addr">bit.ly/aiclass01</span>
+</div>
+<div class="wrap">
   <a href="#set">시작 전 설정</a>
   <a href="#s0">STEP00</a>
   <a href="#s1">STEP01</a>
@@ -145,6 +159,7 @@ h4{font-size:14px;margin:14px 0 4px;font-weight:600}
   <table>
     <tr><th>구간</th><th>채팅</th></tr>
     <tr><td>STEP00 → 01 → 02 → 03</td><td><b>매번 새 채팅</b></td></tr>
+    <tr><td>STEP02 없는 내용 찾아보기</td><td>STEP02 채팅에서 이어서</td></tr>
     <tr><td>STEP04-1 검수</td><td><b>새 채팅</b></td></tr>
     <tr><td>STEP04-2 확정</td><td>검수한 채팅에서 이어서</td></tr>
   </table>
@@ -238,6 +253,14 @@ h4{font-size:14px;margin:14px 0 4px;font-weight:600}
     "깐깐한 관리 노하우", "수매 &gt; 손질 &gt; 세척 &gt; 급속동결" 같은 게
     갈치 자료엔 없는데 넘어옵니다. 그래서 3단계가 필요합니다.
   </div>
+
+  <h3>없는 내용 찾아보기</h3>
+  <p class="sub"><b>같은 채팅에서 이어서</b> · 결과가 매번 다르니 AI에게 직접 물어봅니다</p>
+  <div class="box"><button class="copy">복사</button><pre>방금 작성한 문안에서 [1 - 상품정보]에 없는 표현을 찾아 목록으로만 알려주세요.
+그중 [2 - 예시]에서 넘어온 것이 있으면 표시해주세요.</pre></div>
+  <div class="note">
+    <b>지금은 그냥 물어보는 겁니다.</b> 원본과 대조하는 <b>제대로 된 검수는 STEP04</b>에서 따로 합니다.
+  </div>
 </section>
 
 <section id="s3">
@@ -329,7 +352,21 @@ h4{font-size:14px;margin:14px 0 4px;font-weight:600}
 
 <section id="s4">
   <h2><span class="badge new">STEP04-1</span>검수</h2>
-  <p class="sub">반드시 새 채팅 · 같은 채팅에서는 AI가 자기 글을 감쌀 수 있습니다</p>
+  <p class="sub">새 채팅에서 합니다</p>
+
+  <div class="note">
+    <b>같은 채팅에서 하셔도 잡히긴 합니다.</b> 그래도 나누는 게 좋은 이유가 두 가지입니다.<br><br>
+    <b>①</b> 자기가 쓴 글은 <b>감쌀 수가 있습니다.</b> 사람도 자기 글의 오타는 잘 안 보이죠.
+    항상 그런 건 아니고 확률의 문제입니다.<br><br>
+    <b>②</b> <span class="key">이게 더 중요합니다 — 따로 넣어야 다른 데도 쓸 수 있습니다.</span>
+    협력사가 보낸 문안, 후배가 써온 초안, 작년에 쓴 문구.
+    그때는 <b>「같은 채팅」이란 게 없습니다.</b>
+    <b>[원본 자료]</b>와 <b>[작성된 문안]</b>을 따로 넣는 형태여야 어디든 쓸 수 있습니다.
+  </div>
+  <div class="warn">
+    <b>시간이 없으면 같은 채팅에서 하셔도 됩니다.</b>
+    원본을 다시 안 붙여도 되니 그만큼 빠릅니다. 다만 위 ②는 기억해 두세요.
+  </div>
 
   <h3>먼저 — 문안 옮기기</h3>
   <div class="note">
@@ -948,11 +985,14 @@ h4{font-size:14px;margin:14px 0 4px;font-weight:600}
   var nav = document.querySelector('nav');
   if(!nav) return;
   function setNavHeight(){
-    document.documentElement.style.setProperty('--navh', (nav.offsetHeight + 16) + 'px');
+    var h = nav.offsetHeight + 16;
+    if(!(h > 40 && h < 240)) return;   // 측정이 튀면 무시
+    document.documentElement.style.setProperty('--navh', h + 'px');
   }
-  setNavHeight();
-  window.addEventListener('resize', setNavHeight);
+  requestAnimationFrame(setNavHeight);
   window.addEventListener('load', setNavHeight);
+  window.addEventListener('resize', setNavHeight);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(setNavHeight); }
 })();
 
 document.querySelectorAll('.copy').forEach(function(btn){
