@@ -35,7 +35,14 @@
     padding:3px 9px;border-radius:4px;align-self:center}
   .urlbar .addr{font-family:var(--sans);font-size:19px;font-weight:700;
     color:var(--warn);letter-spacing:-0.011em}
-  @media (max-width:520px){ .urlbar .addr{font-size:16px} }
+  .urlbar .share{margin-left:auto;align-self:center;white-space:nowrap;
+    background:var(--accent2);color:#fff;text-decoration:none;
+    font-size:13px;font-weight:600;padding:7px 14px;border-radius:6px}
+  .urlbar .share:hover{background:var(--accent);color:#fff}
+  @media (max-width:520px){
+    .urlbar .addr{font-size:16px}
+    .urlbar .share{margin-left:0}
+  }
   nav>.wrap{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
   nav a{display:inline-block;padding:6px 12px;border-radius:20px;
     font-size:13px;color:var(--accent);text-decoration:none;background:var(--code)}
@@ -108,6 +115,7 @@
 <div class="urlbar">
   <span class="label">실습 페이지</span>
   <span class="addr">bit.ly/aiclass02</span>
+  <a class="share" href="https://drive.google.com/drive/folders/1oBzEH-umpmhRrTsQ5dLfLqs8xHFxeQfh?usp=drive_link" target="_blank" rel="noopener">📤 결과물 공유</a>
 </div>
 <div class="wrap">
   <a href="#set">시작 전 확인</a>
