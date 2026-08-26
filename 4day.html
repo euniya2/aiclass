@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3일차 프롬프트 모음 · 한 장짜리 보고서 만들기</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#1a1d21; --dim:#5b636d;
+    --line:#e3e6ea; --accent:#1f3a68; --accent2:#2f6fd0; --warn:#c2410c;
+    --code:#f2f4f7; --ok:#0f766e;
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,
+      "Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;
+    --mono:"D2Coding",Consolas,"Courier New",monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:var(--navh,124px)}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.72;font-size:15.5px;letter-spacing:-0.011em;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  header{background:var(--accent);color:#fff;padding:28px 20px}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  header h1{margin:0 0 6px;font-size:23px;font-weight:700;letter-spacing:-0.02em}
+  header p{margin:0;opacity:.85;font-size:14px}
+
+  nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);
+    padding:10px 0;z-index:10}
+  nav>.wrap{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+
+  nav>.urlbar{max-width:900px;margin:0 auto 9px;padding:0 20px 9px;
+    display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+    border-bottom:1px dashed var(--line)}
+  .urlbar .label{font-size:12px;font-weight:700;color:#fff;background:var(--accent);
+    padding:3px 9px;border-radius:4px;align-self:center}
+  .urlbar .addr{font-family:var(--sans);font-size:19px;font-weight:700;
+    color:var(--warn);letter-spacing:-0.011em}
+  .urlbar .share{margin-left:auto;align-self:center;white-space:nowrap;
+    background:var(--accent2);color:#fff;text-decoration:none;
+    font-size:13px;font-weight:600;padding:7px 14px;border-radius:6px}
+  .urlbar .share:hover{background:var(--accent);color:#fff}
+  @media (max-width:520px){
+    .urlbar .addr{font-size:16px}
+    .urlbar .share{margin-left:0}
+  }
+
+  nav a{display:inline-block;padding:6px 12px;border-radius:20px;
+    font-size:13px;color:var(--accent);text-decoration:none;background:var(--code)}
+  nav a:hover{background:var(--accent);color:#fff}
+
+  .sub a{color:var(--accent2);font-weight:600;text-decoration:underline;
+    text-underline-offset:2px;word-break:break-all}
+  .sub a:hover{color:var(--accent)}
+
+  .step{color:var(--accent);font-size:15px;font-weight:700;
+    background:#eef2f7;border-left:3px solid var(--accent2);
+    padding:8px 12px;border-radius:0 6px 6px 0;margin:10px 0 4px}
+
+  .linkbtn{display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent);color:#fff;text-decoration:none;
+    font-size:14.5px;font-weight:700;padding:11px 18px;border-radius:8px;
+    margin:2px 0 14px}
+  .linkbtn:hover{background:var(--accent2)}
+  .linkbtn .ico{font-size:16px}
+
+  section{background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:20px;margin:18px 0}
+  h2{font-size:19px;margin:0 0 4px;color:var(--accent);font-weight:700;letter-spacing:-0.02em}
+  .sub{color:var(--dim);font-size:13.5px;margin:0 0 14px}
+  h3{font-size:15.5px;margin:18px 0 6px;font-weight:600}
+
+  .badge{display:inline-block;background:var(--accent2);color:#fff;font-size:12px;
+    padding:2px 9px;border-radius:4px;margin-right:6px;vertical-align:2px}
+  .badge.new{background:var(--warn)}
+  .badge.same{background:var(--ok)}
+
+  .src{display:inline-block;background:#eef2f7;border:1px solid #d5deea;
+    color:var(--accent);font-size:12.5px;font-weight:600;
+    padding:3px 10px;border-radius:5px;margin:0 0 10px}
+
+  .box{position:relative;background:var(--code);border:1px solid var(--line);
+    border-radius:8px;padding:14px 14px 14px;margin:10px 0}
+  pre{margin:0;white-space:pre-wrap;word-break:break-word;
+    font-family:var(--mono);font-size:13.5px;line-height:1.62;letter-spacing:0}
+  .copy{position:absolute;top:8px;right:8px;border:1px solid var(--line);
+    background:#fff;color:var(--accent);border-radius:6px;padding:4px 10px;
+    font-size:12px;cursor:pointer}
+  .copy:hover{background:var(--accent);color:#fff}
+  .copy.done{background:var(--ok);color:#fff;border-color:var(--ok)}
+
+  .note{border-left:3px solid var(--accent2);background:#f0f5fd;padding:10px 14px;
+    margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
+  .warn{border-left:3px solid var(--warn);background:#fff5ef;padding:10px 14px;
+    margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
+  .key{font-weight:700;color:var(--accent)}
+
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  th{background:var(--code);font-weight:700}
+
+  footer{color:var(--dim);font-size:13px;text-align:center;padding:30px 20px}
+  @media print{nav{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>3일차 · 한 장짜리 보고서 만들기</h1>
+    <p>사실과 해석을 나눕니다 — 프롬프트 모음</p>
+  </div>
+</header>
+
+<nav>
+<div class="urlbar">
+  <span class="label">실습 페이지</span>
+  <span class="addr">bit.ly/aiclass03</span>
+  <a class="share" href="https://padlet.com/qkdtjdus/ai-fnb2x6slwr6n36p6" target="_blank" rel="noopener">📤 결과물 공유</a>
+</div>
+<div class="wrap">
+  <a href="#set">시작 전</a>
+  <a href="#src">소스 6개</a>
+  <a href="#studio">팟캐스트·마인드맵</a>
+  <a href="#p1">1 업계</a>
+  <a href="#p2">2 우리</a>
+  <a href="#p3">3·4·5 경쟁사</a>
+  <a href="#memo">소스 변환</a>
+  <a href="#report">보고서</a>
+  <a href="#job">부서별 한 줄</a>
+  <a href="#info">인포그래픽</a>
+  <a href="#mine">나의 주제로</a>
+  <a href="#extra">부록</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="set">
+  <h2>시작 전</h2>
+  <p class="sub">제미나이 노트북으로 진행합니다.
+    (<a href="https://notebooklm.google.com/" target="_blank" rel="noopener">https://notebooklm.google.com/</a>)</p>
+
+  <h3>어제와 무엇이 다른가</h3>
+  <table>
+    <tr><th></th><th>어제 · 채팅</th><th>오늘 · 노트북</th></tr>
+    <tr><td>근거를</td><td>링크로 줍니다</td><td><b>그 링크 안 어디인지</b>를 줍니다</td></tr>
+    <tr><td>자료가</td><td>흘러갑니다</td><td><b>쌓입니다</b></td></tr>
+    <tr><td>답의 범위</td><td>AI가 아는 것까지</td><td><b>지정된 소스 안에서만</b></td></tr>
+  </table>
+
+  <h3>노트북 만들기</h3>
+  <table>
+    <tr><th>순서</th><th>할 일</th></tr>
+    <tr><td>1</td><td><b>[ 새로 만들기 ]</b>로 빈 노트북을 만듭니다</td></tr>
+    <tr><td>2</td><td><b>[ 소스 추가 ]</b> → <b>드라이브</b> → 공유 폴더에서 <b>6개 전부</b> 선택</td></tr>
+  </table>
+  <div class="warn">
+    드라이브 연동이 막히면 <b>위 폴더 버튼에서 파일을 내려받아 직접 업로드</b>하셔도 됩니다.
+  </div>
+
+  <h3>화면 세 구역</h3>
+  <table>
+    <tr><th>구역</th><th>무엇</th></tr>
+    <tr><td><b>왼쪽 · 소스</b></td><td>넣은 자료. <b>답은 여기서만 나옵니다</b></td></tr>
+    <tr><td><b>가운데 · 채팅</b></td><td>묻고 답받는 곳. <b>숫자 옆 번호가 근거입니다</b></td></tr>
+    <tr><td><b>오른쪽 · 스튜디오</b></td><td>결과물을 만드는 곳</td></tr>
+  </table>
+
+  <h3>오늘의 규칙 — 소스를 켜고 끕니다</h3>
+  <div class="note">
+    <b>소스마다 체크박스가 있습니다. 끄면 그 자료는 없는 셈이 됩니다.</b><br>
+    단계마다 켜는 소스가 다릅니다. <b>각 프롬프트 위에 적어뒀습니다.</b>
+  </div>
+  <div class="warn">
+    답에서 회사가 빠지면 <b>프롬프트가 아니라 체크박스부터 보십시오.</b>
+  </div>
+</section>
+
+<section id="src">
+  <h2>오늘의 소스 — 1,059쪽</h2>
+  <p class="sub">전부 공개 자료입니다. 아래 버튼으로 드라이브 폴더가 열립니다.</p>
+
+  <a class="linkbtn" href="https://drive.google.com/drive/folders/10yZfHjZqIYzNXkvO9T1hLi7LMQSPwyAo?usp=sharing"
+     target="_blank" rel="noopener"><span class="ico">📂</span>소스 6개 폴더 열기</a>
+
+  <table>
+    <tr><th>#</th><th>소스</th><th>출처</th><th>데이터 시점</th><th>발표 시점</th><th>쪽</th><th>단계</th></tr>
+    <tr><td>01</td><td>방송산업 실태조사 (홈쇼핑 발췌)</td><td>과기정통부 · 방송미디어통신위원회</td><td><b>2022~2024</b></td><td>2025.12</td><td>34</td><td>업계</td></tr>
+    <tr><td>02</td><td>공영홈쇼핑 요약 손익계산서</td><td>ALIO 공공기관 경영정보</td><td>2021~2025</td><td>2026.1분기</td><td>1</td><td>자사</td></tr>
+    <tr><td>03</td><td>공영홈쇼핑 감사보고서</td><td>금융감독원 DART</td><td>2024~2025</td><td>2026.02</td><td>69</td><td>자사</td></tr>
+    <tr><td>04</td><td>현대홈쇼핑 사업보고서</td><td>금융감독원 DART</td><td>2023~2025</td><td>2026.03</td><td>383</td><td>타사</td></tr>
+    <tr><td>05</td><td>롯데쇼핑 사업보고서</td><td>금융감독원 DART</td><td>2023~2025</td><td>2026.03</td><td>489</td><td>타사</td></tr>
+    <tr><td>06</td><td>우리홈쇼핑 감사보고서</td><td>금융감독원 DART</td><td>2024~2025</td><td>2026.02</td><td>83</td><td>타사</td></tr>
+  </table>
+  <h3>각 자료에 무엇이 들어 있나</h3>
+
+  <table>
+    <tr><th>#</th><th>무엇이 들어 있나</th></tr>
+    <tr>
+      <td><b>01</b></td>
+      <td>방송산업 전체 개황 — 사업자 수 402개, 종사자, <b>사업자군별 방송사업매출</b>,
+          유료방송 가입자, 소유구조.
+          <b>홈쇼핑PP 7개사 합계 매출 추이</b>가 표 10에 있습니다</td>
+    </tr>
+    <tr>
+      <td><b>02</b></td>
+      <td>공영홈쇼핑 <b>5년치 요약 손익계산서</b> 한 장 —
+          매출액 · 매출원가 · 판관비 · 영업이익 · 당기순이익</td>
+    </tr>
+    <tr>
+      <td><b>03</b></td>
+      <td>공영홈쇼핑 <b>재무제표 전체와 주석</b> —
+          재무상태표 · 손익계산서 · 현금흐름표, 그리고 <b>숫자의 근거를 설명한 주석</b></td>
+    </tr>
+    <tr>
+      <td><b>04</b></td>
+      <td>현대홈쇼핑 <b>회사 전체 보고서</b> —
+          사업 내용 · 매출 상황 · 재무제표 · 종속기업 · 주주 · 지배구조</td>
+    </tr>
+    <tr>
+      <td><b>05</b></td>
+      <td>롯데쇼핑 <b>회사 전체 보고서</b> — 백화점 · 마트 · 슈퍼 · 홈쇼핑 · 영화.
+          04번과 같은 형식입니다</td>
+    </tr>
+    <tr>
+      <td><b>06</b></td>
+      <td>우리홈쇼핑 <b>재무제표 전체와 주석</b> — 03번과 같은 형식</td>
+    </tr>
+  </table>
+
+  <div class="note">
+    <span class="key">01번은 업계, 02·03번은 자사, 04·05·06번은 타사입니다.</span>
+    <b>개별 회사 실적은 공시(DART·ALIO)에 있고, 업계 전체 숫자는 01번에만 있습니다.</b>
+  </div>
+  <div class="note">
+    <span class="key">02와 03은 같은 회사, 다른 형식입니다.</span>
+    <b>02는 5년치가 한 장에 정리된 요약본이고, 03은 한 해를 자세히 쓴 원본</b>입니다.
+  </div>
+  <div class="warn">
+    <b>01번만 2024년까지입니다.</b> 실태조사가 아직 거기까지만 나왔습니다.
+    <b>업계와 회사 숫자를 나란히 놓지 말고, 업계는 방향만 보십시오.</b>
+  </div>
+  <div class="note">
+    <span class="key">GS샵과 CJ온스타일 제외 이유 :</span>
+    홈쇼핑이 독립된 회사가 아니라 <b>회사 안의 사업부서</b>라, <b>홈쇼핑만의 손익계산서가 없습니다.</b>
+  </div>
+</section>
+
+<section id="studio">
+  <h2>팟캐스트 · 마인드맵</h2>
+  <p class="sub">채팅을 시작하기 전에 스튜디오에서 두 개를 만듭니다</p>
+
+  <h3><span class="badge new">먼저</span>AI 오디오 — 팟캐스트</h3>
+  <div class="src">소스 — 01~06 전부</div>
+  <div class="box"><button class="copy">복사</button><pre>국내 TV홈쇼핑 시장이 어떻게 변하고 있는지, 그리고 공영홈쇼핑이 다른 사업자와 무엇이 다른지를 중심으로 이야기해 주세요.
+재무 담당자가 아닌 사람도 알아들을 수 있게 설명해 주세요.</pre></div>
+  <div class="warn">
+    <b>생성에 5~10분 걸립니다. 가장 먼저 걸어놓고 다음으로 가십시오.</b>
+  </div>
+
+  <h3>마인드맵</h3>
+  <div class="src">소스 — 01만</div>
+  <div class="box"><button class="copy">복사</button><pre>TV홈쇼핑 사업자의 방송사업매출을 중심으로 정리해 주세요.</pre></div>
+  <div class="note">
+    <span class="key">34쪽짜리 정부 보고서가 30초 만에 한 장으로 펼쳐집니다.</span>
+  </div>
+</section>
+
+<section id="p1">
+  <h2><span class="badge">프롬프트 1</span>업계는 어떤가</h2>
+  <div class="src">소스 — 01만</div>
+  <div class="box"><button class="copy">복사</button><pre>TV홈쇼핑 업계 전체의 방송매출이 최근 몇 년간 어떻게 변했는지 알려 주세요.
+
+그리고 이 자료가 그 변화의 원인으로 지목하는 것이 있으면 함께 알려 주세요.
+
+소스에서 확인되지 않는 것은 확인되지 않음이라고 쓰세요.</pre></div>
+  <div class="note">
+    답이 나오면 <b>[ 메모에 저장 ]</b> 하십시오. 나중에 소스로 씁니다.
+  </div>
+  <div class="warn">
+    <b>업계 답은 2024년까지 나옵니다.</b> 01번 자료가 거기까지라서입니다.
+    <b>2025년 업계 숫자는 아직 없습니다.</b>
+  </div>
+</section>
+
+<section id="p2">
+  <h2><span class="badge">프롬프트 2</span>우리는 어떤가</h2>
+  <div class="src">소스 — 01 · 02 · 03</div>
+  <div class="box"><button class="copy">복사</button><pre>공영홈쇼핑의 매출액과 영업이익이 최근 5년간 어떻게 변했는지 알려 주세요.
+금액은 자료에 적힌 단위를 밝히고, 억원으로 환산해서 함께 적어 주세요.</pre></div>
+
+  <h3>★ 여기서 각주를 눌러 보십시오</h3>
+  <div class="note">
+    숫자 옆 번호를 누르면 <b>왼쪽에 원문이 열리고 해당 부분이 표시됩니다.</b><br>
+    <span class="key">AI는 몇 해만 줬는데, 원문에는 다섯 해가 다 있습니다.</span>
+  </div>
+  <div class="warn">
+    <b>다섯 해가 다 있는 건 02번(ALIO 손익계산서)입니다.</b>
+    03번 감사보고서는 <b>2024·2025년 두 해만</b> 있습니다. <b>같은 회사인데 자료마다 실린 기간이 다릅니다.</b>
+  </div>
+  <div class="warn">
+    <b>검산하려고 여는 게 아닙니다.</b> AI가 준 것보다 원문에 더 많아서 엽니다.
+  </div>
+  <div class="note">
+    답이 나오면 <b>[ 메모에 저장 ]</b>
+  </div>
+</section>
+
+<section id="p3">
+  <h2><span class="badge">프롬프트 3</span>경쟁사와 비교할 수 있나</h2>
+  <div class="src">소스 — 01~06 전부</div>
+  <div class="note">
+    바로 비교해달라고 하면 AI가 그냥 나란히 놓습니다. <b>먼저 「할 수 있냐」부터 묻습니다.</b>
+  </div>
+  <div class="box"><button class="copy">복사</button><pre>현대홈쇼핑과 롯데홈쇼핑의 실적을 공영홈쇼핑과 같은 기준으로 비교할 수 있는지 알려 주세요.
+비교하기 어렵다면 무엇이 다른지 알려 주세요.</pre></div>
+  <div class="step">→ 같은 기준인가? <b>(진단)</b></div>
+
+  <h3>여기서 나오는 것 — 기준 확인하기 <span style="font-weight:400">(예 : 별도, 연결, 부문 등)</span></h3>
+  <table>
+    <tr><td><b>별도</b></td><td>회사 하나만</td></tr>
+    <tr><td><b>연결</b></td><td>그 회사가 거느린 것까지</td></tr>
+    <tr><td><b>부문</b></td><td>그중 홈쇼핑만 떼어낸 것</td></tr>
+  </table>
+  <div class="note">
+    현대홈쇼핑 연결에는 <b>창호, 화장품 원료, 의류, 통신</b>까지 들어 있습니다.<br>
+    <span class="key">어느 숫자를 쓰느냐에 따라 결론이 달라집니다.</span>
+  </div>
+
+  <h2 style="margin-top:26px"><span class="badge">프롬프트 4</span>같은 기준으로 고르기</h2>
+  <div class="src">소스 — 01~06 전부</div>
+  <div class="box"><button class="copy">복사</button><pre>그렇다면 공영홈쇼핑과 같은 기준으로 비교할 수 있는 수치만 골라서 알려 주세요.
+기준이 다른 수치는 무엇이 다른지 밝혀 주세요.</pre></div>
+  <div class="step">→ 비교 가능한 것만 <b>(정렬)</b></div>
+
+  <h2 style="margin-top:26px"><span class="badge">프롬프트 5</span>영업이익률</h2>
+  <div class="src">소스 — 01~06 전부</div>
+  <div class="box"><button class="copy">복사</button><pre>방금 정리한 별도 기준 실적으로 세 회사의 영업이익률을 각각 계산해서 나란히 보여 주세요.</pre></div>
+  <div class="step">→ 맞춘 재료로만 <b>(계산)</b></div>
+  <div class="note">
+    진단 → 정렬 → 계산. <b>세 번 나눠서 물었습니다.</b><br>
+    <span class="key">같은 기준으로 맞추니까 이제 비교가 됩니다.</span>
+    답이 나오면 <b>[ 메모에 저장 ]</b>
+  </div>
+</section>
+
+<section id="memo">
+  <h2>소스로 변환합니다</h2>
+  <p class="sub">오늘의 핵심입니다 · 채팅은 여기서 끝납니다</p>
+  <table>
+    <tr><th>순서</th><th>할 일</th></tr>
+    <tr><td>1</td><td>메모 3개를 각각 <b>[ ... ] → [ 소스로 변환 ]</b></td></tr>
+    <tr><td>2</td><td>원문 <b>01~06 체크 해제</b></td></tr>
+    <tr><td>3</td><td><b>07 · 08 · 09만</b> 켭니다</td></tr>
+  </table>
+  <div class="warn">
+    메모는 <b>AI가 원문을 기준으로 작성한 글</b>입니다.
+    <b>원문과 한 번은 대조합니다.</b>
+  </div>
+</section>
+
+<section id="report">
+  <h2><span class="badge new">보고서</span>한 장짜리 보고서</h2>
+  <div class="src">소스 — 07 · 08 · 09만</div>
+  <p class="sub">스튜디오 → 보고서 → <b>[ 직접 만들기 ]</b></p>
+  <div class="box"><button class="copy">복사</button><pre>공영홈쇼핑 임원 보고용 A4 한 장짜리 보고서로 만들어 주세요.
+
+1. 시장 현황
+2. 핵심 트렌드
+3. 공영홈쇼핑 시사점
+4. 실행 아이디어
+
+1번에는 소스에서 확인된 수치만 쓰고, 각 줄 끝에 출처와 시점을 괄호로 적습니다.
+2번부터 4번까지는 소스에 없는 판단이므로 제목 옆에 해석이라고 표시해 주세요.
+수치의 단위가 개별 회사가 아니면 괄호로 그 조건을 적어 주세요.
+
+맨 아래에 「확인이 필요한 것」을 따로 만들어 주세요.
+소스에서 확인되지 않아 비워둔 부분, 그리고 기준이 달라 그대로 비교하기 어려운 수치를 적어 주세요. 없으면 없음이라고 쓰세요.
+
+한 장을 넘기지 마세요.</pre></div>
+  <table>
+    <tr><th>칸</th><th>성격</th></tr>
+    <tr><td>1. 시장 현황</td><td><b>사실</b> — 소스에 있는 것</td></tr>
+    <tr><td>2. 핵심 트렌드</td><td>해석 — 내가 붙이는 것</td></tr>
+    <tr><td>3. 시사점</td><td>해석 — 우리 회사에만 해당되는</td></tr>
+    <tr><td>4. 실행 아이디어</td><td>해석</td></tr>
+  </table>
+  <div class="warn">
+    <b>추천 형식을 누르지 마십시오.</b> 매번 다르게 뜹니다.
+    <b>[ 직접 만들기 ]</b>여야 우리 형식이 나옵니다.
+  </div>
+  <div class="note">
+    <b>자료가 없어서 비운 건 AI가 적어줍니다.</b>
+    <span class="key">틀리게 쓴 건 안 적습니다. 그건 사람이 봅니다.</span>
+  </div>
+  <p class="sub" style="margin-top:14px">내보내려면 — 보고서 하단 <b>[ Google Docs로 내보내기 ]</b></p>
+</section>
+
+<section id="job">
+  <h2><span class="badge same">부서별</span>나의 관점으로</h2>
+  <div class="src">소스 — 07 · 08 · 09만</div>
+  <p class="sub">위 보고서 지시문을 다시 붙여넣고, <b>맨 아래에 본인 부서 한 줄만 더</b> 붙입니다</p>
+
+  <h3>방송심의</h3>
+  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 방송 심의 업무 관점으로 써 주세요.</pre></div>
+
+  <h3>영상아트</h3>
+  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 화면과 자막 제작 관점으로 써 주세요.</pre></div>
+
+  <h3>공영라방</h3>
+  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 방송 편성 관점으로 써 주세요.</pre></div>
+
+  <h3>인재육성</h3>
+  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 직원 교육 기획 관점으로 써 주세요.</pre></div>
+
+  <h3>경영지원</h3>
+  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 경영 보고 관점으로 써 주세요.</pre></div>
+
+  <div class="note">
+    <span class="key">같은 소스, 같은 숫자입니다. 3번 칸만 바뀝니다.</span>
+    걸어놓고 다음으로 가십시오.
+  </div>
+</section>
+
+<section id="info">
+  <h2><span class="badge new">인포그래픽</span>시각화</h2>
+  <div class="src">소스 — 07 · 08 · 09만</div>
+  <div class="box"><button class="copy">복사</button><pre>세 회사의 영업이익률 비교가 가장 눈에 띄게 한 장으로 만들어 주세요.
+업계 방송매출 추이와 공영홈쇼핑 5개년 실적도 함께 넣어 주세요.</pre></div>
+  <div class="note">
+    <span class="key">스튜디오 결과물은 대화로 못 고칩니다.</span><br>
+    채팅은 "고쳐줘" 하면 고칩니다. 이건 <b>지시문을 다시 쓰거나 소스를 바꿔 다시 만듭니다.</b>
+  </div>
+  <div class="warn">
+    <b>만들 때마다 다르게 나옵니다.</b>
+  </div>
+
+  <h3><span class="badge same">시간 남으면</span>동영상</h3>
+  <div class="src">소스 — 07 · 08 · 09만</div>
+  <div class="box"><button class="copy">복사</button><pre>업계 흐름, 공영홈쇼핑 실적, 경쟁사와의 비교를 순서대로 보여 주세요.
+숫자는 소스에 있는 것만 쓰고, 어느 시점 기준인지 함께 밝혀 주세요.</pre></div>
+  <div class="note">
+    <b>메모 3개가 각각 업계 · 우리 · 경쟁사입니다.</b>
+    <span class="key">소스 순서가 그대로 영상 순서가 됩니다.</span>
+  </div>
+  <div class="warn">
+    <b>동영상은 시간이 소요됩니다.</b>
+  </div>
+</section>
+
+<section id="mine">
+  <h2>나의 주제로 바꾸기</h2>
+  <p class="sub"><b>소스만 바꾸면 그대로 씁니다.</b></p>
+
+  <table>
+    <tr><th>단계</th><th>다음에 쓸 때</th></tr>
+    <tr><td>팟캐스트 · 마인드맵</td><td>주제 이름만 바꿉니다</td></tr>
+    <tr><td>프롬프트 1</td><td>무엇의 추이를 볼지만 바꿉니다</td></tr>
+    <tr><td>프롬프트 2</td><td>우리 조직 이름으로</td></tr>
+    <tr><td>프롬프트 3 · 4 · 5</td><td>비교 대상 이름만</td></tr>
+    <tr><td>소스로 변환</td><td><b>그대로</b></td></tr>
+    <tr><td>보고서 · 인포그래픽</td><td><b>그대로</b></td></tr>
+  </table>
+
+  <h3>제미나이 노트북은 언제 쓸까요</h3>
+  <table>
+    <tr><th>이럴 때 씁니다</th><th>이럴 때 쓰지 마세요</th></tr>
+    <tr><td><b>원문(PDF · 문서 · URL)</b>이 이미 손에 있을 때</td><td>자료를 아직 못 찾았을 때 — <b>어제 방식</b></td></tr>
+    <tr><td>보고서에 넣을 <b>숫자를 확정</b>해야 할 때</td><td>아이디어를 넓힐 때</td></tr>
+    <tr><td>여러 자료를 <b>교차해서 하나로</b> 합쳐야 할 때</td><td>문안·기획 쓰기</td></tr>
+    <tr><td>같은 자료를 <b>여러 번 반복해서</b> 볼 때</td><td>한 번 묻고 끝날 때</td></tr>
+  </table>
+  <div class="note">
+    자료를 넣어두면 <b>아이디어 확장이나 초안 쓰기도 잘합니다.</b>
+    <span class="key">자료 없이 시킬 때만 안 맞는 겁니다.</span>
+  </div>
+
+  <h3>소스를 고르는 기준 — 여기서 결과가 갈립니다</h3>
+  <table>
+    <tr><th>넣으면 좋은 것</th><th>넣으면 안 되는 것</th></tr>
+    <tr><td>매년 나오는 공시 · 사업보고서 · 감사보고서</td><td>보도자료</td></tr>
+    <tr><td>정부 · 공공기관 실태조사</td><td>블로그 · 커뮤니티 글</td></tr>
+    <tr><td>국책연구기관 보고서</td><td>요약 기사</td></tr>
+    <tr><td>회사 내부 공개 자료</td><td>남이 정리해둔 표</td></tr>
+  </table>
+  <div class="warn">
+    <b>요약 기사를 넣으면 요약의 요약이 나옵니다.</b> 원문을 넣으십시오.<br>
+    남이 정리해둔 표를 넣으면 <b>근거를 눌러도 그 표가 나옵니다.</b> 원문이 아닙니다.
+  </div>
+  <div class="note">
+    <span class="key">노트북은 소스가 전부입니다.</span>
+    프롬프트를 아무리 잘 써도 <b>소스에 없는 답은 안 나옵니다.</b> 그게 장점입니다.
+  </div>
+
+  <h3>혼자 할 때 순서</h3>
+  <table>
+    <tr><td><b>1</b></td><td>어제 방식으로 조사하고 검증합니다</td></tr>
+    <tr><td><b>2</b></td><td>검증이 <b>「원문을 봐야 한다」</b>고 지목한 자료를 모읍니다</td></tr>
+    <tr><td><b>3</b></td><td>그것들을 노트북에 넣습니다</td></tr>
+    <tr><td><b>4</b></td><td>오늘 순서대로 돌립니다</td></tr>
+  </table>
+</section>
+
+<section id="extra">
+  <h2>부록</h2>
+
+  <h3>원문을 열었을 때 볼 것 3가지</h3>
+  <table>
+    <tr><td><b>1</b></td><td><b>누구를</b> 센 숫자입니까? 회사 하나만인지, 거느린 곳까지 합친 건지, 업계 전체인지</td></tr>
+    <tr><td><b>2</b></td><td><b>언제</b> 시점입니까? 조사한 때이지 발표한 때가 아닙니다</td></tr>
+    <tr><td><b>3</b></td><td><b>단위</b>가 무엇입니까? 백만원과 천원이 섞여 있습니다</td></tr>
+  </table>
+
+  <h3>후속질문 — 같은 채팅에서</h3>
+  <div class="box"><button class="copy">복사</button><pre>소스끼리 같은 항목을 다르게 적은 곳이 있으면 모아서 보여 주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>이 한 장을 임원 보고용 세 줄로 줄여 주세요. 출처는 유지하세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>이 보고서를 받은 사람이 가장 먼저 물어볼 질문 세 개를 예상해 주세요.</pre></div>
+  <div class="box"><button class="copy">복사</button><pre>이 질문에 답하려면 어떤 자료를 추가로 넣어야 하는지 알려 주세요.</pre></div>
+  <div class="note">
+    <span class="key">답이 부실하면 프롬프트가 아니라 소스를 늘립니다.</span>
+    마지막 것이 <b>무엇을 더 넣어야 하는지</b> 알려줍니다.
+  </div>
+
+  <h3>알아두면 좋은 제약</h3>
+  <table>
+    <tr><td><b>1</b></td><td>스튜디오 결과물(보고서·인포그래픽)은 <b>채팅으로 못 고칩니다</b></td></tr>
+    <tr><td><b>2</b></td><td><b>메모와 달리</b> 보고서는 소스로 바로 변환이 안 됩니다. Docs로 내보낸 뒤 추가하십시오</td></tr>
+    <tr><td><b>3</b></td><td>오디오는 생성에 <b>5~10분</b> 걸립니다. 미리 걸어두십시오</td></tr>
+    <tr><td><b>4</b></td><td>공유는 <b>사용자·그룹을 지정해서만</b> 됩니다. <b>「링크가 있는 모든 사용자」와 「사본 생성 허용」은 회사 계정에 없습니다</b> <i>(개인 계정에는 있습니다)</i></td></tr>
+  </table>
+
+  <h3>입력 금지 3가지</h3>
+  <table>
+    <tr><td><b>1</b></td><td>개인 식별 정보 — 이름 · 연락처 · 주민번호 · 계좌번호 · 주문번호</td></tr>
+    <tr><td><b>2</b></td><td>거래처 비공개 정보 — 계약 조건 · 원가 · 미공개 상품 정보</td></tr>
+    <tr><td><b>3</b></td><td>미발표 경영 정보 — 내부 실적 · 미공개 수치</td></tr>
+  </table>
+  <div class="warn">
+    <b>소스로 파일을 올릴 때도 같습니다.</b> 채팅에 안 쓰는 정보는 소스로도 안 올립니다.
+  </div>
+
+  <h3>한 장 보고서를 내기 전 3문항</h3>
+  <table>
+    <tr><td><b>1</b></td><td>현황 칸의 숫자에 전부 출처가 붙어 있습니까?</td></tr>
+    <tr><td><b>2</b></td><td>사실 칸에 내 해석이 섞여 있지 않습니까?</td></tr>
+    <tr><td><b>3</b></td><td>기준이 다른 숫자를 나란히 놓지 않았습니까?</td></tr>
+  </table>
+</section>
+
+<footer>
+  AI 모닝 클래스 · 3일차 프롬프트 모음<br>
+  ※ 해당 문서는 배포 및 공유를 제한합니다
+</footer>
+
+</div>
+
+<script>
+// 상단 고정 메뉴 높이만큼 앵커 이동 위치를 내려줍니다 (메뉴가 두 줄로 접혀도 자동 반영)
+(function(){
+  var nav = document.querySelector('nav');
+  if(!nav) return;
+  function setNavHeight(){
+    var h = nav.offsetHeight + 16;
+    if(!(h > 40 && h < 240)) return;   // 측정이 튀면 무시
+    document.documentElement.style.setProperty('--navh', h + 'px');
+  }
+  requestAnimationFrame(setNavHeight);
+  window.addEventListener('load', setNavHeight);
+  window.addEventListener('resize', setNavHeight);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(setNavHeight); }
+})();
+
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var txt = btn.parentElement.querySelector('pre').innerText;
+    var done = function(){
+      btn.textContent = '복사됨';
+      btn.classList.add('done');
+      setTimeout(function(){ btn.textContent='복사'; btn.classList.remove('done'); }, 1400);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){ alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.'); }
+      document.body.removeChild(ta);
+    }
+  });
+});
+</script>
+</body>
+</html>
