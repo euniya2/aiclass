@@ -1,16 +1,12 @@
 <!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>3일차 프롬프트 모음 · 한 장짜리 보고서 만들기</title>
-<link rel="stylesheet" as="style" crossorigin
-  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4일차 프롬프트 모음 · AI 발표자료 만들기</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root{
     --bg:#f6f7f9; --card:#fff; --ink:#1a1d21; --dim:#5b636d;
-    --line:#e3e6ea; --accent:#1f3a68; --accent2:#2f6fd0; --warn:#c2410c;
-    --code:#f2f4f7; --ok:#0f766e;
+    --line:#e3e6ea; --accent:#B60B29; --accent2:#8F071F; --warn:#9A5B00;
+    --code:#f2f4f7; --ok:#6f5b60;
     --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,
       "Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;
     --mono:"D2Coding",Consolas,"Courier New",monospace;
@@ -55,7 +51,7 @@
   .sub a:hover{color:var(--accent)}
 
   .step{color:var(--accent);font-size:15px;font-weight:700;
-    background:#eef2f7;border-left:3px solid var(--accent2);
+    background:#f7e8eb;border-left:3px solid var(--accent2);
     padding:8px 12px;border-radius:0 6px 6px 0;margin:10px 0 4px}
 
   .linkbtn{display:inline-flex;align-items:center;gap:8px;
@@ -76,7 +72,7 @@
   .badge.new{background:var(--warn)}
   .badge.same{background:var(--ok)}
 
-  .src{display:inline-block;background:#eef2f7;border:1px solid #d5deea;
+  .src{display:inline-block;background:#f7e8eb;border:1px solid #ead2d7;
     color:var(--accent);font-size:12.5px;font-weight:600;
     padding:3px 10px;border-radius:5px;margin:0 0 10px}
 
@@ -90,7 +86,7 @@
   .copy:hover{background:var(--accent);color:#fff}
   .copy.done{background:var(--ok);color:#fff;border-color:var(--ok)}
 
-  .note{border-left:3px solid var(--accent2);background:#f0f5fd;padding:10px 14px;
+  .note{border-left:3px solid var(--accent2);background:#fbf2f4;padding:10px 14px;
     margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
   .warn{border-left:3px solid var(--warn);background:#fff5ef;padding:10px 14px;
     margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
@@ -102,495 +98,143 @@
 
   footer{color:var(--dim);font-size:13px;text-align:center;padding:30px 20px}
   @media print{nav{display:none}body{background:#fff}}
-</style>
-</head>
-<body>
 
-<header>
-  <div class="wrap">
-    <h1>3일차 · 한 장짜리 보고서 만들기</h1>
-    <p>사실과 해석을 나눕니다 — 프롬프트 모음</p>
-  </div>
-</header>
-
-<nav>
-<div class="urlbar">
-  <span class="label">실습 페이지</span>
-  <span class="addr">bit.ly/aiclass03</span>
-  <a class="share" href="https://padlet.com/qkdtjdus/ai-fnb2x6slwr6n36p6" target="_blank" rel="noopener">📤 결과물 공유</a>
-</div>
+.toolgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}.tool{border:1px solid var(--line);border-radius:9px;padding:15px;background:#fff}.tool b{display:block;color:var(--accent);font-size:16px;margin-bottom:4px}.tool p{margin:0 0 10px;color:var(--dim);font-size:13.5px}.tool a{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:7px 11px;border-radius:6px;font-size:13px;font-weight:700}.flow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:12px 0}.flow span{background:#f7e8eb;border:1px solid #ead2d7;color:var(--accent);padding:6px 9px;border-radius:6px;font-weight:700;font-size:13px}.flow i{font-style:normal;color:var(--dim)}@media(max-width:650px){.toolgrid{grid-template-columns:1fr}}
+.embed{border:1px solid var(--line);border-radius:10px;margin:14px 0;background:#fff;overflow:hidden}.embed summary{cursor:pointer;padding:14px 16px;font-weight:800;color:var(--accent);background:#fbf2f4}.embed>p{padding:0 16px;margin-top:12px}.embed iframe{width:100%;height:760px;border:0;border-top:1px solid var(--line);background:#fff}
+</style></head><body>
+<header><div class="wrap"><h1>4일차 · AI로 업무 발표자료 만들기</h1><p>좋은 프롬프트의 목적은 완벽한 결과가 아니라 재작업을 줄이는 것입니다 — 복붙용 프롬프트 모음</p></div></header>
+<nav><div class="urlbar"><span class="label">실습 페이지</span><span class="addr">4DAY · Gamma 실습</span><a class="share" href="#tools">🔗 사용 도구</a></div><div class="wrap">
+<a href="#start">시작 전</a><a href="#infographic">0 인포그래픽 다시 만들기</a><a href="#meta">1 질문받기</a><a href="#variants">유형 4종</a><a href="#story">2 구조 설계</a><a href="#gamma">3 Gamma 생성</a><a href="#check">4 검수</a><a href="#fix">5 부분 수정</a><a href="#extra">시간 남으면</a><a href="#library">프롬프트 라이브러리</a></div></nav>
 <div class="wrap">
-  <a href="#set">시작 전</a>
-  <a href="#src">소스 6개</a>
-  <a href="#studio">팟캐스트·마인드맵</a>
-  <a href="#p1">1 업계</a>
-  <a href="#p2">2 우리</a>
-  <a href="#p3">3·4·5 경쟁사</a>
-  <a href="#memo">소스 변환</a>
-  <a href="#report">보고서</a>
-  <a href="#job">부서별 한 줄</a>
-  <a href="#info">인포그래픽</a>
-  <a href="#mine">나의 주제로</a>
-  <a href="#extra">부록</a>
-</div></nav>
+<section id="start"><h2>시작 전 · 오늘의 흐름</h2><p class="sub">3일차 분석자료를 새로 조사하지 않고, 전달 가능한 5장 내외 업무 발표자료로 바꿉니다.</p>
+<div class="flow"><span>3DAY 분석자료</span><i>→</i><span>요구사항</span><i>→</i><span>스토리라인</span><i>→</i><span>장표별 상세지시</span><i>→</i><span>Gamma 생성</span><i>→</i><span>검수</span><i>→</i><span>부분 수정</span><i>→</i><span>완성</span></div>
+<div class="note"><b>오늘의 규칙</b> 생성 버튼을 먼저 누르지 않습니다. AI가 대신 결정해야 하는 영역을 줄인 뒤 생성합니다.</div>
+<h3>Gamma 프롬프트 6가지 질문</h3><table><tr><th>#</th><th>질문</th><th>프롬프트 요소</th></tr><tr><td>1</td><td>누가 보나요?</td><td><b>대상</b></td></tr><tr><td>2</td><td>왜 보여주나요?</td><td><b>목적</b></td></tr><tr><td>3</td><td>무엇을 기억해야 하나요?</td><td><b>핵심 메시지</b></td></tr><tr><td>4</td><td>어떤 순서로 보여줄까요?</td><td><b>전체 구조</b></td></tr><tr><td>5</td><td>각 장에서 무엇을 보여줄까요?</td><td><b>장표별 상세지시</b></td></tr><tr><td>6</td><td>무엇을 하지 말아야 하나요?</td><td><b>제약조건</b></td></tr></table>
+<div class="note">6가지는 기본 뼈대입니다. 실제 업무에서는 <b>발표시간 · 장수 · 필수 수치 · 강조사항</b>을 더해 AI의 해석 범위를 줄입니다.</div></section>
 
-<div class="wrap">
-
-<section id="set">
-  <h2>시작 전</h2>
-  <p class="sub">제미나이 노트북으로 진행합니다.
-    (<a href="https://notebooklm.google.com/" target="_blank" rel="noopener">https://notebooklm.google.com/</a>)</p>
-
-  <h3>어제와 무엇이 다른가</h3>
-  <table>
-    <tr><th></th><th>어제 · 채팅</th><th>오늘 · 노트북</th></tr>
-    <tr><td>근거를</td><td>링크로 줍니다</td><td><b>그 링크 안 어디인지</b>를 줍니다</td></tr>
-    <tr><td>자료가</td><td>흘러갑니다</td><td><b>쌓입니다</b></td></tr>
-    <tr><td>답의 범위</td><td>AI가 아는 것까지</td><td><b>지정된 소스 안에서만</b></td></tr>
-  </table>
-
-  <h3>노트북 만들기</h3>
-  <table>
-    <tr><th>순서</th><th>할 일</th></tr>
-    <tr><td>1</td><td><b>[ 새로 만들기 ]</b>로 빈 노트북을 만듭니다</td></tr>
-    <tr><td>2</td><td><b>[ 소스 추가 ]</b> → <b>드라이브</b> → 공유 폴더에서 <b>6개 전부</b> 선택</td></tr>
-  </table>
-  <div class="warn">
-    드라이브 연동이 막히면 <b>위 폴더 버튼에서 파일을 내려받아 직접 업로드</b>하셔도 됩니다.
-  </div>
-
-  <h3>화면 세 구역</h3>
-  <table>
-    <tr><th>구역</th><th>무엇</th></tr>
-    <tr><td><b>왼쪽 · 소스</b></td><td>넣은 자료. <b>답은 여기서만 나옵니다</b></td></tr>
-    <tr><td><b>가운데 · 채팅</b></td><td>묻고 답받는 곳. <b>숫자 옆 번호가 근거입니다</b></td></tr>
-    <tr><td><b>오른쪽 · 스튜디오</b></td><td>결과물을 만드는 곳</td></tr>
-  </table>
-
-  <h3>오늘의 규칙 — 소스를 켜고 끕니다</h3>
-  <div class="note">
-    <b>소스마다 체크박스가 있습니다. 끄면 그 자료는 없는 셈이 됩니다.</b><br>
-    단계마다 켜는 소스가 다릅니다. <b>각 프롬프트 위에 적어뒀습니다.</b>
-  </div>
-  <div class="warn">
-    답에서 회사가 빠지면 <b>프롬프트가 아니라 체크박스부터 보십시오.</b>
-  </div>
-</section>
-
-<section id="src">
-  <h2>오늘의 소스 — 1,059쪽</h2>
-  <p class="sub">전부 공개 자료입니다. 아래 버튼으로 드라이브 폴더가 열립니다.</p>
-
-  <a class="linkbtn" href="https://drive.google.com/drive/folders/10yZfHjZqIYzNXkvO9T1hLi7LMQSPwyAo?usp=sharing"
-     target="_blank" rel="noopener"><span class="ico">📂</span>소스 6개 폴더 열기</a>
-
-  <table>
-    <tr><th>#</th><th>소스</th><th>출처</th><th>데이터 시점</th><th>발표 시점</th><th>쪽</th><th>단계</th></tr>
-    <tr><td>01</td><td>방송산업 실태조사 (홈쇼핑 발췌)</td><td>과기정통부 · 방송미디어통신위원회</td><td><b>2022~2024</b></td><td>2025.12</td><td>34</td><td>업계</td></tr>
-    <tr><td>02</td><td>공영홈쇼핑 요약 손익계산서</td><td>ALIO 공공기관 경영정보</td><td>2021~2025</td><td>2026.1분기</td><td>1</td><td>자사</td></tr>
-    <tr><td>03</td><td>공영홈쇼핑 감사보고서</td><td>금융감독원 DART</td><td>2024~2025</td><td>2026.02</td><td>69</td><td>자사</td></tr>
-    <tr><td>04</td><td>현대홈쇼핑 사업보고서</td><td>금융감독원 DART</td><td>2023~2025</td><td>2026.03</td><td>383</td><td>타사</td></tr>
-    <tr><td>05</td><td>롯데쇼핑 사업보고서</td><td>금융감독원 DART</td><td>2023~2025</td><td>2026.03</td><td>489</td><td>타사</td></tr>
-    <tr><td>06</td><td>우리홈쇼핑 감사보고서</td><td>금융감독원 DART</td><td>2024~2025</td><td>2026.02</td><td>83</td><td>타사</td></tr>
-  </table>
-  <h3>각 자료에 무엇이 들어 있나</h3>
-
-  <table>
-    <tr><th>#</th><th>무엇이 들어 있나</th></tr>
-    <tr>
-      <td><b>01</b></td>
-      <td>방송산업 전체 개황 — 사업자 수 402개, 종사자, <b>사업자군별 방송사업매출</b>,
-          유료방송 가입자, 소유구조.
-          <b>홈쇼핑PP 7개사 합계 매출 추이</b>가 표 10에 있습니다</td>
-    </tr>
-    <tr>
-      <td><b>02</b></td>
-      <td>공영홈쇼핑 <b>5년치 요약 손익계산서</b> 한 장 —
-          매출액 · 매출원가 · 판관비 · 영업이익 · 당기순이익</td>
-    </tr>
-    <tr>
-      <td><b>03</b></td>
-      <td>공영홈쇼핑 <b>재무제표 전체와 주석</b> —
-          재무상태표 · 손익계산서 · 현금흐름표, 그리고 <b>숫자의 근거를 설명한 주석</b></td>
-    </tr>
-    <tr>
-      <td><b>04</b></td>
-      <td>현대홈쇼핑 <b>회사 전체 보고서</b> —
-          사업 내용 · 매출 상황 · 재무제표 · 종속기업 · 주주 · 지배구조</td>
-    </tr>
-    <tr>
-      <td><b>05</b></td>
-      <td>롯데쇼핑 <b>회사 전체 보고서</b> — 백화점 · 마트 · 슈퍼 · 홈쇼핑 · 영화.
-          04번과 같은 형식입니다</td>
-    </tr>
-    <tr>
-      <td><b>06</b></td>
-      <td>우리홈쇼핑 <b>재무제표 전체와 주석</b> — 03번과 같은 형식</td>
-    </tr>
-  </table>
-
-  <div class="note">
-    <span class="key">01번은 업계, 02·03번은 자사, 04·05·06번은 타사입니다.</span>
-    <b>개별 회사 실적은 공시(DART·ALIO)에 있고, 업계 전체 숫자는 01번에만 있습니다.</b>
-  </div>
-  <div class="note">
-    <span class="key">02와 03은 같은 회사, 다른 형식입니다.</span>
-    <b>02는 5년치가 한 장에 정리된 요약본이고, 03은 한 해를 자세히 쓴 원본</b>입니다.
-  </div>
-  <div class="warn">
-    <b>01번만 2024년까지입니다.</b> 실태조사가 아직 거기까지만 나왔습니다.
-    <b>업계와 회사 숫자를 나란히 놓지 말고, 업계는 방향만 보십시오.</b>
-  </div>
-  <div class="note">
-    <span class="key">GS샵과 CJ온스타일 제외 이유 :</span>
-    홈쇼핑이 독립된 회사가 아니라 <b>회사 안의 사업부서</b>라, <b>홈쇼핑만의 손익계산서가 없습니다.</b>
-  </div>
-</section>
-
-<section id="studio">
-  <h2>팟캐스트 · 마인드맵</h2>
-  <p class="sub">채팅을 시작하기 전에 스튜디오에서 두 개를 만듭니다</p>
-
-  <h3><span class="badge new">먼저</span>AI 오디오 — 팟캐스트</h3>
-  <div class="src">소스 — 01~06 전부</div>
-  <div class="box"><button class="copy">복사</button><pre>국내 TV홈쇼핑 시장이 어떻게 변하고 있는지, 그리고 공영홈쇼핑이 다른 사업자와 무엇이 다른지를 중심으로 이야기해 주세요.
-재무 담당자가 아닌 사람도 알아들을 수 있게 설명해 주세요.</pre></div>
-  <div class="warn">
-    <b>생성에 5~10분 걸립니다. 가장 먼저 걸어놓고 다음으로 가십시오.</b>
-  </div>
-
-  <h3>마인드맵</h3>
-  <div class="src">소스 — 01만</div>
-  <div class="box"><button class="copy">복사</button><pre>TV홈쇼핑 사업자의 방송사업매출을 중심으로 정리해 주세요.</pre></div>
-  <div class="note">
-    <span class="key">34쪽짜리 정부 보고서가 30초 만에 한 장으로 펼쳐집니다.</span>
-  </div>
-</section>
-
-<section id="p1">
-  <h2><span class="badge">프롬프트 1</span>업계는 어떤가</h2>
-  <div class="src">소스 — 01만</div>
-  <div class="box"><button class="copy">복사</button><pre>TV홈쇼핑 업계 전체의 방송매출이 최근 몇 년간 어떻게 변했는지 알려 주세요.
-
-그리고 이 자료가 그 변화의 원인으로 지목하는 것이 있으면 함께 알려 주세요.
-
-소스에서 확인되지 않는 것은 확인되지 않음이라고 쓰세요.</pre></div>
-  <div class="note">
-    답이 나오면 <b>[ 메모에 저장 ]</b> 하십시오. 나중에 소스로 씁니다.
-  </div>
-  <div class="warn">
-    <b>업계 답은 2024년까지 나옵니다.</b> 01번 자료가 거기까지라서입니다.
-    <b>2025년 업계 숫자는 아직 없습니다.</b>
-  </div>
-</section>
-
-<section id="p2">
-  <h2><span class="badge">프롬프트 2</span>우리는 어떤가</h2>
-  <div class="src">소스 — 01 · 02 · 03</div>
-  <div class="box"><button class="copy">복사</button><pre>공영홈쇼핑의 매출액과 영업이익이 최근 5년간 어떻게 변했는지 알려 주세요.
-금액은 자료에 적힌 단위를 밝히고, 억원으로 환산해서 함께 적어 주세요.</pre></div>
-
-  <h3>★ 여기서 각주를 눌러 보십시오</h3>
-  <div class="note">
-    숫자 옆 번호를 누르면 <b>왼쪽에 원문이 열리고 해당 부분이 표시됩니다.</b><br>
-    <span class="key">AI는 몇 해만 줬는데, 원문에는 다섯 해가 다 있습니다.</span>
-  </div>
-  <div class="warn">
-    <b>다섯 해가 다 있는 건 02번(ALIO 손익계산서)입니다.</b>
-    03번 감사보고서는 <b>2024·2025년 두 해만</b> 있습니다. <b>같은 회사인데 자료마다 실린 기간이 다릅니다.</b>
-  </div>
-  <div class="warn">
-    <b>검산하려고 여는 게 아닙니다.</b> AI가 준 것보다 원문에 더 많아서 엽니다.
-  </div>
-  <div class="note">
-    답이 나오면 <b>[ 메모에 저장 ]</b>
-  </div>
-</section>
-
-<section id="p3">
-  <h2><span class="badge">프롬프트 3</span>경쟁사와 비교할 수 있나</h2>
-  <div class="src">소스 — 01~06 전부</div>
-  <div class="note">
-    바로 비교해달라고 하면 AI가 그냥 나란히 놓습니다. <b>먼저 「할 수 있냐」부터 묻습니다.</b>
-  </div>
-  <div class="box"><button class="copy">복사</button><pre>현대홈쇼핑과 롯데홈쇼핑의 실적을 공영홈쇼핑과 같은 기준으로 비교할 수 있는지 알려 주세요.
-비교하기 어렵다면 무엇이 다른지 알려 주세요.</pre></div>
-  <div class="step">→ 같은 기준인가? <b>(진단)</b></div>
-
-  <h3>여기서 나오는 것 — 기준 확인하기 <span style="font-weight:400">(예 : 별도, 연결, 부문 등)</span></h3>
-  <table>
-    <tr><td><b>별도</b></td><td>회사 하나만</td></tr>
-    <tr><td><b>연결</b></td><td>그 회사가 거느린 것까지</td></tr>
-    <tr><td><b>부문</b></td><td>그중 홈쇼핑만 떼어낸 것</td></tr>
-  </table>
-  <div class="note">
-    현대홈쇼핑 연결에는 <b>창호, 화장품 원료, 의류, 통신</b>까지 들어 있습니다.<br>
-    <span class="key">어느 숫자를 쓰느냐에 따라 결론이 달라집니다.</span>
-  </div>
-
-  <h2 style="margin-top:26px"><span class="badge">프롬프트 4</span>같은 기준으로 고르기</h2>
-  <div class="src">소스 — 01~06 전부</div>
-  <div class="box"><button class="copy">복사</button><pre>그렇다면 공영홈쇼핑과 같은 기준으로 비교할 수 있는 수치만 골라서 알려 주세요.
-기준이 다른 수치는 무엇이 다른지 밝혀 주세요.</pre></div>
-  <div class="step">→ 비교 가능한 것만 <b>(정렬)</b></div>
-
-  <h2 style="margin-top:26px"><span class="badge">프롬프트 5</span>영업이익률</h2>
-  <div class="src">소스 — 01~06 전부</div>
-  <div class="box"><button class="copy">복사</button><pre>방금 정리한 별도 기준 실적으로 세 회사의 영업이익률을 각각 계산해서 나란히 보여 주세요.</pre></div>
-  <div class="step">→ 맞춘 재료로만 <b>(계산)</b></div>
-  <div class="note">
-    진단 → 정렬 → 계산. <b>세 번 나눠서 물었습니다.</b><br>
-    <span class="key">같은 기준으로 맞추니까 이제 비교가 됩니다.</span>
-    답이 나오면 <b>[ 메모에 저장 ]</b>
-  </div>
-</section>
-
-<section id="memo">
-  <h2>소스로 변환합니다</h2>
-  <p class="sub">오늘의 핵심입니다 · 채팅은 여기서 끝납니다</p>
-  <table>
-    <tr><th>순서</th><th>할 일</th></tr>
-    <tr><td>1</td><td>메모 3개를 각각 <b>[ ... ] → [ 소스로 변환 ]</b></td></tr>
-    <tr><td>2</td><td>원문 <b>01~06 체크 해제</b></td></tr>
-    <tr><td>3</td><td><b>07 · 08 · 09만</b> 켭니다</td></tr>
-  </table>
-  <div class="warn">
-    메모는 <b>AI가 원문을 기준으로 작성한 글</b>입니다.
-    <b>원문과 한 번은 대조합니다.</b>
-  </div>
-</section>
-
-<section id="report">
-  <h2><span class="badge new">보고서</span>한 장짜리 보고서</h2>
-  <div class="src">소스 — 07 · 08 · 09만</div>
-  <p class="sub">스튜디오 → 보고서 → <b>[ 직접 만들기 ]</b></p>
-  <div class="box"><button class="copy">복사</button><pre>공영홈쇼핑 임원 보고용 A4 한 장짜리 보고서로 만들어 주세요.
-
-1. 시장 현황
-2. 핵심 트렌드
-3. 공영홈쇼핑 시사점
-4. 실행 아이디어
-
-1번에는 소스에서 확인된 수치만 쓰고, 각 줄 끝에 출처와 시점을 괄호로 적습니다.
-2번부터 4번까지는 소스에 없는 판단이므로 제목 옆에 해석이라고 표시해 주세요.
-수치의 단위가 개별 회사가 아니면 괄호로 그 조건을 적어 주세요.
-
-맨 아래에 「확인이 필요한 것」을 따로 만들어 주세요.
-소스에서 확인되지 않아 비워둔 부분, 그리고 기준이 달라 그대로 비교하기 어려운 수치를 적어 주세요. 없으면 없음이라고 쓰세요.
-
-한 장을 넘기지 마세요.</pre></div>
-  <table>
-    <tr><th>칸</th><th>성격</th></tr>
-    <tr><td>1. 시장 현황</td><td><b>사실</b> — 소스에 있는 것</td></tr>
-    <tr><td>2. 핵심 트렌드</td><td>해석 — 내가 붙이는 것</td></tr>
-    <tr><td>3. 시사점</td><td>해석 — 우리 회사에만 해당되는</td></tr>
-    <tr><td>4. 실행 아이디어</td><td>해석</td></tr>
-  </table>
-  <div class="warn">
-    <b>추천 형식을 누르지 마십시오.</b> 매번 다르게 뜹니다.
-    <b>[ 직접 만들기 ]</b>여야 우리 형식이 나옵니다.
-  </div>
-  <div class="note">
-    <b>자료가 없어서 비운 건 AI가 적어줍니다.</b>
-    <span class="key">틀리게 쓴 건 안 적습니다. 그건 사람이 봅니다.</span>
-  </div>
-  <p class="sub" style="margin-top:14px">내보내려면 — 보고서 하단 <b>[ Google Docs로 내보내기 ]</b></p>
-</section>
-
-<section id="job">
-  <h2><span class="badge same">부서별</span>나의 관점으로</h2>
-  <div class="src">소스 — 07 · 08 · 09만</div>
-  <p class="sub">위 보고서 지시문을 다시 붙여넣고, <b>맨 아래에 본인 부서 한 줄만 더</b> 붙입니다</p>
-
-  <h3>방송심의</h3>
-  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 방송 심의 업무 관점으로 써 주세요.</pre></div>
-
-  <h3>영상아트</h3>
-  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 화면과 자막 제작 관점으로 써 주세요.</pre></div>
-
-  <h3>공영라방</h3>
-  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 방송 편성 관점으로 써 주세요.</pre></div>
-
-  <h3>인재육성</h3>
-  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 직원 교육 기획 관점으로 써 주세요.</pre></div>
-
-  <h3>경영지원</h3>
-  <div class="box"><button class="copy">복사</button><pre>3번 시사점은 경영 보고 관점으로 써 주세요.</pre></div>
-
-  <div class="note">
-    <span class="key">같은 소스, 같은 숫자입니다. 3번 칸만 바뀝니다.</span>
-    걸어놓고 다음으로 가십시오.
-  </div>
-</section>
-
-<section id="info">
-  <h2><span class="badge new">인포그래픽</span>시각화</h2>
-  <div class="src">소스 — 07 · 08 · 09만</div>
-  <div class="box"><button class="copy">복사</button><pre>세 회사의 영업이익률 비교가 가장 눈에 띄게 한 장으로 만들어 주세요.
+<section id="infographic"><h2><span class="badge new">먼저</span>3DAY 인포그래픽, 같은 자료로 다시 만들어보기</h2><p class="sub">4일차의 출발점입니다. 어제의 짧은 요청을 그대로 쓰지 않고, <b>대상 · 목적 · 핵심 메시지 · 구조 · 시각 기준 · 제약조건</b>까지 지정해 결과가 어떻게 달라지는지 확인합니다.</p>
+<a class="linkbtn" href="https://notebooklm.google.com/" target="_blank" rel="noopener"><span class="ico">↗</span>Gemini Notebook 열기</a>
+<h3>어제의 요청</h3><div class="box"><button class="copy">복사</button><pre>세 회사의 영업이익률 비교가 가장 눈에 띄게 한 장으로 만들어 주세요.
 업계 방송매출 추이와 공영홈쇼핑 5개년 실적도 함께 넣어 주세요.</pre></div>
-  <div class="note">
-    <span class="key">스튜디오 결과물은 대화로 못 고칩니다.</span><br>
-    채팅은 "고쳐줘" 하면 고칩니다. 이건 <b>지시문을 다시 쓰거나 소스를 바꿔 다시 만듭니다.</b>
-  </div>
-  <div class="warn">
-    <b>만들 때마다 다르게 나옵니다.</b>
-  </div>
+<h3>오늘은 이렇게 구체화합니다</h3>
+<table><tr><th>항목</th><th>지시 내용</th></tr>
+<tr><td><b>대상</b></td><td>공영홈쇼핑 내부 임직원</td></tr>
+<tr><td><b>목적</b></td><td>시장·실적 분석 인포그래픽 한 장</td></tr>
+<tr><td><b>핵심 메시지</b></td><td>2025년 흑자 전환, 그러나 경쟁사와 수익성 격차 존재</td></tr>
+<tr><td><b>구조</b></td><td>3사 영업이익률 → 방송사업매출 추이 → 5개년 실적</td></tr>
+<tr><td><b>시각 기준</b></td><td>비교 차트 / 추이 차트 / 핵심 숫자 강조</td></tr>
+<tr><td><b>제약조건</b></td><td>2021~2025년 모두 표시 · 연도 임의 생략 금지</td></tr></table>
+<h3>인포그래픽 재생성용 · 복붙 프롬프트</h3><div class="box"><button class="copy">복사</button><pre>공영홈쇼핑 내부 임직원이 시장과 실적을 빠르게 파악할 수 있는 인포그래픽 한 장을 만들어 주세요.
 
-  <h3><span class="badge same">시간 남으면</span>동영상</h3>
-  <div class="src">소스 — 07 · 08 · 09만</div>
-  <div class="box"><button class="copy">복사</button><pre>업계 흐름, 공영홈쇼핑 실적, 경쟁사와의 비교를 순서대로 보여 주세요.
-숫자는 소스에 있는 것만 쓰고, 어느 시점 기준인지 함께 밝혀 주세요.</pre></div>
-  <div class="note">
-    <b>메모 3개가 각각 업계 · 우리 · 경쟁사입니다.</b>
-    <span class="key">소스 순서가 그대로 영상 순서가 됩니다.</span>
-  </div>
-  <div class="warn">
-    <b>동영상은 시간이 소요됩니다.</b>
-  </div>
-</section>
+핵심 메시지는 “2025년 흑자 전환, 그러나 경쟁사와 수익성 격차 존재”입니다.
 
-<section id="mine">
-  <h2>나의 주제로 바꾸기</h2>
-  <p class="sub"><b>소스만 바꾸면 그대로 씁니다.</b></p>
+정보는 다음 순서로 배치해 주세요.
+1. 현대홈쇼핑·롯데홈쇼핑·공영홈쇼핑 3사의 영업이익률 비교
+2. TV홈쇼핑 업계 방송사업매출 추이
+3. 공영홈쇼핑 2021~2025년 5개년 실적
 
-  <table>
-    <tr><th>단계</th><th>다음에 쓸 때</th></tr>
-    <tr><td>팟캐스트 · 마인드맵</td><td>주제 이름만 바꿉니다</td></tr>
-    <tr><td>프롬프트 1</td><td>무엇의 추이를 볼지만 바꿉니다</td></tr>
-    <tr><td>프롬프트 2</td><td>우리 조직 이름으로</td></tr>
-    <tr><td>프롬프트 3 · 4 · 5</td><td>비교 대상 이름만</td></tr>
-    <tr><td>소스로 변환</td><td><b>그대로</b></td></tr>
-    <tr><td>보고서 · 인포그래픽</td><td><b>그대로</b></td></tr>
-  </table>
+회사 간 차이는 비교 차트로, 시간에 따른 변화는 추이 차트로 표현하고 핵심 숫자는 크게 강조해 주세요.
+공영홈쇼핑 5개년 실적은 2021·2022·2023·2024·2025년을 모두 표시하고 연도를 임의로 생략하지 마세요.
+제공된 자료에 없는 수치나 사실은 추가하지 마세요.</pre></div>
+<div class="note"><b>확인 포인트</b> 생성 후 디자인부터 보지 않습니다. 2021~2025년이 모두 들어갔는지, 핵심 숫자가 맞는지, 3사 비교가 가장 먼저 보이는지부터 확인합니다.</div>
+<div class="warn"><b>4DAY 연결</b> 같은 자료인데 결과가 달라지는 이유를 확인한 뒤, 이 원리를 여러 장의 발표자료를 만드는 Gamma 프롬프트로 확장합니다.</div></section>
 
-  <h3>제미나이 노트북은 언제 쓸까요</h3>
-  <table>
-    <tr><th>이럴 때 씁니다</th><th>이럴 때 쓰지 마세요</th></tr>
-    <tr><td><b>원문(PDF · 문서 · URL)</b>이 이미 손에 있을 때</td><td>자료를 아직 못 찾았을 때 — <b>어제 방식</b></td></tr>
-    <tr><td>보고서에 넣을 <b>숫자를 확정</b>해야 할 때</td><td>아이디어를 넓힐 때</td></tr>
-    <tr><td>여러 자료를 <b>교차해서 하나로</b> 합쳐야 할 때</td><td>문안·기획 쓰기</td></tr>
-    <tr><td>같은 자료를 <b>여러 번 반복해서</b> 볼 때</td><td>한 번 묻고 끝날 때</td></tr>
-  </table>
-  <div class="note">
-    자료를 넣어두면 <b>아이디어 확장이나 초안 쓰기도 잘합니다.</b>
-    <span class="key">자료 없이 시킬 때만 안 맞는 겁니다.</span>
-  </div>
+<section id="meta"><h2><span class="badge">프롬프트 1</span>AI에게 먼저 질문받기</h2><p class="sub">프롬프트를 혼자 다 쓰지 않습니다. AI가 필요한 조건을 먼저 물어보게 합니다.</p>
+<div class="src">Gemini 또는 ChatGPT</div><div class="box"><button class="copy">복사</button><pre>첨부한 3일차 자료를 Gamma로 업무 발표자료로 만들려고 합니다.
+바로 발표자료를 작성하지 마세요.
+먼저 저에게 필요한 질문을 해주세요.
+발표 대상, 목적, 핵심 메시지, 발표 시간, 필요한 장수, 반드시 포함할 내용과 수치, 강조할 내용, 제외할 내용, 원하는 표현 방법을 확인해주세요.
+제가 답변하면 그 내용을 반영해 Gamma에 그대로 입력할 수 있는 최종 프롬프트를 작성해주세요.
+자료에 없는 사실이나 수치는 만들지 마세요.</pre></div>
+<div class="note"><b>실습 순서</b> 3일차 자료 준비 → 프롬프트 입력 → AI 질문 확인 → 답변 → 초안 프롬프트 받기. <b>아직 Gamma에 바로 넣지 않습니다.</b></div></section>
 
-  <h3>소스를 고르는 기준 — 여기서 결과가 갈립니다</h3>
-  <table>
-    <tr><th>넣으면 좋은 것</th><th>넣으면 안 되는 것</th></tr>
-    <tr><td>매년 나오는 공시 · 사업보고서 · 감사보고서</td><td>보도자료</td></tr>
-    <tr><td>정부 · 공공기관 실태조사</td><td>블로그 · 커뮤니티 글</td></tr>
-    <tr><td>국책연구기관 보고서</td><td>요약 기사</td></tr>
-    <tr><td>회사 내부 공개 자료</td><td>남이 정리해둔 표</td></tr>
-  </table>
-  <div class="warn">
-    <b>요약 기사를 넣으면 요약의 요약이 나옵니다.</b> 원문을 넣으십시오.<br>
-    남이 정리해둔 표를 넣으면 <b>근거를 눌러도 그 표가 나옵니다.</b> 원문이 아닙니다.
-  </div>
-  <div class="note">
-    <span class="key">노트북은 소스가 전부입니다.</span>
-    프롬프트를 아무리 잘 써도 <b>소스에 없는 답은 안 나옵니다.</b> 그게 장점입니다.
-  </div>
+<section id="variants"><h2>실습 프롬프트 · 같은 자료, 다른 전달 방향</h2><p class="sub">전체 프롬프트를 새로 쓰지 않아도 목적과 핵심 메시지를 바꾸면 결과가 달라집니다. 아래 4종은 바로 복사할 수 있는 예시입니다.</p>
+<h3><span class="badge">①</span>임원 보고형</h3><div class="box"><button class="copy">복사</button><pre>3일차에서 분석한 자료와 확인된 소스만 활용해서
+공영홈쇼핑 내부 임원 보고용 발표자료를 만들어줘.
+핵심 메시지는 ‘시장 축소 속에서도 2025년 흑자 전환에 성공했지만, 경쟁사와의 수익성 격차는 여전히 크다’로 잡아줘.
+5장 내외로, 결론 → 시장 변화 → 경쟁사 비교 → 현황 → 시사점 순서로 구성해줘.
+핵심 숫자가 먼저 보이게 하고, 제목은 결론이 드러나는 문장으로 써줘.
+3일차 자료에 없는 숫자나 사실은 추가하지 마.</pre></div>
+<h3><span class="badge">②</span>수익성 비교형</h3><div class="box"><button class="copy">복사</button><pre>같은 자료를 사용하되, 이번에는 경쟁사와 공영홈쇼핑의 수익성 격차를 가장 강하게 전달하는 발표자료로 만들어줘.
+현대홈쇼핑 7.10% / 롯데홈쇼핑 5.06% / 공영홈쇼핑 0.47% — 세 회사의 차이가 첫눈에 비교되도록 해줘.
+2024년 적자에서 2025년 흑자로 전환한 변화도 보여주되, 흑자 전환만 강조해 현재 수익성이 충분한 것처럼 보이지 않도록 해줘.
+비교 차트와 핵심 수치 중심으로 구성하고 부가 설명은 최소화해줘.
+자료에서 확인되지 않은 원인은 단정하지 마.</pre></div>
+<h3><span class="badge">③</span>시장 변화형</h3><div class="box"><button class="copy">복사</button><pre>같은 자료를 사용해서, 이번에는 TV홈쇼핑 시장 자체가 축소되고 있다는 메시지를 중심으로 발표자료를 만들어줘.
+업계 방송사업매출 감소 → 공영홈쇼핑 매출 추이 → 경쟁사 수익성 → 공영홈쇼핑 수익성 → 앞으로 확인해야 할 과제 순서로 구성해줘.
+시간의 흐름이 중요한 데이터는 추이형 차트로, 회사 간 차이가 중요한 데이터는 비교형 차트로 보여줘.
+하나의 슬라이드에는 하나의 핵심 메시지만 넣어줘.
+자료에서 확인된 사실과 해석을 구분하고, 자료에 없는 원인은 추가하지 마.</pre></div>
+<h3><span class="badge">④</span>반등 스토리형</h3><div class="box"><button class="copy">복사</button><pre>같은 자료를 사용해서, 공영홈쇼핑이 2024년 적자에서 2025년 흑자로 전환했다는 변화가 가장 먼저 보이는 발표자료를 만들어줘.
+긍정적인 성과만 보여주지 말고, 경쟁사의 영업이익률과 비교했을 때 아직 수익성 격차가 크다는 점까지 이어서 보여줘.
+반등 → 그러나 → 그래서 의 스토리 구조로 5장 내외로 구성해줘.
+첫 장에서 결론이 보이게 하고, 이후 슬라이드는 그 결론을 뒷받침하는 근거로 구성해줘.
+확인된 자료에 없는 내용은 추가하지 마.</pre></div></section>
 
-  <h3>혼자 할 때 순서</h3>
-  <table>
-    <tr><td><b>1</b></td><td>어제 방식으로 조사하고 검증합니다</td></tr>
-    <tr><td><b>2</b></td><td>검증이 <b>「원문을 봐야 한다」</b>고 지목한 자료를 모읍니다</td></tr>
-    <tr><td><b>3</b></td><td>그것들을 노트북에 넣습니다</td></tr>
-    <tr><td><b>4</b></td><td>오늘 순서대로 돌립니다</td></tr>
-  </table>
-</section>
+<section id="story"><h2><span class="badge">프롬프트 2</span>바로 만들지 말고 구조부터 받기</h2><p class="sub">방법 ①에서 받은 초안 프롬프트를 바로 Gamma에 넣기 전에 전체 스토리라인을 확인합니다.</p>
+<div class="box"><button class="copy">복사</button><pre>첨부한 자료를 5장 내외의 업무 발표자료로 만들려고 합니다.
+바로 슬라이드를 만들지 말고 먼저 전체 스토리라인을 설계해주세요.
+각 장마다 ① 장표 제목 ② 핵심 메시지 한 문장을 제안해주세요.
+③ 반드시 포함할 내용과 근거 ④ 적합한 표·그래프·시각화 방법도 함께 제안해주세요.
+⑤ 앞뒤 장표와의 연결도 설명해주세요.
+첨부 자료에 없는 사실이나 수치는 만들지 마세요.</pre></div>
+<div class="flow"><span>질문받기</span><i>→</i><span>초안 프롬프트</span><i>→</i><span>스토리라인</span><i>→</i><span>사람이 구조 수정</span><i>→</i><span>최종 프롬프트</span><i>→</i><span>Gamma</span></div>
+<h3>장표별 상세지시를 더 촘촘하게 만들고 싶다면</h3><div class="box"><button class="copy">복사</button><pre>위에서 확정한 스토리라인을 기준으로 각 장의 제작 지시서를 더 구체적으로 작성해주세요.
+각 장마다 다음 항목을 빠짐없이 정리해주세요.
+- 장의 역할
+- 장표 제목
+- 핵심 메시지 한 문장
+- 반드시 포함할 비교 대상과 기간
+- 반드시 포함할 핵심 수치와 단위
+- 강조해야 할 메시지
+- 적합한 차트·표·시각화 방식
+- 본문 설명 분량
+- 다음 장과의 연결
+자료에 없는 사실이나 수치는 추가하지 마세요.</pre></div></section>
 
-<section id="extra">
-  <h2>부록</h2>
+<section id="gamma"><h2>Gamma로 생성하기</h2><p class="sub">생각부터 전부 맡기는 것이 아니라, 앞에서 확정한 설계를 시각자료로 구현하게 합니다.</p>
+<a class="linkbtn" href="https://gamma.app/" target="_blank" rel="noopener"><span class="ico">↗</span>Gamma 열기</a>
+<h3>Gamma용 최종 생성 프롬프트 예시</h3><div class="box"><button class="copy">복사</button><pre>공영홈쇼핑 내부 임직원을 대상으로 홈쇼핑 시장과 공영홈쇼핑의 실적을 설명하는 5장 내외 발표자료를 제작해주세요.
+핵심 메시지는 ‘2025년 흑자 전환에 성공했지만 경쟁사와의 수익성 격차는 여전히 존재한다’입니다.
+앞에서 확정한 스토리라인과 장표별 제작 지시서를 기준으로 제작해주세요.
+한 슬라이드에는 핵심 메시지 하나만 두고, 핵심 숫자가 먼저 보이도록 구성해주세요.
+원자료에 없는 사실이나 수치를 추가하지 마세요.</pre></div>
+<div class="warn"><b>생성 후 바로 사용하지 않습니다.</b> 내용 → 구조 → 디자인 순서로 검수합니다.</div></section>
 
-  <h3>원문을 열었을 때 볼 것 3가지</h3>
-  <table>
-    <tr><td><b>1</b></td><td><b>누구를</b> 센 숫자입니까? 회사 하나만인지, 거느린 곳까지 합친 건지, 업계 전체인지</td></tr>
-    <tr><td><b>2</b></td><td><b>언제</b> 시점입니까? 조사한 때이지 발표한 때가 아닙니다</td></tr>
-    <tr><td><b>3</b></td><td><b>단위</b>가 무엇입니까? 백만원과 천원이 섞여 있습니다</td></tr>
-  </table>
+<section id="check"><h2>생성 결과 검수</h2><p class="sub">보기 좋은 자료보다 먼저 정확한 자료인지 확인합니다.</p><table><tr><th>순서</th><th>확인할 것</th></tr><tr><td><b>1 내용</b></td><td>수치가 맞는가 · 빠진 정보가 없는가 · 원자료에 없는 내용이 추가되지 않았는가</td></tr><tr><td><b>2 구조</b></td><td>순서가 자연스러운가 · 한 장에 메시지가 하나인가 · 내용이 반복되지 않는가</td></tr><tr><td><b>3 디자인</b></td><td>중요한 정보가 잘 보이는가 · 차트와 이미지가 적절한가 · 조직의 자료처럼 보이는가</td></tr></table>
+<div class="note"><b>전체 재생성보다 부분 수정.</b> 잘 나온 장까지 다시 바꾸지 않습니다.</div></section>
 
-  <h3>후속질문 — 같은 채팅에서</h3>
-  <div class="box"><button class="copy">복사</button><pre>소스끼리 같은 항목을 다르게 적은 곳이 있으면 모아서 보여 주세요.</pre></div>
-  <div class="box"><button class="copy">복사</button><pre>이 한 장을 임원 보고용 세 줄로 줄여 주세요. 출처는 유지하세요.</pre></div>
-  <div class="box"><button class="copy">복사</button><pre>이 보고서를 받은 사람이 가장 먼저 물어볼 질문 세 개를 예상해 주세요.</pre></div>
-  <div class="box"><button class="copy">복사</button><pre>이 질문에 답하려면 어떤 자료를 추가로 넣어야 하는지 알려 주세요.</pre></div>
-  <div class="note">
-    <span class="key">답이 부실하면 프롬프트가 아니라 소스를 늘립니다.</span>
-    마지막 것이 <b>무엇을 더 넣어야 하는지</b> 알려줍니다.
-  </div>
+<section id="fix"><h2><span class="badge">프롬프트 3</span>수정 방법을 모르겠다면 먼저 진단받기</h2><div class="box"><button class="copy">복사</button><pre>이 Gamma 슬라이드를 수정하고 싶습니다.
+바로 수정안을 작성하지 말고 먼저 문제점을 분석해주세요.
+내용, 구조, 메시지 전달, 정보량, 시각화 관점에서 검토하고 수정 우선순위를 알려주세요.
+그다음 제가 원하는 수정 방향을 확인한 뒤 Gamma에 입력할 수정 프롬프트를 작성해주세요.
+원자료에 없는 사실이나 수치는 추가하지 마세요.</pre></div>
+<h3>부분 수정 기본형 · 문제 → 유지 → 수정 → 제한</h3><div class="box"><button class="copy">복사</button><pre>현재 장표의 제목과 수치는 유지해주세요.
+본문 설명이 길어 핵심이 잘 보이지 않습니다.
+2024년 적자와 2025년 흑자 전환이 가장 먼저 보이도록 정보의 우선순위를 조정해주세요.
+기존 수치는 변경하지 말고 불필요한 설명만 줄여주세요.
+다른 장표는 수정하지 마세요.</pre></div>
+<h3>이미지만 교체</h3><div class="box"><button class="copy">복사</button><pre>현재 장표의 내용과 레이아웃은 유지해주세요.
+이미지만 교체해주세요.
+일반적인 사무실 이미지 대신 홈쇼핑 상품기획과 시장분석 업무를 연상할 수 있는 이미지를 사용해주세요.
+텍스트와 데이터는 수정하지 마세요.</pre></div>
+<h3>문장만 줄이기</h3><div class="box"><button class="copy">복사</button><pre>수치와 의미는 유지하고 발표자료용 문장으로 줄여주세요.
+제목은 결론형으로, 설명은 한 문장 이내로 줄여주세요.
+원자료의 의미를 바꾸거나 새로운 원인을 추가하지 마세요.</pre></div>
+<h3>정보가 너무 많을 때</h3><div class="box"><button class="copy">복사</button><pre>이 장의 정보량이 많습니다.
+핵심만 남겨 한 장으로 줄이는 것이 나은지, 두 장으로 나누는 것이 나은지 먼저 판단해주세요.
+판단 이유를 한 문장으로 설명한 뒤 수정 방향을 제안해주세요.
+핵심 수치와 사실은 유지하고 다른 장표는 수정하지 마세요.</pre></div></section>
 
-  <h3>알아두면 좋은 제약</h3>
-  <table>
-    <tr><td><b>1</b></td><td>스튜디오 결과물(보고서·인포그래픽)은 <b>채팅으로 못 고칩니다</b></td></tr>
-    <tr><td><b>2</b></td><td><b>메모와 달리</b> 보고서는 소스로 바로 변환이 안 됩니다. Docs로 내보낸 뒤 추가하십시오</td></tr>
-    <tr><td><b>3</b></td><td>오디오는 생성에 <b>5~10분</b> 걸립니다. 미리 걸어두십시오</td></tr>
-    <tr><td><b>4</b></td><td>공유는 <b>사용자·그룹을 지정해서만</b> 됩니다. <b>「링크가 있는 모든 사용자」와 「사본 생성 허용」은 회사 계정에 없습니다</b> <i>(개인 계정에는 있습니다)</i></td></tr>
-  </table>
+<section id="extra"><h2>시간이 남으면 · 생성본을 더 다듬는 도구</h2><p class="sub">모든 기능을 배우는 시간이 아닙니다. 필요한 한 장을 더 잘 고치거나 복잡한 정보를 단순화하는 용도로 짧게 소개합니다.</p>
+<div class="toolgrid"><div class="tool"><b>Canva AI · Magic Layers</b><p>AI 결과물이 이미지처럼 묶여 있을 때 요소를 분리해 텍스트·이미지·도형·배경을 직접 수정하는 흐름을 소개합니다. 계정과 요금제에 따라 기능 제공 범위가 다를 수 있습니다.</p><a href="https://www.canva.com/" target="_blank" rel="noopener">Canva 열기 ↗</a></div><div class="tool"><b>Napkin AI</b><p>긴 설명을 붙여넣으면 과정·비교·관계·구조 형태의 시각자료 후보를 만들어 발표자료 한 장을 보완합니다. 별도 프롬프트 작성은 하지 않습니다.</p><a href="https://www.napkin.ai/" target="_blank" rel="noopener">Napkin AI 열기 ↗</a></div></div>
+<h3>Canva에서 한 장만 공영홈쇼핑답게 수정</h3><table><tr><th>수정 요소</th><th>예시</th></tr><tr><td>이미지</td><td>공영희·영언니 등 목적에 맞는 시각 요소</td></tr><tr><td>메인 컬러</td><td><b>#B60B29</b></td></tr><tr><td>서브 컬러</td><td><b>#D7D2CB</b></td></tr><tr><td>정리</td><td>불필요한 요소 삭제</td></tr><tr><td>강조</td><td>핵심 숫자 우선</td></tr><tr><td>레이아웃</td><td>필요한 부분만 배치 변경</td></tr></table>
+<h3>Napkin AI는 프롬프트를 따로 작성하지 않습니다</h3><div class="note"><b>사용 흐름</b> 시각화하고 싶은 문장이나 설명을 그대로 붙여넣기 → Napkin AI가 제안하는 시각자료 확인 → 과정·비교·관계·구조 중 내용에 맞는 형태 선택 → 필요한 문구와 배치만 수정 → 이미지 또는 자료로 활용</div><table><tr><th>내용 성격</th><th>활용 예</th></tr><tr><td>과정</td><td>업무 흐름 · 단계 · 프로세스</td></tr><tr><td>비교</td><td>두 방식의 차이 · 장단점</td></tr><tr><td>관계</td><td>요소 간 연결 · 영향 관계</td></tr><tr><td>구조</td><td>분류 · 계층 · 구성 체계</td></tr></table><div class="warn"><b>수업에서는</b> 별도의 프롬프트 작성 실습으로 만들지 않고, 텍스트를 붙여넣으면 시각자료 후보가 만들어지는 흐름만 짧게 시연합니다.</div></section>
 
-  <h3>입력 금지 3가지</h3>
-  <table>
-    <tr><td><b>1</b></td><td>개인 식별 정보 — 이름 · 연락처 · 주민번호 · 계좌번호 · 주문번호</td></tr>
-    <tr><td><b>2</b></td><td>거래처 비공개 정보 — 계약 조건 · 원가 · 미공개 상품 정보</td></tr>
-    <tr><td><b>3</b></td><td>미발표 경영 정보 — 내부 실적 · 미공개 수치</td></tr>
-  </table>
-  <div class="warn">
-    <b>소스로 파일을 올릴 때도 같습니다.</b> 채팅에 안 쓰는 정보는 소스로도 안 올립니다.
-  </div>
+<section id="tools"><h2>오늘 사용하는 사이트</h2><div class="toolgrid"><div class="tool"><b>Gemini</b><p>메타프롬프트, 구조 설계, 수정 요청을 만드는 데 활용합니다.</p><a href="https://gemini.google.com/" target="_blank" rel="noopener">Gemini 열기 ↗</a></div><div class="tool"><b>ChatGPT</b><p>Gemini 대신 질문받기·구조 설계·수정 프롬프트 작성에 활용할 수 있습니다.</p><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT 열기 ↗</a></div><div class="tool"><b>Gamma</b><p>확정한 구조와 상세지시를 발표자료 초안으로 생성합니다.</p><a href="https://gamma.app/" target="_blank" rel="noopener">Gamma 열기 ↗</a></div><div class="tool"><b>Canva / Napkin AI</b><p>시간이 남으면 한 장을 직접 다듬거나 복잡한 내용을 시각화하는 확장 도구로 사용합니다.</p><a href="#extra">확장 실습 보기</a></div></div></section>
 
-  <h3>한 장 보고서를 내기 전 3문항</h3>
-  <table>
-    <tr><td><b>1</b></td><td>현황 칸의 숫자에 전부 출처가 붙어 있습니까?</td></tr>
-    <tr><td><b>2</b></td><td>사실 칸에 내 해석이 섞여 있지 않습니까?</td></tr>
-    <tr><td><b>3</b></td><td>기준이 다른 숫자를 나란히 놓지 않았습니까?</td></tr>
-  </table>
-</section>
+<section id="library"><h2>마지막 추가 · 모닝클래스 프롬프트 라이브러리</h2><p class="sub">슬라이드 설계 프롬프트 20종과 인포그래픽 설계 프롬프트 20종은 Google Drive 폴더에서 확인합니다.</p><div class="tool" style="margin-top:16px"><b>모닝클래스 프롬프트 자료 모음</b><p>① 모닝클래스 슬라이드 설계 프롬프트 20종<br>② 모닝클래스 인포그래픽 설계 프롬프트 20종</p><a href="https://drive.google.com/drive/folders/1cCngLifRQuRvmk2O7JuvgyVPb4sv7t7D?usp=sharing" target="_blank" rel="noopener">Google Drive에서 프롬프트 자료 열기 ↗</a></div><div class="note"><b>활용 순서</b> 4DAY 기본 실습을 먼저 완료 → 시간이 남으면 Canva·Napkin AI 확인 → 마지막에 Google Drive의 프롬프트 자료에서 다른 표현 유형을 골라 확장합니다.</div></section>
 
-<footer>
-  AI 모닝 클래스 · 3일차 프롬프트 모음<br>
-  ※ 해당 문서는 배포 및 공유를 제한합니다
-</footer>
-
-</div>
-
-<script>
-// 상단 고정 메뉴 높이만큼 앵커 이동 위치를 내려줍니다 (메뉴가 두 줄로 접혀도 자동 반영)
-(function(){
-  var nav = document.querySelector('nav');
-  if(!nav) return;
-  function setNavHeight(){
-    var h = nav.offsetHeight + 16;
-    if(!(h > 40 && h < 240)) return;   // 측정이 튀면 무시
-    document.documentElement.style.setProperty('--navh', h + 'px');
-  }
-  requestAnimationFrame(setNavHeight);
-  window.addEventListener('load', setNavHeight);
-  window.addEventListener('resize', setNavHeight);
-  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(setNavHeight); }
-})();
-
-document.querySelectorAll('.copy').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    var txt = btn.parentElement.querySelector('pre').innerText;
-    var done = function(){
-      btn.textContent = '복사됨';
-      btn.classList.add('done');
-      setTimeout(function(){ btn.textContent='복사'; btn.classList.remove('done'); }, 1400);
-    };
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(txt).then(done, fallback);
-    } else { fallback(); }
-    function fallback(){
-      var ta=document.createElement('textarea');
-      ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta); ta.select();
-      try{ document.execCommand('copy'); done(); }catch(e){ alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.'); }
-      document.body.removeChild(ta);
-    }
-  });
-});
-</script>
-</body>
-</html>
+<section><h2>마지막 체크</h2><table><tr><td>□</td><td>핵심 숫자가 원자료와 일치하는가?</td></tr><tr><td>□</td><td>중요한 연도나 내용이 빠지지 않았는가?</td></tr><tr><td>□</td><td>원자료에 없는 내용을 만들지 않았는가?</td></tr><tr><td>□</td><td>핵심 메시지가 한눈에 보이는가?</td></tr><tr><td>□</td><td>한 장에 내용이 너무 많지 않고 보고 대상에 맞는가?</td></tr></table><div class="note"><b>기억할 것은 툴이 아니라 흐름입니다.</b> 자료 → 구조 → 상세지시 → 생성 → 검수 → 부분수정 → 완성</div></section>
+<footer>AI 모닝 클래스 · 4일차 프롬프트 모음<br>※ 해당 문서는 배포 및 공유를 제한합니다</footer></div>
+<script>(function(){var nav=document.querySelector('nav');if(!nav)return;function setNavHeight(){var h=nav.offsetHeight+16;if(!(h>40&&h<260))return;document.documentElement.style.setProperty('--navh',h+'px')}requestAnimationFrame(setNavHeight);window.addEventListener('load',setNavHeight);window.addEventListener('resize',setNavHeight);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(setNavHeight)})();document.querySelectorAll('.copy').forEach(function(btn){btn.addEventListener('click',function(){var txt=btn.parentElement.querySelector('pre').innerText;var done=function(){btn.textContent='복사됨';btn.classList.add('done');setTimeout(function(){btn.textContent='복사';btn.classList.remove('done')},1400)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else{fallback()}function fallback(){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.')}document.body.removeChild(ta)}})});</script></body></html>
