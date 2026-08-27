@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5일차 · Workspace 협업과 직무별 FINAL 미션</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#1a1d21; --dim:#5b636d;
+    --line:#e3e6ea; --accent:#B60B29; --accent2:#8F071F; --warn:#9A5B00;
+    --code:#f2f4f7; --ok:#6f5b60;
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,
+      "Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;
+    --mono:"D2Coding",Consolas,"Courier New",monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:var(--navh,124px)}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);line-height:1.72;font-size:15.5px;letter-spacing:-0.011em;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  header{background:var(--accent);color:#fff;padding:28px 20px}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  header h1{margin:0 0 6px;font-size:23px;font-weight:700;letter-spacing:-0.02em}
+  header p{margin:0;opacity:.86;font-size:14px}
+  nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:10px 0;z-index:10}
+  nav>.wrap{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  nav>.urlbar{max-width:900px;margin:0 auto 9px;padding:0 20px 9px;
+    display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1px dashed var(--line)}
+  .urlbar .label{font-size:12px;font-weight:700;color:#fff;background:var(--accent);
+    padding:3px 9px;border-radius:4px;align-self:center}
+  .urlbar .addr{font-family:var(--sans);font-size:19px;font-weight:700;color:var(--warn)}
+  .urlbar .share{margin-left:auto;align-self:center;white-space:nowrap;background:var(--accent2);
+    color:#fff;text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border-radius:6px}
+  .urlbar .share:hover{background:var(--accent);color:#fff}
+  nav a{display:inline-block;padding:6px 12px;border-radius:20px;font-size:13px;color:var(--accent);
+    text-decoration:none;background:var(--code)}
+  nav a:hover{background:var(--accent);color:#fff}
+  section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;margin:18px 0}
+  h2{font-size:19px;margin:0 0 4px;color:var(--accent);font-weight:700;letter-spacing:-0.02em}
+  .sub{color:var(--dim);font-size:13.5px;margin:0 0 14px}
+  h3{font-size:15.5px;margin:18px 0 6px;font-weight:600}
+  .badge{display:inline-block;background:var(--accent2);color:#fff;font-size:12px;
+    padding:2px 9px;border-radius:4px;margin-right:6px;vertical-align:2px}
+  .badge.new{background:var(--warn)}
+  .src{display:inline-block;background:#f7e8eb;border:1px solid #ead2d7;color:var(--accent);
+    font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:5px;margin:0 0 10px}
+  .box{position:relative;background:var(--code);border:1px solid var(--line);border-radius:8px;
+    padding:14px;margin:10px 0}
+  pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:var(--mono);
+    font-size:13.5px;line-height:1.62;letter-spacing:0}
+  .copy{position:absolute;top:8px;right:8px;border:1px solid var(--line);background:#fff;
+    color:var(--accent);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer}
+  .copy:hover{background:var(--accent);color:#fff}
+  .copy.done{background:var(--ok);color:#fff;border-color:var(--ok)}
+  .note{border-left:3px solid var(--accent2);background:#fbf2f4;padding:10px 14px;
+    margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
+  .warn{border-left:3px solid var(--warn);background:#fff5ef;padding:10px 14px;
+    margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
+  .key{font-weight:700;color:var(--accent)}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--code);font-weight:700}
+  footer{color:var(--dim);font-size:13px;text-align:center;padding:30px 20px}
+  .toolgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+  .tool{border:1px solid var(--line);border-radius:9px;padding:15px;background:#fff}
+  .tool b{display:block;color:var(--accent);font-size:16px;margin-bottom:4px}
+  .tool p{margin:0 0 10px;color:var(--dim);font-size:13.5px}
+  .tool a{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+    padding:7px 11px;border-radius:6px;font-size:13px;font-weight:700}
+  .tool a:hover,.linkbtn:hover{background:var(--accent2)}
+  .flow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:12px 0}
+  .flow span{background:#f7e8eb;border:1px solid #ead2d7;color:var(--accent);
+    padding:6px 9px;border-radius:6px;font-weight:700;font-size:13px}
+  .flow i{font-style:normal;color:var(--dim)}
+  .linkbtn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;
+    text-decoration:none;font-size:14.5px;font-weight:700;padding:11px 18px;border-radius:8px;margin:2px 0 14px}
+  .linkbtn .ico{font-size:16px}
+  .jobs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}
+  .job{border:1px solid var(--line);border-radius:9px;padding:13px;background:#fff}
+  .job b{display:block;color:var(--accent);margin-bottom:3px}
+  .job p{margin:0 0 8px;color:var(--dim);font-size:13px}
+  .job a{font-size:13px;font-weight:700;color:var(--accent2);text-decoration:underline;text-underline-offset:2px}
+  .cta{border:1px solid #ead2d7;background:#fbf2f4;border-radius:10px;padding:18px;margin:12px 0}
+  .cta b{color:var(--accent);font-size:17px}
+  @media(max-width:650px){.toolgrid,.jobs{grid-template-columns:1fr}}
+  @media(max-width:520px){.urlbar .addr{font-size:16px}.urlbar .share{margin-left:0}}
+  @media print{nav{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <h1>5일차 · Workspace 협업과 직무별 FINAL 미션</h1>
+  <p>AI가 만든 결과물을 공유하고 검토하고 필요한 부분만 수정해 실제 업무 결과물로 완성합니다.</p>
+</div></header>
+
+<nav>
+  <div class="urlbar">
+    <span class="label">실습 페이지</span>
+    <span class="addr">5DAY · Workspace FINAL</span>
+    <a class="share" href="#links">🔗 바로가기</a>
+  </div>
+  <div class="wrap">
+    <a href="#start">오늘의 흐름</a>
+    <a href="#common">1 공통 댓글 실습</a>
+    <a href="#comment">2 댓글 판단</a>
+    <a href="#mission">3 직무별 FINAL</a>
+    <a href="#collab">4 짝 협업</a>
+    <a href="#submit">5 Padlet 공유</a>
+    <a href="#check">마지막 체크</a>
+    <a href="#links">바로가기</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section id="start">
+  <h2>시작 전 · 오늘의 흐름</h2>
+  <p class="sub">오늘은 새로운 자료를 더 만드는 날이 아니라, 지금까지 배운 AI 활용을 Workspace 협업으로 연결해 최종 결과물까지 완성하는 날입니다.</p>
+  <div class="flow">
+    <span>자료 확인</span><i>→</i>
+    <span>AI 분석</span><i>→</i>
+    <span>Docs 작성</span><i>→</i>
+    <span>원문 검증</span><i>→</i>
+    <span>공유</span><i>→</i>
+    <span>댓글</span><i>→</i>
+    <span>판단</span><i>→</i>
+    <span>부분 수정</span><i>→</i>
+    <span>Padlet 공유</span>
+  </div>
+  <div class="note"><b>오늘의 핵심</b> AI가 결과물을 만드는 것으로 끝내지 않습니다. 사람이 근거를 확인하고 동료의 댓글을 검토한 뒤 필요한 부분만 수정합니다.</div>
+
+  <h3>공통 원칙</h3>
+  <table>
+    <tr><th>확인할 것</th><th>기준</th></tr>
+    <tr><td><b>자료</b></td><td>실제 공식자료와 공개자료를 우선합니다.</td></tr>
+    <tr><td><b>사실과 판단</b></td><td>시장통계·외부자료를 자사 내부성과처럼 해석하지 않습니다.</td></tr>
+    <tr><td><b>원인</b></td><td>근거가 없으면 단정하지 않고 <b>[가설]</b>로 구분합니다.</td></tr>
+    <tr><td><b>자료 부족</b></td><td>확인할 수 없는 내용은 <b>[추가 확인 필요]</b>로 남깁니다.</td></tr>
+    <tr><td><b>수정</b></td><td>문서 전체를 다시 만들지 않고 문제가 있는 부분만 수정합니다.</td></tr>
+  </table>
+</section>
+
+<section id="common">
+  <h2><span class="badge new">먼저</span>공통 댓글 협업 실습</h2>
+  <p class="sub">직무별 미션 전에 모두 같은 Google Docs 문서를 열고, 댓글 → 판단 → 부분수정 흐름을 먼저 연습합니다.</p>
+
+  <div class="cta">
+    <b>공통 실습 문서 · 2026년 8월 모바일 상품·콘텐츠 운영 개선안</b>
+    <p>문서 안에서 근거보다 강하게 단정한 표현을 찾아 댓글을 남겨보세요.</p>
+    <a class="linkbtn" href="https://docs.google.com/document/d/18C85LY1Wd55UA5AcNXTE9Z1sx1lG79Fe13cUd1pf3uQ/edit?usp=drivesdk" target="_blank" rel="noopener">
+      <span class="ico">↗</span>공통 댓글 협업 문서 열기
+    </a>
+  </div>
+
+  <h3>먼저 찾아볼 문장</h3>
+  <div class="box"><pre>“앱 푸시와 모바일 최적화 콘텐츠의 전환 효율이 가장 뛰어나다.”</pre></div>
+
+  <div class="warn"><b>왜 확인해야 할까요?</b> 같은 문서 앞부분에서는 상품군별 CTR·CVR과 유입채널별 전환율이 <b>[자료에서 확인 불가]</b>라고 되어 있습니다. 그런데 뒤에서는 전환효율이 가장 뛰어나다고 단정하고 있습니다.</div>
+
+  <h3>확인댓글 예시</h3>
+  <div class="box"><button class="copy">복사</button><pre>내부 채널별 CVR 자료가 확인되지 않는데
+‘전환 효율이 가장 뛰어나다’고 단정할 수 있나요?</pre></div>
+
+  <div class="note"><b>좋은 댓글</b>은 문서를 공격하거나 막연히 칭찬하는 것이 아니라, 특정 문장과 그 근거를 확인하는 질문입니다.</div>
+</section>
+
+<section id="comment">
+  <h2><span class="badge">댓글 협업</span>댓글도 바로 반영하지 않습니다</h2>
+  <p class="sub">동료의 댓글도 하나의 의견입니다. 원자료와 비교해 반영 여부를 직접 판단합니다.</p>
+
+  <div class="flow">
+    <span>댓글 확인</span><i>→</i>
+    <span>원자료 확인</span><i>→</i>
+    <span>타당성 판단</span><i>→</i>
+    <span>반영 / 부분반영 / 미반영</span><i>→</i>
+    <span>부분 수정</span>
+  </div>
+
+  <h3>Gemini에게 댓글 타당성 판단시키기</h3>
+  <div class="src">Google Docs의 Gemini 또는 Gemini</div>
+  <div class="box"><button class="copy">복사</button><pre>아래는 동료가 내 문서에 작성한 댓글입니다.
+바로 수정하지 말고 먼저 댓글의 타당성을 판단해주세요.
+
+다음 기준으로 검토해주세요.
+
+1. 현재 제공된 자료로 확인 가능한가
+2. 자료에 없는 사실이나 수치를 요구하지 않는가
+3. 문서의 논리나 정확도를 실제로 개선하는가
+
+결과를
+반영 / 부분반영 / 미반영 중 하나로 판단하고
+이유를 설명해주세요.
+
+수정이 필요하다면 전체 문서를 다시 쓰지 말고
+수정할 문장과 수정안을 제시해주세요.</pre></div>
+
+  <h3>세 가지 판단 기준</h3>
+  <table>
+    <tr><th>판단</th><th>언제?</th><th>처리</th></tr>
+    <tr><td><b>반영</b></td><td>댓글의 지적이 자료와 일치하고 문서 정확도를 높일 때</td><td>해당 부분 수정</td></tr>
+    <tr><td><b>부분반영</b></td><td>방향은 맞지만 댓글대로 전부 바꿀 필요는 없을 때</td><td>필요한 범위만 수정</td></tr>
+    <tr><td><b>미반영</b></td><td>자료에 없는 수치·사실을 요구하거나 근거가 부족할 때</td><td>유지 또는 [추가 확인 필요]</td></tr>
+  </table>
+</section>
+
+<section id="mission">
+  <h2><span class="badge new">FINAL</span>이제 내 직무 미션으로 이동합니다</h2>
+  <p class="sub">직무별 Drive 폴더에서 자료를 내려받고, 직무별 미션 프롬프트를 활용해 Google Docs 결과물을 완성합니다.</p>
+
+  <a class="linkbtn" href="https://euniya2.github.io/aiclass/mission.html" target="_blank" rel="noopener">
+    <span class="ico">↗</span>직무별 미션 선택 페이지 열기
+  </a>
+  <a class="linkbtn" href="https://drive.google.com/drive/folders/1KRtltkNerN-bSlxMgs_K6J09Nuq7bpGs" target="_blank" rel="noopener">
+    <span class="ico">↗</span>5일차 전체 Google Drive 열기
+  </a>
+
+  <div class="flow">
+    <span>직무 선택</span><i>→</i>
+    <span>자료 다운로드</span><i>→</i>
+    <span>프롬프트 활용</span><i>→</i>
+    <span>Docs 작성</span><i>→</i>
+    <span>검증</span><i>→</i>
+    <span>짝 댓글</span><i>→</i>
+    <span>부분 수정</span>
+  </div>
+
+  <h3>직무별 자료 폴더</h3>
+  <div class="jobs">
+    <div class="job"><b>01 MD · 상품기획</b><p>신규 갈치 상품 편성 검토</p><a href="https://drive.google.com/drive/folders/1yJY1sshaWU8Em-GgIGu0EXxumQe-rRgj" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>02 모바일상품 · 모바일운영</b><p>2026년 8월 모바일 상품·콘텐츠 운영 개선안</p><a href="https://drive.google.com/drive/folders/1JYegb8hpsMZkKdQ0eh_hzqTMdI0Uv5tl" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>03 방송기획 · 제작 · 공영라방</b><p>공영라방 편성·콘텐츠 기획안</p><a href="https://drive.google.com/drive/folders/1D6AjAX_iJqtTziKFoo_dvUNrARWuS5_K" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>04 CS · CX</b><p>고객상담 우선대응 및 FAQ 개선안</p><a href="https://drive.google.com/drive/folders/1OBOkP53J74ijkK21blUcp9E_IacgvVGj" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>05 경영기획 · 재무 · 전략</b><p>경영성과 및 2026 개선과제 TOP3</p><a href="https://drive.google.com/drive/folders/1CvWOwWy9eGSCaCVTyX34ocReRdlu60uk" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>06 마케팅 · 홍보 · 브랜드</b><p>생생활로 커뮤니케이션 실행안</p><a href="https://drive.google.com/drive/folders/1PDQt0jdjPXstdCDAd4iSn52S3eSxiRIU" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>07 방송심의</b><p>상품판매방송 사전심의 검토서</p><a href="https://drive.google.com/drive/folders/1JG-N4RFTEfIT7Uwot4lVqaDTrr2oUWra" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>08 IT · AX</b><p>AI 도입 후보과제 TOP3 검토안</p><a href="https://drive.google.com/drive/folders/1KfRBY5hqSePWIXeNPuyaRaoHKa9DBe6q" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>09 디자인 · 영상</b><p>2026년 하반기 숏폼 콘텐츠 제작 기획안</p><a href="https://drive.google.com/drive/folders/1pV2RO-KXVmnk9jQFzWF4-dUu3hLwBgnA" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>10A ESG</b><p>ESG 경영현황 점검 및 2026 우선과제 검토안</p><a href="https://drive.google.com/drive/folders/1gBZbfqHTGHNYN73OjRWMQFAplJP-FaL7" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>10B 정책 · 대외협력 · 신사업</b><p>신규 판매채널 검토안</p><a href="https://drive.google.com/drive/folders/1LCQy-vbFkIm-LlwYpomMMFBJRrpXdFUk" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>11 인사 · 교육 · 총무안전</b><p>2026년 하반기 교육 운영 개선안</p><a href="https://drive.google.com/drive/folders/1lZjicA-8YXQkmaXM9ozgbzf3WQ1VVLhu" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+    <div class="job"><b>12 품질 · 물류</b><p>품질·물류 개선 우선순위 검토안</p><a href="https://drive.google.com/drive/folders/1dHsYgFi1leXjzQg0FZDYSHpNR7XPIdUb" target="_blank" rel="noopener">자료 다운로드 ↗</a></div>
+  </div>
+</section>
+
+<section id="collab">
+  <h2><span class="badge">짝 협업</span>상대방 문서에 댓글 2개 남기기</h2>
+  <p class="sub">결과물을 완성한 뒤 짝과 Google Docs를 공유하고, 서로 다른 목적의 댓글을 하나씩 남깁니다.</p>
+
+  <table>
+    <tr><th>댓글</th><th>목적</th><th>예시</th></tr>
+    <tr><td><b>확인댓글 1개</b></td><td>수치·출처·사실 확인</td><td>“이 수치는 어느 자료에서 확인할 수 있나요?”</td></tr>
+    <tr><td><b>개선댓글 1개</b></td><td>논리·표현·추가확인 제안</td><td>“이 결론은 근거보다 강한 것 같습니다. 표현을 완화하면 어떨까요?”</td></tr>
+  </table>
+
+  <div class="note"><b>댓글 후</b> 상대방의 의견을 바로 적용하지 말고, 원자료와 비교해 <b>반영 / 부분반영 / 미반영</b>을 판단한 뒤 필요한 부분만 수정합니다.</div>
+
+  <h3>최종 검수 프롬프트</h3>
+  <div class="box"><button class="copy">복사</button><pre>이 문서를 제출하기 전에 검토해주세요.
+
+다음 내용을 찾아주세요.
+
+- 제공 자료에 없는 수치나 사실
+- 시장자료를 내부성과처럼 쓴 부분
+- 계획을 이미 달성된 성과처럼 쓴 부분
+- 근거 없이 원인을 단정한 부분
+- [가설] 또는 [추가 확인 필요]로 바꿔야 할 부분
+
+문서를 다시 작성하지 말고
+문제가 있는 문장과 이유만 알려주세요.</pre></div>
+</section>
+
+<section id="submit">
+  <h2><span class="badge new">제출</span>완성된 결과물을 Padlet에 공유합니다</h2>
+  <p class="sub">최종 문서 링크와 핵심 판단을 짧게 정리해 공유합니다.</p>
+
+  <a class="linkbtn" href="https://padlet.com/qkdtjdus/ai-fnb2x6slwr6n36p6" target="_blank" rel="noopener">
+    <span class="ico">↗</span>5DAY 결과물 Padlet 열기
+  </a>
+
+  <h3>Padlet에 남길 내용</h3>
+  <table>
+    <tr><th>#</th><th>제출 내용</th></tr>
+    <tr><td>1</td><td><b>Google Docs 결과물 링크</b></td></tr>
+    <tr><td>2</td><td><b>핵심 결론 1문장</b></td></tr>
+    <tr><td>3</td><td><b>가장 중요하게 사용한 근거</b></td></tr>
+    <tr><td>4</td><td><b>[추가 확인 필요] 1개</b></td></tr>
+  </table>
+  <div class="warn"><b>공유 전 확인</b> Google Docs 링크를 열었을 때 다른 사람이 볼 수 있는지 공유 권한을 확인해주세요.</div>
+</section>
+
+<section id="check">
+  <h2>마지막 체크</h2>
+  <table>
+    <tr><td>□</td><td>자료에서 확인되는 사실과 내 판단을 구분했나요?</td></tr>
+    <tr><td>□</td><td>자료에 없는 숫자나 사실을 새로 만들지 않았나요?</td></tr>
+    <tr><td>□</td><td>근거 없는 원인은 [가설] 또는 [추가 확인 필요]로 표시했나요?</td></tr>
+    <tr><td>□</td><td>AI가 인용한 핵심 수치와 정보를 원자료에서 직접 확인했나요?</td></tr>
+    <tr><td>□</td><td>짝에게 확인댓글 1개와 개선댓글 1개를 받았나요?</td></tr>
+    <tr><td>□</td><td>댓글을 반영 / 부분반영 / 미반영으로 판단했나요?</td></tr>
+    <tr><td>□</td><td>전체 재작성 대신 필요한 부분만 수정했나요?</td></tr>
+    <tr><td>□</td><td>Google Docs 공유 권한을 확인했나요?</td></tr>
+    <tr><td>□</td><td>Padlet에 최종 결과물을 공유했나요?</td></tr>
+  </table>
+  <div class="note"><b>5DAY 기억할 흐름</b> 자료 → AI 분석 → Docs 작성 → 원문 검증 → 공유 → 댓글 → 판단 → 부분수정 → Padlet 공유</div>
+</section>
+
+<section id="links">
+  <h2>오늘 사용하는 링크</h2>
+  <div class="toolgrid">
+    <div class="tool">
+      <b>공통 댓글 협업 문서</b>
+      <p>「2026년 8월 모바일 상품·콘텐츠 운영 개선안」에서 근거가 약한 문장을 찾아 댓글 협업을 먼저 연습합니다.</p>
+      <a href="https://docs.google.com/document/d/18C85LY1Wd55UA5AcNXTE9Z1sx1lG79Fe13cUd1pf3uQ/edit?usp=drivesdk" target="_blank" rel="noopener">Google Docs 열기 ↗</a>
+    </div>
+    <div class="tool">
+      <b>직무별 미션 선택</b>
+      <p>내 직무를 선택하고 직무별 자료 폴더로 이동합니다.</p>
+      <a href="https://euniya2.github.io/aiclass/mission.html" target="_blank" rel="noopener">직무별 미션 열기 ↗</a>
+    </div>
+    <div class="tool">
+      <b>5일차 전체 자료</b>
+      <p>5일차 직무별 폴더와 공통 자료를 확인합니다.</p>
+      <a href="https://drive.google.com/drive/folders/1KRtltkNerN-bSlxMgs_K6J09Nuq7bpGs" target="_blank" rel="noopener">Google Drive 열기 ↗</a>
+    </div>
+    <div class="tool">
+      <b>최종 결과물 Padlet</b>
+      <p>완성된 Google Docs 결과물과 핵심 결론을 공유합니다.</p>
+      <a href="https://padlet.com/qkdtjdus/ai-fnb2x6slwr6n36p6" target="_blank" rel="noopener">Padlet 열기 ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="kahoot">
+  <h2>마지막 선택 · Kahoot</h2>
+  <p class="sub">시간이 가능하면 5일 전체 복습 퀴즈를 Kahoot으로 진행합니다. 진행이 어려우면 PPT 안의 FINAL QUIZ를 사용합니다.</p>
+  <div class="tool">
+    <b>Kahoot 참여</b>
+    <p>강사가 게임 PIN을 안내하면 아래 사이트에서 입장합니다.</p>
+    <a href="https://kahoot.it/" target="_blank" rel="noopener">Kahoot 열기 ↗</a>
+  </div>
+</section>
+
+<footer>
+  AI 모닝 클래스 · 5일차 Workspace FINAL<br>
+  AI가 만든 결과물을 사람이 확인하고 판단하고 함께 고쳐 업무 결과물로 완성합니다.
+</footer>
+</div>
+
+<script>
+(function(){
+  var nav=document.querySelector('nav');
+  if(!nav)return;
+  function setNavHeight(){
+    var h=nav.offsetHeight+16;
+    if(!(h>40&&h<260))return;
+    document.documentElement.style.setProperty('--navh',h+'px')
+  }
+  requestAnimationFrame(setNavHeight);
+  window.addEventListener('load',setNavHeight);
+  window.addEventListener('resize',setNavHeight);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(setNavHeight)
+})();
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var txt=btn.parentElement.querySelector('pre').innerText;
+    var done=function(){
+      btn.textContent='복사됨';
+      btn.classList.add('done');
+      setTimeout(function(){btn.textContent='복사';btn.classList.remove('done')},1400)
+    };
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done,fallback)
+    } else {fallback()}
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');done()}
+      catch(e){alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.')}
+      document.body.removeChild(ta)
+    }
+  })
+});
+</script>
+</body>
+</html>
