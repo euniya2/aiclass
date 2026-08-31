@@ -134,7 +134,7 @@
   </div></span></span>
 
   <span class="navitem"><a href="#move">표 옮기기</a><span class="menu"><div>
-    <a href="#move">Docs로 내보내기</a>
+    <a href="#move">대답 복사</a>
     <a href="#copydoc">표 사본 받기 (안 될 때)</a>
   </div></span></span>
 
@@ -167,7 +167,7 @@
   </div>
   <div class="note">
     <span class="key">모델은 3.6 Flash로 맞춰주세요.</span>
-    Pro 모델은 훨씬 오래 걸려서, 오늘처럼 시간이 빠듯한 날에는 Flash가 낫습니다.
+    Pro 모델은 시간이 더 오래 걸려서, 오늘은 Flash로 실습합니다.
   </div>
   <div class="warn">
     딥리서치는 <b>한 번 돌리는 데 5~8분</b> 걸립니다. 돌려놓고 다음 설명을 들으시면 됩니다.<br>
@@ -178,7 +178,7 @@
   <div class="note"><b>조사를 새로 시킬 때는 새 채팅, 받은 걸 가공할 때는 같은 채팅.</b></div>
   <table>
     <tr><th>단계</th><th>교안</th><th>채팅</th><th>딥리서치</th></tr>
-    <tr><td>STEP00 넓은 질문</td><td>프롬프트 1</td><td><b>새 채팅</b></td><td><b>켬</b></td></tr>
+    <tr><td>STEP00 넓은 질문</td><td>프롬프트 1</td><td colspan="2"><b>돌리지 않습니다</b> — 결과만 함께 봅니다</td></tr>
     <tr><td>STEP01 좁은 질문</td><td>프롬프트 2</td><td><b>새 채팅</b></td><td><b>켬</b></td></tr>
     <tr><td>STEP02 표로 정리</td><td>프롬프트 3</td><td>STEP01 채팅에서 <b>이어서</b></td><td>―</td></tr>
     <tr><td>STEP03 검증</td><td>프롬프트 4</td><td><b>새 채팅</b></td><td><b>끔</b></td></tr>
@@ -193,16 +193,19 @@
 
 <section id="s0">
   <h2><span class="badge">STEP00</span>넓은 질문 <span class="pnum">프롬프트 1</span></h2>
-  <p class="sub">새 채팅 · 딥리서치 켬 · 일부러 대충 던집니다</p>
+  <p class="sub">일부러 대충 던진 질문입니다 · <b>시간 관계상 돌리지 않고 결과만 함께 봅니다</b></p>
   <div class="box"><button class="copy">복사</button><pre>홈쇼핑 경쟁사 동향에 대해 조사해서 보고서로 정리해 주세요.</pre></div>
   <div class="note">
-    <b>조사 계획서가 뜨면 읽지 마시고 바로 [ 연구 시작 ]을 누르세요.</b>
-    계획서는 다음 단계에서 다룹니다.
+    <span class="key">이 한 줄로 돌린 결과입니다. 눌러서 함께 보시면 됩니다.</span><br>
+    <a class="btn" style="margin-top:8px" href="https://share.gemini.google/ZbhKTKHKHW4W" target="_blank" rel="noopener">넓은 질문 결과 보기</a>
+  </div>
+  <div class="note">
+    <span class="key">전체적인 동향은 이 결과로도 파악됩니다.</span>
   </div>
   <div class="warn">
-    <b>못 쓸 결과가 나오는 게 정상입니다.</b><br>
-    「경쟁사」가 누구인지 안 정해줬으니 AI가 알아서 정합니다.
-    기간·출처·형식도 안 줬으니 시키지 않은 전망과 제언까지 해옵니다.
+    <b>결과를 보시면서 두 가지만 확인해 보세요.</b><br>
+    · 「경쟁사」가 어디어디로 잡혀 있나요?<br>
+    · 좀 더 자세하게 살펴보고 싶은 곳은 있나요?
   </div>
 </section>
 
@@ -233,6 +236,10 @@ T커머스 단독 사업자와 해외 법인 실적은 조사 대상에서 빼 �
   <div class="note">
     <span class="key">주제는 아까와 똑같습니다. 조건 네 가지만 붙였습니다.</span><br>
     ① 범위 · ② 기간 · ③ 출처 · ④ 형식
+  </div>
+  <div class="warn">
+    <b>제출하시면 바로 안 돌아가고 조사 계획서가 먼저 뜹니다.</b>
+    그거 뜨면 <b>[ 연구 시작 ]</b>을 누르세요.
   </div>
 
   <h3 id="plan">조사 계획서 고치기 <span class="pnum">[선택]</span></h3>
@@ -292,11 +299,33 @@ C - 업체 보도자료, 판매 페이지, 블로그, 출처를 특정할 수 �
     <b>이 등급 기준은 강사가 임의로 정한 것입니다.</b>
     회사에 자료 인용 기준이 있으면 그걸 넣으십시오.
   </div>
+
+  <h3>표가 나온 뒤 — 등급별 비율 확인</h3>
+  <p class="sub">같은 채팅에서 이어서</p>
+  <div class="box"><button class="copy">복사</button><pre>위 표에서 A, B, C 등급이 각각 몇 행인지 세고, 전체 대비 비율을 함께 알려 주세요.
+표 아래에 등급 / 행 수 / 비율 세 칸으로 정리해 주세요.</pre></div>
+  <div class="note">
+    개수만으로는 감이 안 잡혀서 비율로 한 번 더 보는 것입니다.
+  </div>
 </section>
 
 <section id="move">
   <h2>표 옮기기</h2>
-  <p class="sub">STEP03으로 넘어가기 전에 · 3분 · 표를 문서로 만들어 새 채팅에 첨부합니다</p>
+  <p class="sub">STEP03으로 넘어가기 전에 · 표를 새 채팅으로 옮깁니다</p>
+
+  <h3>방식 1 — 대답 복사</h3>
+  <table>
+    <tr><th>순서</th><th>할 일</th></tr>
+    <tr><td>1</td><td>표가 나온 <b>대답 맨 아래 [ 대답 복사 ]</b> 버튼을 누릅니다</td></tr>
+    <tr><td>2</td><td><b>새 채팅</b>을 엽니다 — 딥리서치 <b>끔</b></td></tr>
+    <tr><td>3</td><td>아래 <b>STEP03 프롬프트</b>를 붙여넣고, <b>그 아래에 복사한 내용</b>을 붙여넣습니다</td></tr>
+  </table>
+  <div class="note">
+    파일로 만들 필요도, 드라이브에 올릴 필요도 없습니다. <b>복사해서 붙여넣기만 하면 됩니다.</b>
+  </div>
+
+  <h3>방식 2 — Docs로 내보내기</h3>
+  <p class="sub">표를 파일로 남겨두고 싶을 때</p>
   <table>
     <tr><th>순서</th><th>할 일</th></tr>
     <tr><td>1</td><td>표가 나온 <b>채팅 결과 아래 [ ⋮ ]</b> → <b>[ Docs로 내보내기 ]</b></td></tr>
@@ -304,12 +333,12 @@ C - 업체 보도자료, 판매 페이지, 블로그, 출처를 특정할 수 �
     <tr><td>3</td><td><b>새 채팅</b>을 엽니다 — 딥리서치 <b>끔</b></td></tr>
     <tr><td>4</td><td>입력창 <b>[ + ]</b> → <b>드라이브에서 추가</b> → 방금 만든 문서 선택</td></tr>
   </table>
-  <div class="note">
-    <span class="key">1번과 3번은 동시에 하셔도 됩니다.</span>
-    내보내기를 눌러놓고 새 채팅을 먼저 열어두시면 빠릅니다.
+  <div class="warn">
+    이 방법으로 하실 때는 <b>STEP03 프롬프트 마지막 줄</b>을
+    <b>「표는 첨부한 파일에 있습니다.」</b>로 바꿔 주세요.
   </div>
 
-  <h3 id="copydoc">표가 없거나 내보내기가 안 될 때 — 표 사본 받기</h3>
+  <h3 id="copydoc">표가 없거나 잘 안 될 때 — 표 사본 받기</h3>
   <p class="sub">누르면 <b>내 드라이브에 사본</b>이 생깁니다. 그 문서를 STEP03에 첨부하세요.</p>
   <p><a class="btn" href="https://docs.google.com/document/d/1z26fJrrJrpas5TC8OGberiXweL6eG2nBRKt3jsZbmBY/copy?tab=t.0" target="_blank" rel="noopener">표 사본 만들기 (Google 문서)</a></p>
   <div class="warn">
@@ -321,7 +350,7 @@ C - 업체 보도자료, 판매 페이지, 블로그, 출처를 특정할 수 �
 
 <section id="s3">
   <h2><span class="badge new">STEP03</span>검증 <span class="pnum">프롬프트 4</span></h2>
-  <p class="sub">반드시 새 채팅 · 딥리서치 끔 · <b>문서를 첨부한 뒤</b> 실행</p>
+  <p class="sub">반드시 새 채팅 · 딥리서치 끔 · <b>프롬프트 아래에 복사한 표를 붙여넣고</b> 실행</p>
   <div class="box"><button class="copy">복사</button><pre>아래는 다른 AI가 조사해서 만든 표입니다. 저는 이 표를 회사 보고서에 쓰려고 합니다.
 표를 그대로 믿지 말고, 각 행마다 아래 4가지를 점검해 주세요.
 
@@ -337,7 +366,7 @@ C - 업체 보도자료, 판매 페이지, 블로그, 출처를 특정할 수 �
 마지막에 이 표에서 제가 직접 확인해야 하는 것이라는 목록을 만들어 주세요.
 확인이 필요한 것이 하나도 없으면 없음이라고 쓰세요.
 
-표는 첨부한 파일에 있습니다.</pre></div>
+표는 아래에 있습니다.</pre></div>
   <table>
     <tr><th>판정</th><th>무엇을 뜻하나</th></tr>
     <tr><td><b>확인됨</b></td><td>그대로 씁니다</td></tr>
