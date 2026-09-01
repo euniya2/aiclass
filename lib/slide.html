@@ -8,19 +8,19 @@
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
     :root {
-      --ink: #2a2022;
-      --muted: #746d6a;
-      --paper: #f7f5f2;
+      --ink: #1a1d21;
+      --muted: #5b636d;
+      --paper: #f6f7f9;
       --surface: #ffffff;
-      --line: #ded9d3;
-      --brand: #B60B29;
-      --brand-dark: #8f071f;
-      --brand-soft: #f7e8eb;
-      --sub: #D7D2CB;
-      --sub-soft: #efede9;
+      --line: #e3e6ea;
+      --brand: #1f3a68;
+      --brand-dark: #172d52;
+      --brand-soft: #f0f5fd;
+      --sub: #d9e1ec;
+      --sub-soft: #f2f4f7;
       --warm: #eee7e2;
       --shadow: 0 14px 34px rgba(74, 39, 45, .09);
-      --radius: 22px;
+      --radius: 10px;
     }
 
     * { box-sizing: border-box; }
@@ -30,7 +30,7 @@
       font-family: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 10% 0%, rgba(182,11,41,.09), transparent 28%),
+        radial-gradient(circle at 10% 0%, rgba(31,58,104,.09), transparent 28%),
         radial-gradient(circle at 100% 8%, rgba(215,210,203,.42), transparent 26%),
         var(--paper);
     }
@@ -58,12 +58,12 @@
       width: 46px;
       height: 46px;
       border-radius: 15px;
-      background: linear-gradient(145deg, var(--brand), #d63b58);
+      background: linear-gradient(145deg, var(--brand), #2f6fd0);
       display: grid;
       place-items: center;
       color: white;
       font-weight: 900;
-      box-shadow: 0 10px 25px rgba(182,11,41,.22);
+      box-shadow: 0 10px 25px rgba(31,58,104,.22);
     }
     .brandname { font-weight: 900; font-size: 18px; letter-spacing: -.02em; }
     .brandsub { color: var(--muted); font-size: 12px; margin-top: 2px; }
@@ -104,8 +104,8 @@
     }
 
     .hero-main {
-      border-radius: 30px;
-      background: linear-gradient(135deg, #3a2025 0%, #7f0b24 58%, #B60B29 100%);
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1f3a68 0%, #294d82 58%, #1f3a68 100%);
       color: white;
       padding: 38px 40px;
       min-height: 260px;
@@ -158,7 +158,7 @@
     .metric {
       background: rgba(255,255,255,.82);
       border: 1px solid rgba(255,255,255,.8);
-      border-radius: 24px;
+      border-radius: 10px;
       padding: 24px;
       min-height: 122px;
       box-shadow: var(--shadow);
@@ -186,7 +186,7 @@
       outline: none;
       box-shadow: 0 8px 22px rgba(0,0,0,.03);
     }
-    .searchbox input:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(182,11,41,.09); }
+    .searchbox input:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(31,58,104,.09); }
     .search-icon { position: absolute; left: 17px; top: 50%; transform: translateY(-50%); opacity: .55; }
 
     .filters { display: flex; gap: 9px; flex-wrap: wrap; justify-content: flex-end; }
@@ -199,7 +199,7 @@
       font-size: 13px;
       font-weight: 800;
     }
-    .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 7px 18px rgba(182,11,41,.16); }
+    .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 7px 18px rgba(31,58,104,.16); }
 
     .section-head {
       display: flex;
@@ -252,7 +252,7 @@
     .feature { font-size: 13px; color: #555d68; display: flex; gap: 8px; align-items: flex-start; }
     .feature b { color: var(--brand); }
     .open-btn { margin-top: auto; width: 100%; border: 0; background: var(--brand-soft); color: var(--brand-dark); border-radius: 13px; padding: 13px; font-weight: 900; }
-    .open-btn:hover { background: #efd5da; }
+    .open-btn:hover { background: #dce8f8; }
 
     /* DETAIL */
     .detail-wrap {
@@ -298,7 +298,7 @@
     .editor-card {
       background: white;
       border: 1px solid var(--line);
-      border-radius: 24px;
+      border-radius: 10px;
       padding: 20px;
       box-shadow: 0 9px 25px rgba(33,30,62,.05);
     }
@@ -321,7 +321,7 @@
       font-size: 14px;
       line-height: 1.72;
     }
-    textarea.prompt-editor:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(182,11,41,.08); }
+    textarea.prompt-editor:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(31,58,104,.08); }
 
     .empty-state {
       grid-column: 1 / -1;
@@ -373,6 +373,46 @@
       .metric.wide { grid-column: auto; }
       .section-head { align-items: flex-start; flex-direction: column; }
     }
+  
+    /* 유형 미리보기 도식 */
+    .layout-preview{
+      height:132px;border:1px solid var(--line);border-radius:10px;background:#f8fafc;
+      padding:12px;margin:2px 0 16px;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;position:relative
+    }
+    .layout-preview .pv{width:100%;height:100%;display:grid;gap:6px}
+    .layout-preview i,.layout-preview b,.layout-preview span{
+      display:block;border-radius:5px;background:#dbe6f5;border:1px solid #c8d5e7;min-width:0;min-height:0
+    }
+    .layout-preview b{background:#1f3a68;border-color:#1f3a68}
+    .layout-preview em{display:block;background:#2f6fd0;border-radius:999px;min-width:8px;min-height:8px}
+    .layout-preview .line{height:5px;background:#c8d5e7;border-radius:999px;border:0}
+    .layout-preview .thin{height:3px}.layout-preview .dot{width:14px;height:14px;border-radius:50%}
+    .layout-preview .ring{border:8px solid #2f6fd0;background:transparent;border-radius:50%}
+    .layout-preview .arrow{background:transparent;border:0;color:#1f3a68;font-weight:900;display:grid;place-items:center}
+    .preview-label{position:absolute;right:9px;bottom:7px;font-size:9px;font-weight:800;color:#7a8491;letter-spacing:.02em}
+
+  
+    /* 읽히는 실제 예시형 미리보기 */
+    .layout-preview{height:148px;padding:10px;background:#fff;border:1px solid #e3e6ea;border-radius:9px;margin:4px 0 15px;overflow:hidden}
+    .layout-preview *{box-sizing:border-box}
+    .mini{width:100%;height:100%;font-size:9.5px;line-height:1.25;color:#26384f;font-weight:650;display:grid;gap:5px}
+    .mini .hd{background:#1f3a68;color:#fff;border-radius:5px;padding:5px 7px;font-size:10px;font-weight:800;text-align:left}
+    .mini .box{background:#eef3f9;border:1px solid #d5e0ee;border-radius:5px;padding:6px;display:flex;align-items:center;justify-content:center;text-align:center;min-width:0;min-height:0}
+    .mini .white{background:#fff}
+    .mini .accent{background:#dbe8fb;border-color:#bfd3ee;color:#1f3a68;font-weight:800}
+    .mini .dark{background:#26384f;color:#fff;border-color:#26384f}
+    .mini .row{display:grid;gap:5px}
+    .mini .arr{display:flex;align-items:center;justify-content:center;color:#2f6fd0;font-size:15px;font-weight:900}
+    .mini .big{font-size:15px;font-weight:900;color:#1f3a68}
+    .mini .kpi{font-size:13px;font-weight:900;color:#1f3a68}
+    .mini .small{font-size:8.5px;font-weight:600;color:#5b636d}
+    .mini .axis{font-size:8px;color:#5b636d;text-align:center}
+    .mini .check{text-align:left;justify-content:flex-start;gap:4px}
+    .mini .circle{border:7px solid #2f6fd0;border-radius:50%;width:58px;height:58px;display:flex;align-items:center;justify-content:center;background:#fff;color:#1f3a68;font-weight:900;font-size:13px}
+    .mini .funnel{clip-path:polygon(8% 0,92% 0,78% 100%,22% 100%);background:#dbe8fb;border:1px solid #bfd3ee;display:flex;align-items:center;justify-content:center;min-height:18px}
+    .preview-label{display:none}
+
   </style>
 </head>
 <body>
@@ -534,7 +574,7 @@
         level: '중급',
         icon: '💬',
         tint: '#fae9ec',
-        strip: 'linear-gradient(90deg,#B60B29,#d95c73)',
+        strip: 'linear-gradient(90deg,#1f3a68,#d95c73)',
         desc: '사용자의 상황과 변화 과정을 짧은 장면 흐름으로 보여주는 구성',
         features: ['상황 → 갈등 → 변화 흐름', '짧은 대사·감정 포인트 활용', '사례 소개·서비스 제안에 적합'],
         tags: ['사례','공감','스토리'],
@@ -547,7 +587,7 @@
         level: '고급',
         icon: '🧩',
         tint: '#f0ecea',
-        strip: 'linear-gradient(90deg,#8f071f,#B60B29)',
+        strip: 'linear-gradient(90deg,#172d52,#1f3a68)',
         desc: '데이터와 상태 정보를 디지털 인터페이스처럼 빠르게 읽히게 만드는 구성',
         features: ['상태 카드와 핵심 수치 분리', '패널형 정보 구조', '기술·AI·시스템 보고에 적합'],
         tags: ['AI','기술','시스템'],
@@ -572,8 +612,8 @@
         category: '전략',
         level: '초급',
         icon: '✦',
-        tint: '#f7e8eb',
-        strip: 'linear-gradient(90deg,#B60B29,#e07b8e)',
+        tint: '#f0f5fd',
+        strip: 'linear-gradient(90deg,#1f3a68,#e07b8e)',
         desc: '불필요한 정보를 덜어내고 하나의 강한 결론에 집중하는 미니멀 구성',
         features: ['한 문장 결론 중심', '넓은 여백과 짧은 근거', '임원 보고·제안서 핵심 장표에 적합'],
         tags: ['미니멀','결론','전략'],
@@ -599,7 +639,7 @@
         level: '고급',
         icon: 'Aa',
         tint: '#f8ece8',
-        strip: 'linear-gradient(90deg,#B60B29,#cf6f6f)',
+        strip: 'linear-gradient(90deg,#1f3a68,#cf6f6f)',
         desc: '큰 타이포와 이미지 영역을 활용해 브랜드 톤을 강하게 보여주는 구성',
         features: ['비대칭 편집 그리드', '메시지와 비주얼의 대비', '캠페인·브랜딩·소개서에 적합'],
         tags: ['브랜드','에디토리얼','캠페인'],
@@ -638,7 +678,7 @@
         level: '고급',
         icon: '⊞',
         tint: '#f0ece9',
-        strip: 'linear-gradient(90deg,#81756f,#B60B29)',
+        strip: 'linear-gradient(90deg,#81756f,#1f3a68)',
         desc: '여러 대안의 위치와 우선순위를 2×2 축으로 비교해 판단을 돕는 구성',
         features: ['X-Y축 기준 명확화', '우선순위 구간 시각 강조', '전략 비교·사업 판단에 적합'],
         tags: ['매트릭스','우선순위','의사결정'],
@@ -651,7 +691,7 @@
         level: '중급',
         icon: '↗',
         tint: '#f8edef',
-        strip: 'linear-gradient(90deg,#B60B29,#d26d80)',
+        strip: 'linear-gradient(90deg,#1f3a68,#d26d80)',
         desc: '문제와 해결책을 성장 가능성까지 연결해 설득력 있게 보여주는 피치형 구성',
         features: ['문제→해결→성과 연결', '성장 숫자와 증거 강조', '창업·신사업·서비스 소개에 적합'],
         tags: ['피치','성장','사업'],
@@ -677,7 +717,7 @@
         level: '중급',
         icon: '◎',
         tint: '#f7e9ec',
-        strip: 'linear-gradient(90deg,#9c102a,#B60B29)',
+        strip: 'linear-gradient(90deg,#9c102a,#1f3a68)',
         desc: '복잡한 개념이나 절차를 아이콘과 도식 중심으로 압축해 보여주는 구성',
         features: ['정보 묶음별 아이콘 활용', '흐름·관계·구조 도식화', '한장요약·안내자료에 적합'],
         tags: ['인포그래픽','요약','도식'],
@@ -690,7 +730,7 @@
         level: '초급',
         icon: '↔',
         tint: '#f3efec',
-        strip: 'linear-gradient(90deg,#6f6460,#B60B29)',
+        strip: 'linear-gradient(90deg,#6f6460,#1f3a68)',
         desc: '두 대상의 차이와 선택 기준을 같은 축에서 직관적으로 비교하는 구성',
         features: ['공통 비교 기준 먼저 설정', '차이점과 장단점 좌우 대비', '제품·정책·도구·전략 비교에 적합'],
         tags: ['비교','선택','장단점'],
@@ -703,7 +743,7 @@
         level: '초급',
         icon: '→',
         tint: '#f7e9ec',
-        strip: 'linear-gradient(90deg,#B60B29,#df8394)',
+        strip: 'linear-gradient(90deg,#1f3a68,#df8394)',
         desc: '업무·서비스·학습 절차를 단계 흐름으로 정리해 이해를 돕는 구성',
         features: ['3~6단계 순서 구조', '단계별 행동과 산출물 표시', '업무절차·교육과정·사용법에 적합'],
         tags: ['절차','단계','워크플로우'],
@@ -716,7 +756,7 @@
         level: '중급',
         icon: '⚑',
         tint: '#f2eeeb',
-        strip: 'linear-gradient(90deg,#81756f,#B60B29)',
+        strip: 'linear-gradient(90deg,#81756f,#1f3a68)',
         desc: '현상에서 원인을 찾고 해결 방향까지 연결하는 대표적인 문제해결 구성',
         features: ['문제와 증상 분리', '핵심 원인 2~3개 구조화', '대응전략과 우선 행동 연결'],
         tags: ['문제해결','원인','솔루션'],
@@ -729,7 +769,7 @@
         level: '중급',
         icon: '✎',
         tint: '#f8edef',
-        strip: 'linear-gradient(90deg,#B60B29,#c95a70)',
+        strip: 'linear-gradient(90deg,#1f3a68,#c95a70)',
         desc: '하나의 기획 아이디어를 목적·대상·방법·성과 요소로 빠르게 정리하는 구성',
         features: ['핵심 아이디어 한 줄 정의', '대상·가치·실행요소 분리', '프로젝트·사업·콘텐츠 기획에 적합'],
         tags: ['기획','아이디어','캔버스'],
@@ -742,7 +782,7 @@
         level: '초급',
         icon: '⇢',
         tint: '#f1ece8',
-        strip: 'linear-gradient(90deg,#a69b94,#B60B29)',
+        strip: 'linear-gradient(90deg,#a69b94,#1f3a68)',
         desc: '도입 전과 후의 차이를 강하게 대비해 변화와 성과를 보여주는 구성',
         features: ['이전 상태와 이후 상태 대비', '변화 수치·행동·경험 강조', '성과사례·개선안·서비스 소개에 적합'],
         tags: ['변화','성과','비포애프터'],
@@ -755,7 +795,7 @@
         level: '초급',
         icon: '?',
         tint: '#f7e9ec',
-        strip: 'linear-gradient(90deg,#B60B29,#d7a2ab)',
+        strip: 'linear-gradient(90deg,#1f3a68,#d7a2ab)',
         desc: '복잡한 내용을 질문과 답변 형태로 바꿔 핵심만 빠르게 전달하는 구성',
         features: ['질문이 곧 장표의 논점', '답변은 한 문장 결론 우선', '정책안내·교육·FAQ·보고에 적합'],
         tags: ['질문','답변','FAQ'],
@@ -781,7 +821,7 @@
         level: '초급',
         icon: '✓',
         tint: '#f8edef',
-        strip: 'linear-gradient(90deg,#B60B29,#d77386)',
+        strip: 'linear-gradient(90deg,#1f3a68,#d77386)',
         desc: '결론을 실제 행동 항목과 담당·기한 중심으로 전환하는 실행형 구성',
         features: ['행동 항목을 동사형으로 작성', '담당·기한·완료기준 명확화', '회의결과·액션플랜·후속업무에 적합'],
         tags: ['실행','체크리스트','액션플랜'],
@@ -797,6 +837,32 @@
     const toast = document.getElementById('toast');
     const resultCount = document.getElementById('resultCount');
 
+
+    function previewDiagram(id){
+      const d={
+        1:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">고객의 하루가 어떻게 달라졌을까?</div><div class="row" style="grid-template-columns:1fr .18fr 1fr .18fr 1fr"><div class="box">① 상황<br><span class="small">불편함</span></div><div class="arr">→</div><div class="box">② 경험<br><span class="small">사용</span></div><div class="arr">→</div><div class="box accent">③ 변화<br><span class="small">좋아짐</span></div></div></div>`,
+        2:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">AI 서비스 운영 리포트</div><div class="row" style="grid-template-columns:1.1fr .9fr"><div class="box"><span><b>핵심 현황</b><br>이용률 82%<br>오류율 3.1%</span></div><div style="display:grid;gap:5px"><div class="box">DATA</div><div class="box accent">결론</div></div></div></div>`,
+        3:`<div class="mini" style="grid-template-rows:.25fr repeat(3,1fr)"><div class="hd">팩트 체크</div><div class="row" style="grid-template-columns:1fr 1fr .6fr"><div class="box">주장 A</div><div class="box">근거 있음</div><div class="box accent">사실</div></div><div class="row" style="grid-template-columns:1fr 1fr .6fr"><div class="box">주장 B</div><div class="box">근거 부족</div><div class="box">확인</div></div><div class="axis">주장 · 근거 · 판정</div></div>`,
+        4:`<div class="mini" style="place-items:center"><div style="width:88%;text-align:center"><div class="small">오늘 꼭 기억할 한 가지</div><div class="big" style="margin:8px 0">“핵심 메시지 한 문장”</div><div class="box">근거 ① · 근거 ② · 근거 ③</div></div></div>`,
+        5:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">오늘의 학습 가이드</div><div class="row" style="grid-template-columns:repeat(3,1fr)"><div class="box"><span>① 개념<br><span class="small">무엇인가?</span></span></div><div class="box"><span>② 예시<br><span class="small">어디에 쓰나?</span></span></div><div class="box accent"><span>③ 실습<br><span class="small">직접 해보기</span></span></div></div></div>`,
+        6:`<div class="mini" style="grid-template-columns:1.05fr .95fr"><div class="box"><span>대표 이미지<br><span class="small">사진·제품·장면</span></span></div><div style="display:grid;grid-template-rows:.32fr .68fr;gap:5px"><div class="hd">브랜드 이야기</div><div class="box white" style="text-align:left;justify-content:flex-start">“인상적인 한 문장”<br><br><span class="small">짧은 본문 설명</span></div></div></div>`,
+        7:`<div class="mini" style="place-items:center"><div style="width:82%;text-align:center"><div class="small">PREMIUM SERVICE</div><div class="big" style="margin:8px 0">대표 메시지</div><div class="box">한 줄 설명</div><div class="small" style="margin-top:7px">KEYWORD 01 · 02 · 03</div></div></div>`,
+        8:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">이번 달 KPI</div><div class="row" style="grid-template-columns:repeat(3,1fr)"><div class="box"><span class="kpi">82%</span><br><span class="small">목표 달성률</span></div><div class="box"><span class="kpi">+14%</span><br><span class="small">매출 성장</span></div><div class="box accent"><span class="kpi">4.7</span><br><span class="small">고객 만족</span></div></div></div>`,
+        9:`<div class="mini" style="grid-template-columns:.16fr 1fr;grid-template-rows:1fr .16fr"><div class="axis" style="writing-mode:vertical-rl">효과 ↑</div><div class="row" style="grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr"><div class="box">유지</div><div class="box accent">우선 실행</div><div class="box">보류</div><div class="box">검토</div></div><div></div><div class="axis">난이도 낮음 → 높음</div></div>`,
+        10:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">성장 스토리</div><div class="row" style="grid-template-columns:1fr .15fr 1fr .15fr 1fr"><div class="box">현재<br><span class="small">1,000명</span></div><div class="arr">↗</div><div class="box">성장<br><span class="small">3,000명</span></div><div class="arr">↗</div><div class="box accent">목표<br><span class="small">5,000명</span></div></div></div>`,
+        11:`<div class="mini" style="grid-template-rows:.28fr 1fr"><div class="hd">2026 실행 로드맵</div><div class="row" style="grid-template-columns:repeat(4,1fr)"><div class="box">Q1<br><span class="small">기획</span></div><div class="box">Q2<br><span class="small">개발</span></div><div class="box">Q3<br><span class="small">테스트</span></div><div class="box accent">Q4<br><span class="small">출시</span></div></div></div>`,
+        12:`<div class="mini" style="grid-template-columns:1fr 1.35fr"><div class="box accent"><span class="big" style="font-size:12px">핵심 주제</span></div><div style="display:grid;gap:5px"><div class="box">배경</div><div class="box">핵심 수치</div><div class="box">의미</div></div></div>`,
+        13:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">A안과 B안 비교</div><div class="row" style="grid-template-columns:1fr 1fr"><div class="box" style="display:block"><b>A안</b><br><span class="small">가격 10<br>속도 빠름<br>기능 3개</span></div><div class="box accent" style="display:block"><b>B안</b><br><span class="small">가격 12<br>속도 보통<br>기능 5개</span></div></div></div>`,
+        14:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">업무 처리 과정</div><div class="row" style="grid-template-columns:1fr .14fr 1fr .14fr 1fr .14fr 1fr"><div class="box">① 접수</div><div class="arr">→</div><div class="box">② 검토</div><div class="arr">→</div><div class="box">③ 승인</div><div class="arr">→</div><div class="box accent">④ 완료</div></div></div>`,
+        15:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">문제를 어떻게 해결할까?</div><div class="row" style="grid-template-columns:1fr .16fr 1fr .16fr 1fr"><div class="box">문제<br><span class="small">문의 증가</span></div><div class="arr">→</div><div class="box">원인<br><span class="small">FAQ 부족</span></div><div class="arr">→</div><div class="box accent">해결<br><span class="small">매뉴얼 개정</span></div></div></div>`,
+        16:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">핵심 아이디어</div><div class="row" style="grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr"><div class="box">WHY<br><span class="small">왜 필요한가</span></div><div class="box">WHO<br><span class="small">누구를 위한가</span></div><div class="box">HOW<br><span class="small">어떻게 할까</span></div><div class="box accent">RESULT<br><span class="small">무엇이 달라지나</span></div></div></div>`,
+        17:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">개선 전과 후</div><div class="row" style="grid-template-columns:1fr .18fr 1fr"><div class="box">BEFORE<br><span class="small">처리 5일<br>문의 20건</span></div><div class="arr">→</div><div class="box accent">AFTER<br><span class="small">처리 2일<br>문의 8건</span></div></div></div>`,
+        18:`<div class="mini" style="grid-template-rows:.34fr .36fr .3fr"><div class="hd">Q. 왜 이 방식을 선택했나요?</div><div class="box accent" style="font-size:11px">A. 비용과 시간을 함께 줄일 수 있기 때문입니다.</div><div class="row" style="grid-template-columns:repeat(3,1fr)"><div class="box">근거 1</div><div class="box">근거 2</div><div class="box">근거 3</div></div></div>`,
+        19:`<div class="mini" style="grid-template-rows:.25fr 1fr"><div class="hd">리스크 우선순위</div><div class="row" style="grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr"><div class="box">낮음</div><div class="box">관찰</div><div class="box">주의</div><div class="box accent">높음<br><span class="small">즉시 대응</span></div></div></div>`,
+        20:`<div class="mini" style="grid-template-rows:.25fr repeat(3,1fr)"><div class="hd">이번 주 실행 항목</div><div class="box check">☑ 문의 유형 정리 <span class="small">김대리 · 금요일</span></div><div class="box check">☐ 안내 문구 확인 <span class="small">홍보팀</span></div><div class="box check">☐ 초안 검토 <span class="small">다음 회의</span></div></div>`
+      };
+      return `<div class="layout-preview">${d[id]||d[5]}</div>`;
+    }
     let currentCategory = '전체';
     let currentQuery = '';
     let selectedPreset = null;
@@ -841,6 +907,7 @@
             <div class="icon-tile" style="background:${p.tint}">${p.icon}</div>
             <span class="difficulty">${p.level}</span>
           </div>
+          ${previewDiagram(p.id)}
           <h3>${p.title}</h3>
           <p class="desc">${p.desc}</p>
           <div class="keyword-row">${p.tags.map(t => `<span class="keyword">#${t}</span>`).join('')}</div>
