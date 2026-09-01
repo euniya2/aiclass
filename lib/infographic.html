@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>모닝클래스 인포그래픽 설계 프롬프트</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    :root {
+      --ink:#2a2022; --muted:#746d6a; --paper:#f7f5f2; --surface:#fff;
+      --line:#ded9d3; --brand:#B60B29; --brand-dark:#8f071f; --brand-soft:#f7e8eb;
+      --sub:#D7D2CB; --sub-soft:#efede9; --shadow:0 14px 34px rgba(74,39,45,.09);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;font-family:'Pretendard',system-ui,-apple-system,sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 0%,rgba(182,11,41,.09),transparent 27%),radial-gradient(circle at 100% 7%,rgba(215,210,203,.46),transparent 28%),var(--paper);min-height:100vh}
+    button,input,textarea{font:inherit} button{cursor:pointer} .hidden{display:none!important}
+    .shell{max-width:1360px;margin:0 auto;padding:34px 24px 70px}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:28px}
+    .brandbox{display:flex;align-items:center;gap:13px;cursor:pointer}
+    .brandmark{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,var(--brand),#d63b58);color:#fff;font-weight:900;box-shadow:0 10px 24px rgba(182,11,41,.22)}
+    .brandname{font-weight:900;font-size:18px;letter-spacing:-.02em} .brandsub{color:var(--muted);font-size:12px;margin-top:3px}
+    .count-pill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.72);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-size:12px;font-weight:800;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1.35fr .65fr;gap:20px;margin-bottom:28px}
+    .hero-main{position:relative;overflow:hidden;min-height:250px;padding:38px 40px;border-radius:30px;color:#fff;background:linear-gradient(135deg,#3a2025 0%,#7f0b24 56%,var(--brand) 100%);box-shadow:var(--shadow)}
+    .hero-main:after{content:"";position:absolute;width:250px;height:250px;border:44px solid rgba(255,255,255,.08);border-radius:50%;right:-58px;top:-72px}
+    .eyebrow{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.12);font-size:12px;font-weight:800;letter-spacing:.04em;margin-bottom:16px}
+    .hero h1{margin:0;font-size:clamp(34px,5vw,54px);line-height:1.05;letter-spacing:-.055em;max-width:820px}
+    .hero p{margin:16px 0 0;color:rgba(255,255,255,.8);font-size:16px;line-height:1.65;max-width:740px}
+    .hero-side{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .metric{background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.9);border-radius:24px;padding:23px;box-shadow:var(--shadow);backdrop-filter:blur(8px);min-height:116px}
+    .metric strong{display:block;font-size:30px;letter-spacing:-.04em} .metric span{display:block;color:var(--muted);font-size:12px;font-weight:800;margin-top:4px}
+    .metric.wide{grid-column:1/-1} .metric.wide strong{font-size:17px;line-height:1.4}
+    .controls{display:grid;grid-template-columns:minmax(270px,430px) 1fr;gap:18px;align-items:start;margin:30px 0 24px}
+    .searchbox{position:relative} .searchbox input{width:100%;border:1px solid var(--line);background:#fff;border-radius:17px;padding:15px 17px 15px 46px;outline:none;box-shadow:0 8px 20px rgba(60,44,48,.04);transition:.2s}
+    .searchbox input:focus{border-color:var(--brand);box-shadow:0 0 0 5px rgba(182,11,41,.07)} .searchicon{position:absolute;left:17px;top:50%;transform:translateY(-50%);color:var(--brand);font-weight:900}
+    .tabs{display:flex;flex-wrap:wrap;gap:8px}
+    .tab{border:1px solid var(--line);background:rgba(255,255,255,.74);color:var(--muted);border-radius:13px;padding:10px 15px;font-size:12px;font-weight:850;transition:.2s}
+    .tab:hover{transform:translateY(-1px);border-color:#cbbec0} .tab.active{background:var(--brand);color:#fff;border-color:var(--brand);box-shadow:0 8px 18px rgba(182,11,41,.16)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{position:relative;overflow:hidden;background:rgba(255,255,255,.88);border:1px solid rgba(222,217,211,.9);border-radius:24px;padding:24px;min-height:220px;box-shadow:0 9px 24px rgba(65,45,49,.05);transition:.25s;cursor:pointer}
+    .card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#d3bcc1} .card:before{content:"";position:absolute;width:94px;height:94px;border-radius:50%;right:-24px;top:-28px;background:rgba(182,11,41,.05)}
+    .cardtop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:18px}
+    .category{display:inline-flex;padding:6px 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-size:10px;font-weight:900;letter-spacing:.03em}
+    .arrow{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--sub-soft);color:#918985;font-weight:900;transition:.2s} .card:hover .arrow{background:var(--brand);color:#fff}
+    .card h3{font-size:20px;line-height:1.35;letter-spacing:-.035em;margin:0 0 10px} .card p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}
+    .editor{max-width:1080px;margin:0 auto}
+    .backbtn{border:1px solid var(--line);background:rgba(255,255,255,.78);padding:11px 16px;border-radius:14px;font-weight:800;color:var(--ink);margin-bottom:20px;transition:.2s} .backbtn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .editor-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.65fr);gap:18px;align-items:start}
+    .editor-card,.guide-card{background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}
+    .editor-head{background:linear-gradient(135deg,#442429,var(--brand));padding:25px 28px;color:#fff} .editor-head small{display:block;color:rgba(255,255,255,.66);font-weight:700;margin-top:5px}
+    .editor-body{padding:26px} .editor-label{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px;font-size:11px;font-weight:900;color:var(--brand)}
+    textarea{width:100%;min-height:600px;border:1.5px solid var(--line);background:#fbfaf8;border-radius:20px;padding:22px;resize:vertical;outline:none;color:#403638;line-height:1.72;font-size:14px}
+    textarea:focus{border-color:var(--brand);box-shadow:0 0 0 5px rgba(182,11,41,.06)}
+    .copybtn{width:100%;margin-top:16px;border:0;border-radius:16px;background:var(--brand);color:#fff;padding:16px;font-weight:900;font-size:16px;box-shadow:0 10px 22px rgba(182,11,41,.18);transition:.2s} .copybtn:hover{background:var(--brand-dark);transform:translateY(-1px)}
+    .copybtn.done{background:#6f5b60}
+    .guide-card{padding:25px;background:#32272a;color:#fff;position:sticky;top:20px} .guide-card h3{margin:0 0 18px;font-size:18px} .guide-step{padding:16px 0;border-top:1px solid rgba(255,255,255,.1)} .guide-step:first-of-type{border-top:0} .guide-step b{display:block;color:#efd0d7;font-size:11px;letter-spacing:.05em;margin-bottom:6px} .guide-step p{margin:0;color:rgba(255,255,255,.72);font-size:13px;line-height:1.65}
+    .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(18px);background:#2d2325;color:#fff;padding:13px 20px;border-radius:15px;box-shadow:0 14px 34px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:.25s;z-index:30;font-size:13px;font-weight:800} .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .empty{grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--muted);font-weight:800}
+    @media(max-width:1050px){.hero{grid-template-columns:1fr}.hero-side{grid-template-columns:repeat(3,1fr)}.metric.wide{grid-column:auto}.grid{grid-template-columns:repeat(2,1fr)}.editor-grid{grid-template-columns:1fr}.guide-card{position:static}}
+    @media(max-width:720px){.shell{padding:24px 16px 54px}.topbar{align-items:flex-start}.count-pill{display:none}.hero-main{padding:30px 24px;min-height:230px}.hero-side{grid-template-columns:1fr 1fr}.metric.wide{grid-column:1/-1}.controls{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.editor-body{padding:18px}textarea{min-height:520px}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="brandbox" onclick="showGridView()">
+      <div class="brandmark">MC</div>
+      <div><div class="brandname">Morning Class</div><div class="brandsub">Infographic Prompt Library · NotebookLM</div></div>
+    </div>
+    <div class="count-pill">복사 <strong id="copy-count">0</strong>회</div>
+  </div>
+
+  <section id="hero-section" class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">MORNING CLASS · INFOGRAPHIC</div>
+      <h1>모닝클래스<br>인포그래픽 설계 프롬프트</h1>
+      <p>자료 성격에 맞는 인포그래픽 유형을 선택하고 프롬프트를 바로 편집·복사할 수 있는 NotebookLM용 프롬프트 라이브러리입니다.</p>
+    </div>
+    <div class="hero-side">
+      <div class="metric"><strong id="style-count">20</strong><span>인포그래픽 스타일</span></div>
+      <div class="metric"><strong id="category-count">0</strong><span>활용 카테고리</span></div>
+      <div class="metric wide"><strong>#B60B29 × #D7D2CB</strong><span>Morning Class Brand Tone</span></div>
+    </div>
+  </section>
+
+  <section id="grid-view">
+    <div class="controls">
+      <div class="searchbox"><span class="searchicon">⌕</span><input id="search-input" type="text" placeholder="20개의 인포그래픽 스타일 검색..." oninput="handleSearch(this.value)"></div>
+      <div id="category-tabs" class="tabs"></div>
+    </div>
+    <div id="template-grid" class="grid"></div>
+  </section>
+
+  <section id="editor-view" class="editor hidden">
+    <button class="backbtn" onclick="showGridView()">← 프롬프트 목록으로 돌아가기</button>
+    <div class="editor-grid">
+      <div class="editor-card">
+        <div class="editor-head"><strong>프롬프트 편집</strong><small id="selected-template-title"></small></div>
+        <div class="editor-body">
+          <div class="editor-label"><span>NOTEBOOKLM PROMPT EDITOR</span><span style="color:var(--muted);font-weight:700">필요한 부분을 수정한 뒤 복사하세요</span></div>
+          <textarea id="prompt-textarea" spellcheck="false"></textarea>
+          <button id="copy-btn" class="copybtn" onclick="handleCopy()">프롬프트 복사하기</button>
+        </div>
+      </div>
+      <aside class="guide-card">
+        <h3>사용 가이드</h3>
+        <div class="guide-step"><b>STEP 1</b><p>카테고리나 검색을 이용해 만들고 싶은 인포그래픽 유형을 선택합니다.</p></div>
+        <div class="guide-step"><b>STEP 2</b><p>자료 목적에 맞지 않는 문구나 디자인 지시는 편집창에서 자유롭게 수정합니다.</p></div>
+        <div class="guide-step"><b>STEP 3</b><p>복사한 프롬프트를 NotebookLM의 인포그래픽 커스텀 지시어에 붙여넣어 활용합니다.</p></div>
+      </aside>
+    </div>
+  </section>
+</div>
+<div id="toast" class="toast">프롬프트가 복사되었습니다.</div>
+<script>
+  const infographicPrompts = [
+            {
+                id: 101,
+                title: "🐣 웹툰 캐릭터 가이드형",
+                category: "크리에이티브",
+                preview: "캐릭터가 내용을 설명하는 한국 웹툰 스타일. 감정 표현이 풍부해 친근한 분위기를 연출합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 웹툰 캐릭터 가이드형]
+
+■ 분위기
+독자에게 직접 말을 거는 한국 웹툰 스타일. 딱딱하지 않고 친근하게, 캐릭터가 설명해주는 것처럼 써줘.
+
+■ 구성 방식
+아래 기준으로 내용 유형을 판단해서 그에 맞는 서술 방식을 골라줘.
+
+- 도입부 또는 주제 소개: 독자를 환영하는 말투로 핵심 주제를 한 문장으로 선언하고 시작해.
+- 수치나 통계: "자, 보세요!" 같은 감탄사 뒤에 수치를 강조하고 의미를 짧게 풀어줘.
+- 긍정적인 소식: 흥분된 말투로 강조하고, 핵심 키워드에 ★ 표시 붙여줘.
+- 부정적이거나 주의 필요: 진지하게 톤을 낮추고 ⚠️ 기호로 주목을 끌어줘.
+- 비교나 대조: "A는 이렇고 B는 저렇다"는 구조로 나란히 정리해줘.
+
+■ 섹션 구조
+1. 제목 및 핵심 한 줄 요약
+2. 본문 내용 (위 유형 판단 적용)
+3. 마무리: "이것만 기억해요!" 제목 아래 핵심 포인트 3가지
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFF9F0 (크림) / 텍스트: #1A1A2E / 강조: #FF6B9D (핑크)
+보조: #FFE8F0 / 데이터: #FF6B9D, #FFB347, #70C1B3, #845EC2
+아웃라인: #1A1A2E (굵은 외곽선)
+
+[폰트]
+본문: Noto Sans KR / 제목: Noto Sans KR Black
+말풍선 텍스트: 손글씨 느낌 (Nanum Pen Script 또는 Gaegu)
+
+[무드]
+LINE Webtoon, 네이버 웹툰 — 파스텔 배경 + 만화 컷 분할
+
+[레이아웃]
+만화 컷 스타일 분할. 각 섹션을 굵은 외곽선 박스로 구분.
+말풍선으로 핵심 문장 강조. 스크린톤 또는 도트 패턴 배경.
+캐릭터 공간 + 텍스트 공간 6:4 비율 권장.
+
+[정보 밀도]
+낮음 — 텍스트 최소화, 캐릭터 감정 표현 중심. 여백 40% 이상.`
+            },
+            {
+                id: 1,
+                title: "☁️ 미니멀 클린 대시보드",
+                category: "데이터/통계",
+                preview: "애플 스타일의 깔끔한 KPI 요약 장표. 넓은 여백과 신뢰감 있는 구성으로 전문 보고서에 적합합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 미니멀 대시보드형]
+
+■ 분위기
+군더더기 없이 깔끔하게. 숫자가 주인공이 되도록. 불필요한 수식어는 전부 빼고 사실과 수치만 남겨.
+
+■ 섹션 구조
+1. 핵심 지표 4개
+   각 지표를 이렇게 써줘.
+   [지표명] / [수치] / 전월 대비 ▲/▼ [변화율]%
+
+2. 트렌드 요약
+   "최근 흐름" 소제목 아래 시간 순서로 변화를 2~3문장으로 서술.
+
+3. 비중 분석
+   구성 항목별 점유율을 "항목명: XX%" 형식으로 나열하고, 가장 큰 항목에 ● 표시.
+
+4. 한 줄 결론
+   데이터 전체를 관통하는 핵심 인사이트를 딱 한 문장으로.
+
+■ 주의사항
+감정적 표현 금지. 수치 단위(억 원, %, 명 등) 반드시 명시.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFFFFF / 텍스트: #0F172A / 강조: #3B82F6
+보조: #F1F5F9 / 데이터: #3B82F6, #10B981, #F59E0B, #EF4444
+
+[폰트]
+Pretendard — 숫자 Bold 700, 레이블 Regular 400
+
+[무드]
+Tableau, Google Analytics — 깔끔한 화이트 기반 BI 대시보드
+
+[레이아웃]
+4분할 대시보드 그리드. 카드 그림자(box-shadow)로 섹션 구분.
+위젯 카드 4개 + 미니 차트 + 상태 표시등. 좌→우 시선 흐름.
+데이터 시각화: 멀티 위젯 (바 + 도넛 + KPI 수치).
+
+[정보 밀도]
+표준 — 핵심 데이터 + 1~2줄 보조 설명. 차트 1~2개 + 범례. 여백 25~35%.`
+            },
+            {
+                id: 2,
+                title: "🛸 퓨처리스틱 다크 모드",
+                category: "IT/테크",
+                preview: "마치 미래 관제 센터 화면처럼. 짧고 임팩트 있는 문장으로 미래지향적인 긴장감을 연출합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 퓨처리스틱 모니터링형]
+
+■ 분위기
+미래의 관제 센터 화면처럼. 짧고 임팩트 있게, 실시간 데이터를 모니터링하는 느낌으로 써줘.
+
+■ 섹션 구조
+1. 시스템 상태 헤더
+   "[주제명] STATUS REPORT" 형식으로 제목.
+   현재 상태를 NORMAL / WARNING / CRITICAL 중 하나로 표기.
+
+2. 핵심 지표 모니터링 (3~5개)
+   ▶ [지표명]: [수치] ([상태 평가: 정상/주의/위험])
+
+3. 분석 로그
+   "ANALYSIS LOG" 소제목 아래 주요 변화나 이상 징후를 짧은 문장 3줄로.
+
+4. 결론
+   "⚡ ACTION REQUIRED" 또는 "✅ ALL SYSTEMS GO" 중 상황에 맞게 골라 한 줄 마무리.
+
+■ 주의사항
+문장을 길게 늘이지 말고 단어 위주로 압축. 영문 키워드 적극 활용.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #0A0E1A (네이비 블랙) / 텍스트: #E2E8F0 / 강조: #00F5FF (사이언)
+보조: #1A2035 / 데이터: #00F5FF, #FF00C8, #00FF9C, #FFE500
+
+[폰트]
+숫자·영문: Space Mono 또는 JetBrains Mono / 한글: Noto Sans KR
+
+[무드]
+Palantir Gotham, Bloomberg Terminal — 다크 HUD 인터페이스
+
+[레이아웃]
+육각형 또는 원형 위젯 컨테이너. 가느다란 네온 라인 구분선.
+네온 글로우 효과로 강조 요소 처리. 배경에 미세 그리드 패턴.
+정보 요소들이 화면을 가득 채우는 고밀도 레이아웃.
+
+[정보 밀도]
+높음 — 여백 최소화, 데이터 요소 밀집 배치. 여백 15% 이하.`
+            },
+            {
+                id: 3,
+                title: "💎 SaaS 지표 카드형",
+                category: "비즈니스",
+                preview: "MRR, CAC, Churn 등 SaaS 지표를 카드 4개로 정리한 스타트업 대시보드 스타일입니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - SaaS 지표 카드형]
+
+■ 분위기
+투자자에게 보고하는 것처럼. 수치를 중심으로 명확하고 자신감 있게.
+
+■ 섹션 구조
+핵심 지표 4개를 각각 아래 양식으로 정리해줘.
+
+┌ [지표명 (예: MRR)]
+├ 수치: [값 + 단위]
+├ 전월 대비: ▲/▼ [변화율]%
+└ 한 줄 해석: [이 수치가 의미하는 바]
+
+4개 카드 아래에 "이번 달 핵심 시사점" 소제목으로 전체를 아우르는 인사이트 2~3문장.
+마지막에 다음 달 주목할 지표 1개와 그 이유를 한 줄로.
+
+■ 주의사항
+각 카드는 독립적으로 읽혀야 해. 카드 간 내용이 겹치지 않도록.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FAFAFA / 텍스트: #1E293B / 강조: #6366F1 (인디고)
+보조: #FFFFFF / 데이터: #6366F1, #10B981, #F59E0B, #EF4444
+카드 테두리: #E2E8F0
+
+[폰트]
+Pretendard — 지표명 Medium 500, 수치 ExtraBold 800, 보조 Regular 400
+
+[무드]
+Stripe Dashboard, Linear — 모던 SaaS 제품 UI 스타일
+
+[레이아웃]
+가로 4카드 균등 배열. 카드 내부: 상단 지표명 + 중앙 큰 수치 + 하단 스파크라인.
+상승은 초록, 하락은 빨강으로 ▲/▼ 색상 처리. 카드 간 16px 간격.
+
+[정보 밀도]
+표준 — 카드당 핵심 수치 1개 + 변화율 + 미니 그래프. 여백 30%.`
+            },
+            {
+                id: 4,
+                title: "⚔️ A/B 비교 분석형",
+                category: "비교 분석",
+                preview: "A/B 테스트 또는 전년 대비 비교에 적합한 좌우 대칭 구성입니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - A/B 비교 분석형]
+
+■ 분위기
+편을 가르지 않고, 객관적으로 두 대상을 나란히 놓고 비교해줘.
+
+■ 섹션 구조
+1. 비교 대상 선언
+   "A: [대상명] vs B: [대상명]" 형식으로 제목.
+
+2. 항목별 비교
+   [비교 항목]
+   - A: [값 또는 설명]
+   - B: [값 또는 설명]
+   - 우위: A / B / 동등 중 하나 표기
+   (비교 항목마다 반복)
+
+3. 종합 평가
+   - A의 강점: 한 문장
+   - B의 강점: 한 문장
+   - 결론: 목적이나 상황에 따른 선택 기준 한 문장
+
+■ 주의사항
+한쪽을 일방적으로 좋게 쓰지 말고, 각각의 강점을 균형 있게 서술해줘.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #F8F9FA / 텍스트: #1A1A2E / A 강조: #FF6B35 (오렌지) / B 강조: #1A73E8 (블루)
+중앙 구분선: #DEE2E6 / 우위 표시: 해당 측 강조색
+
+[폰트]
+Noto Sans KR — 제목 Black 900, 항목명 Bold 700, 값 Medium 500
+
+[무드]
+The Economist, Financial Times — 에디토리얼 인포그래픽
+
+[레이아웃]
+중앙 수직선 기준 좌(A) / 우(B) 대칭 분할.
+비교 항목 키워드는 중앙에 고정 배치. 우위 측에 색상 강조 바(bar) 표시.
+하단에 결론 와이드 섹션 (전체 폭 사용).
+
+[정보 밀도]
+표준 — 비교 항목 4~6개. 수치 + 간단 설명. 여백 30%.`
+            },
+            {
+                id: 5,
+                title: "🛤️ 성장 로드맵 타임라인",
+                category: "프로세스",
+                preview: "과거에서 미래로 흘러가는 이야기처럼. 각 단계가 다음으로 이어지는 흐름이 느껴지게 구성합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 성장 로드맵 타임라인형]
+
+■ 분위기
+과거에서 미래로 흘러가는 이야기처럼. 각 단계가 다음 단계로 이어지는 흐름이 느껴져야 해.
+
+■ 섹션 구조
+1. 출발점
+   "우리는 어디서 시작했나" 소제목으로 시작 배경 2~3문장.
+
+2. 단계별 이정표 (3~6개)
+   [STEP N] [시기 또는 단계명]
+   - 핵심 사건 또는 성과: 한 문장
+   - 이 단계의 의미: 한 문장
+   완료된 과거 단계는 과거형, 예정된 미래 단계는 미래형으로.
+
+3. 최종 목적지
+   "우리가 향하는 곳" 소제목 아래 최종 비전을 굵직하게 한 문장으로 선언.
+
+■ 주의사항
+단계 사이에 연결 흐름을 암시하는 표현을 써줘. 단계가 단절되면 안 돼.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFFFFF / 텍스트: #1E293B / 강조(완료): #6366F1 → #8B5CF6 (그라데이션)
+예정 단계: #CBD5E1 (연한 회색) / 최종 목적지: #F59E0B (골드)
+
+[폰트]
+Noto Serif KR — 스토리텔링 분위기의 세리프. 수치는 Bold 처리.
+
+[무드]
+McKinsey 슬라이드, 기업 연간보고서 — 내러티브 중심 타임라인
+
+[레이아웃]
+가로 타임라인 (좌→우). 완료 단계는 진한 색 + 실선, 예정 단계는 연한 색 + 점선.
+각 노드에 상징 아이콘 + 연도/시기 + 핵심 텍스트. 마지막 노드에 별 또는 깃발 강조.
+
+[정보 밀도]
+보통 — 단계당 핵심 문장 2개. 여백 30~40%.`
+            },
+            {
+                id: 6,
+                title: "⚙️ 프로세스 단계 설명형",
+                category: "프로세스",
+                preview: "업무 흐름, 학습 절차 등 순서가 중요한 내용을 단계별로 명확하게 안내합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 프로세스 단계 설명형]
+
+■ 분위기
+사용자가 직접 따라할 수 있도록 명확하고 친절하게.
+
+■ 섹션 구조
+1. 이 프로세스가 필요한 이유
+   한 문장으로 목적 설명.
+
+2. 단계별 안내 (3~7단계)
+   STEP N. [단계명]
+   - 무엇을 하는가: 한 문장
+   - 주의할 점 또는 팁: 한 문장 (없으면 생략)
+   - 이 단계 완료 시 기대 결과: 한 문장
+
+3. 완료 체크리스트
+   "이것만 확인하면 끝!" 소제목 아래 각 단계 완료 기준 한 줄씩.
+
+■ 주의사항
+순서가 바뀌면 안 되는 단계는 "⚠️ 반드시 이 순서대로" 라고 명시해줘.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #F8FAFC / 텍스트: #0F172A / 강조: #0EA5E9 (스카이블루)
+보조: #FFFFFF / 화살표: #0EA5E9 / 체크리스트: #10B981
+
+[폰트]
+Noto Sans KR — STEP 번호 ExtraBold 800, 단계명 Bold 700, 설명 Regular 400
+
+[무드]
+Notion, 제품 온보딩 가이드 — 깔끔하고 따라하기 쉬운 UI 스타일
+
+[레이아웃]
+STEP 박스를 가로 또는 지그재그로 연결. 박스 사이 굵은 화살표 커넥터.
+각 박스: 번호 원형 뱃지 + 단계명 + 설명 텍스트. 하단에 체크리스트 섹션.
+
+[정보 밀도]
+보통 — 단계당 1~3줄 텍스트. 아이콘으로 시각 보조. 여백 30%.`
+            },
+            {
+                id: 7,
+                title: "🏫 교육용 개념 정리형",
+                category: "교육",
+                preview: "처음 배우는 사람도 이해할 수 있도록. 핵심 개념을 체계적으로 정리하는 학습 요약 인포그래픽입니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 교육용 개념 정리형]
+
+■ 분위기
+처음 배우는 사람도 이해할 수 있도록. 쉬운 말로, 체계적으로.
+
+■ 섹션 구조
+1. 오늘의 학습 주제
+   주제명 + "한 줄 정의" (예: 머신러닝이란? → 데이터를 통해 스스로 학습하는 알고리즘)
+
+2. 핵심 개념 3~4개
+   📌 [개념명]
+   - 쉬운 설명: 비유나 예시 포함해서 2문장
+   - 왜 중요한가: 한 문장
+
+3. 개념 간 관계
+   "이 개념들은 어떻게 연결될까?" 소제목 아래 2~3문장으로 서술.
+
+4. 핵심 요약
+   "꼭 기억할 3가지" 소제목 아래 번호 붙여서 한 줄씩.
+
+■ 주의사항
+전문 용어를 쓸 때는 반드시 괄호 안에 쉬운 설명을 병기해줘.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFFEF7 (크림 화이트) / 텍스트: #1E293B / 강조: #3B82F6
+개념 카드 1: #EFF6FF / 개념 카드 2: #F0FDF4 / 개념 카드 3: #FFFBEB / 개념 카드 4: #FDF4FF
+요약 섹션: #1E293B (다크 배경 + 흰 텍스트)
+
+[폰트]
+Noto Serif KR — 학술·교과서 분위기. 개념명 Bold, 설명 Regular.
+
+[무드]
+Khan Academy, EBS 인포그래픽 — 따뜻하고 정돈된 학습 자료
+
+[레이아웃]
+상단 전체 폭 헤더 + 하단 2×2 개념 카드 그리드.
+각 카드: 번호 뱃지 + 개념명 + 설명. 하단 요약 섹션은 다크 배경으로 대비.
+
+[정보 밀도]
+보통 — 개념당 3~4줄. 카드 간 충분한 여백. 전체 여백 30~35%.`
+            },
+            {
+                id: 8,
+                title: "🤖 AI/테크 브리핑형",
+                category: "IT/테크",
+                preview: "기술 개념, 성능, 특징을 정리하는 기술 발표 자료 스타일. 사실 위주로 명확하게 구성합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - AI/테크 브리핑형]
+
+■ 분위기
+기술 발표 자료처럼. 혁신적인 느낌을 살리되 과장하지 말고 사실 위주로.
+
+■ 섹션 구조
+1. 기술 한 줄 소개
+   "[기술명]: [핵심 가치 한 문장]" 형식으로 시작.
+
+2. 3대 핵심 특징
+   ✦ [특징명]
+   - 무엇인가: 한 문장
+   - 기존과 무엇이 다른가: 한 문장
+
+3. 성능 또는 스펙 비교
+   "수치로 보는 성능" 소제목 아래 [항목]: [수치] 형식으로 나열.
+   가능하면 기존 대비 개선폭 명시.
+
+4. 도입 시 기대 효과
+   "이걸 쓰면 무엇이 달라지나?" 소제목으로 기대 효과 3가지를 한 줄씩.
+
+■ 주의사항
+근거 없는 과장 표현 금지. 수치로 뒷받침될 때만 "혁신적"이라는 표현 허용.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #0F172A (다크 네이비) / 텍스트: #F8FAFC / 강조: #6366F1 (퍼플)
+보조: #1E293B / 데이터: #6366F1, #0EA5E9, #10B981
+성능 바: #6366F1 → #0EA5E9 (그라데이션)
+
+[폰트]
+영문 제목: Space Grotesk Bold / 한글 본문: Noto Sans KR
+
+[무드]
+Vercel, AWS re:Invent 발표 자료 — 다크 테마 기술 프레젠테이션
+
+[레이아웃]
+상단 기술 소개 풀 폭 헤더 (다크). 중단 3열 특징 카드.
+하단 성능 바 인디케이터 + 기대 효과 불릿. 배경에 미세 도트 그리드 패턴.
+
+[정보 밀도]
+표준~높음 — 특징당 2줄 + 수치 바. 여백 20~25%.`
+            },
+            {
+                id: 9,
+                title: "📈 비즈니스 성과 보고형",
+                category: "비즈니스",
+                preview: "임원 보고용으로 신뢰도 높은 성과 요약 장표. 모든 문장이 의사결정에 도움이 되도록 구성합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 비즈니스 성과 보고형]
+
+■ 분위기
+임원 보고서처럼. 단 하나의 수치도 허투루 쓰지 않고, 모든 문장이 의사결정에 도움이 되어야 해.
+
+■ 섹션 구조
+1. 핵심 성과 선언
+   가장 중요한 성과 수치 하나를 맨 위에 강조.
+   예: "매출 ▲23% 성장 | 전년 동기 대비"
+
+2. 성과 상세 (3~4개)
+   [지표명]: [수치] (전년 대비 ▲/▼ [변화])
+   → 이 수치의 의미: 한 문장
+
+3. 핵심 인사이트
+   "경영진 주목 포인트" 소제목 아래 불릿 3개.
+   각 항목은 "~했다. 따라서 ~가 필요하다" 구조로.
+
+4. 다음 분기 과제
+   우선순위 과제를 딱 한 문장으로.
+
+■ 주의사항
+긍정적 성과와 개선 필요 항목을 균형 있게 포함해줘.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #1B2A4A (딥 네이비) / 텍스트: #F1F5F9 / 강조: #C9A84C (골드)
+보조 섹션: #243555 / 상승: #10B981 / 하락: #EF4444
+
+[폰트]
+Noto Serif KR — 권위 있는 격식체. 핵심 수치는 매우 크게 (Display 크기).
+
+[무드]
+McKinsey, Bain & Company 보고서 — 고급스러운 컨설팅 펌 스타일
+
+[레이아웃]
+상단 핵심 수치 풀 폭 선언 (골드 강조). 중단 지표 4개 가로 배열.
+하단 인사이트 3개 불릿 + 차기 과제. 섹션 간 골드 얇은 구분선.
+
+[정보 밀도]
+높음 — 모든 공간을 의미 있는 데이터로 채움. 여백 20%.`
+            },
+            {
+                id: 10,
+                title: "🎯 마케팅 퍼널형",
+                category: "비즈니스",
+                preview: "유입부터 전환까지의 흐름을 깔때기 구조로 냉정하게 시각화합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 마케팅 퍼널형]
+
+■ 분위기
+숫자가 흘러내려가는 것처럼. 각 단계에서 얼마나 빠져나가는지를 냉정하게 보여줘.
+
+■ 섹션 구조
+1. 퍼널 개요
+   어떤 제품/서비스/캠페인에 대한 것인지 한 줄 소개.
+
+2. 단계별 현황 (4단계: 인지 → 관심 → 전환 → 재구매)
+   [단계명]
+   - 이 단계의 수치: [값]
+   - 이전 단계 대비 이탈률: [%]
+   - 이탈 주요 원인 추정: 한 문장
+   - 개선 방향: 한 문장
+
+3. 병목 구간 진단
+   "가장 개선이 시급한 구간" 소제목 아래 이탈이 가장 큰 구간과 이유 2~3문장.
+
+4. 전환율 목표
+   현재 전체 전환율 vs 목표 전환율 나란히 제시.
+
+■ 주의사항
+이탈 원인 추정은 데이터 기반으로. 뭉뚱그리지 말 것.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFFFFF / 텍스트: #1E293B / 단계 그라데이션: #DBEAFE → #1D4ED8 (위→아래 진해짐)
+이탈률: #EF4444 / 목표 달성: #10B981
+
+[폰트]
+Noto Sans KR — 단계명 Bold, 수치 ExtraBold, 설명 Regular
+
+[무드]
+HubSpot, Salesforce 분석 대시보드 — 마케팅 퍼포먼스 리포트
+
+[레이아웃]
+중앙 깔때기 형태 (위 넓고 아래 좁음). 각 단계 옆에 수치 + 이탈률 표기.
+이탈률이 높은 구간 빨간색 강조. 하단에 전환율 비교 바.
+
+[정보 밀도]
+표준 — 단계당 수치 + 이탈률 + 원인 한 줄. 여백 25~30%.`
+            },
+            {
+                id: 11,
+                title: "🏢 산업/공공 보고서형",
+                category: "산업/공공",
+                preview: "공공기관, 정책 발표, 산업 동향 보고에 적합한 격식 있는 스타일입니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 산업/공공 보고서형]
+
+■ 분위기
+공식 정부 보고서처럼. 중립적이고 격식 있게. 주관적 의견보다 사실과 수치 위주로.
+
+■ 섹션 구조
+1. 보고서 개요
+   주제 / 보고 기준일(또는 기간) / 출처 한 줄씩.
+
+2. 주요 산업 지표 (3~5개)
+   ▪ [지표명]: [수치] ([전년/전월 대비 변화])
+
+3. 주요 동향 분석
+   "현황" 소제목 아래 현재 상태를 3~4문장으로 객관적으로 서술.
+   "원인" 소제목 아래 이 동향이 나타난 배경 요인 2~3개 나열.
+
+4. 정책 방향 또는 시장 전망
+   "향후 전망" 소제목 아래 전문기관 또는 데이터 기반 전망 2~3문장.
+
+5. 출처 및 주석
+   인용된 데이터의 출처 정리.
+
+■ 주의사항
+단정적 표현 자제. "~으로 예상됨", "~할 것으로 보임" 같은 신중한 표현 사용.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFFFFF / 텍스트: #1A2B3C / 강조: #1A3A5C (딥 네이비)
+보조: #F0F4F8 / 차트: #1A3A5C, #2E6DA4, #5BA3D0, #9DC4E0
+구분선: #B0C4D8
+
+[폰트]
+Noto Serif KR — 공식 문서 격식체. 지표 수치는 굵게.
+
+[무드]
+통계청, 한국은행 보고서 — 절제된 신뢰감
+
+[레이아웃]
+신문 편집 스타일 2~3열 구성. 상단에 기관 로고 영역 + 보고서 제목.
+좌측 지표 리스트, 우측 차트. 하단에 출처 소자 표기 영역.
+배경에 산업 관련 아이콘을 매우 낮은 투명도(5%)로 워터마크처럼 배치.
+
+[정보 밀도]
+높음 — 빈 공간 최소화, 데이터 중심. 여백 15~20%.`
+            },
+            {
+                id: 12,
+                title: "🗺️ 여행 일정 플래너형",
+                category: "여행/레저",
+                preview: "여행 일정표와 핵심 정보를 스크랩북 느낌으로 묶어 보여줍니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 여행 일정 플래너형]
+
+■ 분위기
+여행 가이드북처럼 설레고 실용적으로. 읽는 것만으로도 여행을 미리 체험하는 느낌이 나야 해.
+
+■ 섹션 구조
+1. 여행 개요
+   목적지 / 기간 / 예산 / 여행 테마(예: 식도락, 자연, 문화) 한 줄씩.
+
+2. 일정표 (DAY 1 ~ N)
+   🗓 DAY N — [날짜 또는 요일]
+   - 오전: [장소 및 활동] — [추천 이유 한 문장]
+   - 오후: [장소 및 활동] — [추천 이유 한 문장]
+   - 저녁: [식당 또는 숙소] — [분위기 한 문장]
+
+3. 알아두면 좋은 것들
+   - 이동 수단 팁 한 줄
+   - 현지 주의사항 한 줄
+   - 꼭 먹어봐야 할 음식 2~3가지
+
+4. 예산 요약
+   [항목]: [금액] 형식으로 나열하고 합계 표시.
+
+■ 주의사항
+이동 시간도 고려해서 여유 있게 구성해줘.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFF8F0 (웜 크림) / 텍스트: #3D2B1F / 강조: #FF6B6B (코랄)
+보조: #FFE8D6, #C9E4DE / 아이콘: #FF6B6B, #4ECDC4, #FFE66D
+
+[폰트]
+Nanum Gothic 또는 Noto Sans KR — 둥글고 친근한 느낌
+
+[무드]
+Airbnb 가이드, 론리플래닛 — 따뜻하고 아기자기한 여행 잡지
+
+[레이아웃]
+가로 타임라인으로 DAY별 구분. 각 DAY 카드: 날짜 헤더 + 오전/오후/저녁 활동.
+핀 아이콘으로 장소 표시. 하단에 예산 요약 + 팁 박스.
+스크랩북 감성: 약간의 기울기, 그림자 효과.
+
+[정보 밀도]
+낮음~보통 — 읽기 쉽고 여유롭게. 여백 35~40%.`
+            },
+            {
+                id: 13,
+                title: "🌿 헬스/라이프스타일형",
+                category: "라이프",
+                preview: "건강 습관, 운동 루틴, 일일 목표를 부담 없이 실천 가능한 느낌으로 정리합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 헬스/라이프스타일형]
+
+■ 분위기
+건강 코치가 옆에서 응원해주는 것처럼. 부담스럽지 않고 실천 가능한 느낌으로.
+
+■ 섹션 구조
+1. 오늘의 목표 선언
+   "오늘 이것만 지키면 된다!" 소제목 아래 핵심 목표 3가지를 한 줄씩.
+
+2. 시간대별 루틴
+   🌅 아침 | 🌞 오후 | 🌙 저녁
+   [활동명]: [소요 시간] — [이 활동의 효과 한 문장]
+
+3. 오늘의 목표 달성 현황
+   [항목]: 목표 [값] / 현재 [값] → 달성률 [%]
+
+4. 오늘의 건강 팁
+   💡 [짧고 실천 가능한 팁 하나]
+
+■ 주의사항
+과도한 목표 설정 금지. 동기부여 문구는 과하지 않게 딱 한 번만.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #F0FDF4 (민트 화이트) / 텍스트: #1A2F23 / 강조: #22C55E (그린)
+보조: #FFFFFF / 데이터: #22C55E, #3B82F6, #F59E0B
+게이지 배경: #E2E8F0 / 게이지 채움: #22C55E
+
+[폰트]
+Noto Sans KR — 친근하고 밝게. 목표 수치는 ExtraBold.
+
+[무드]
+Apple Health, Fitbit 앱 — 깔끔한 웰니스 앱 UI
+
+[레이아웃]
+좌측 시간대별 루틴 타임라인. 우측 목표 달성 게이지 바 3개.
+하단 오늘의 팁 박스 (초록 배경). 원형 진행 표시기(ring) 선택적 활용.
+
+[정보 밀도]
+낮음 — 시원하고 명쾌하게. 여백 35~40%.`
+            },
+            {
+                id: 14,
+                title: "🖼️ 크리에이티브 포스터형",
+                category: "크리에이티브",
+                preview: "정보보다 메시지가 먼저 오는 아트 포스터 스타일. 읽는 사람이 멈추게 만드는 한 방이 있어야 합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 크리에이티브 포스터형]
+
+■ 분위기
+예술 포스터처럼. 정보보다 메시지가 먼저 와야 해. 읽는 사람이 멈추게 만드는 한 방이 있어야 해.
+
+■ 섹션 구조
+1. 핵심 메시지 (가장 크게 강조)
+   전체를 관통하는 단 하나의 문장. 짧고 강하게. 10자 이내 권장.
+
+2. 핵심 수치 또는 키워드 (5~7개)
+   문장 형식 아니어도 돼. 단편적으로 나열해줘.
+   예: "47% 절감" / "3배 빠름" / "2030년까지"
+
+3. 뒷받침 문장
+   핵심 메시지를 설명하는 2~3문장. 임팩트를 희석하지 않도록 짧게.
+
+4. 행동 촉구
+   독자가 무엇을 해야 하는지 딱 한 문장.
+
+■ 주의사항
+정보를 빠짐없이 담으려 하지 말 것. 핵심만 남기고 나머지는 과감히 쳐내줘.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #0D0D0D (블랙) / 텍스트: #FFFFFF / 강조 1: #FF0080 (핫핑크)
+강조 2: #00FFCC (민트 네온) / 보조: #1A1A1A
+
+[폰트]
+제목: Black Han Sans (초대형, 강렬한 한글 디스플레이)
+보조 텍스트: Noto Sans KR Regular
+
+[무드]
+현대카드 포스터, Pentagram 디자인 — 실험적 타이포그래피 아트
+
+[레이아웃]
+비대칭 자유 배치. 핵심 문장을 화면 절반 이상 차지하도록 배치.
+수치 키워드들은 흩뿌리되 시선 흐름 유지. 여백도 의도적으로 활용.
+배경에 노이즈 그레인 텍스처 추가.
+
+[정보 밀도]
+낮음 (임팩트 중심) — 텍스트 3~5줄이면 충분. 여백 50% 이상.`
+            },
+            {
+                id: 15,
+                title: "🍩 원형 차트 중심형",
+                category: "데이터/통계",
+                preview: "비중을 한눈에 보여주는 것이 목적. 무엇이 얼마나 차지하는가를 명확하게 전달합니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 원형 차트 중심형]
+
+■ 분위기
+비중을 한눈에 보여주는 것이 목적. 숫자 자체보다 "무엇이 얼마나 차지하는가"가 핵심.
+
+■ 섹션 구조
+1. 전체 합계 선언
+   "전체 [N]개 중 구성 비율" 또는 "총 [값] 중 항목별 비중" 형식으로 맥락 소개.
+
+2. 항목별 비중 (점유율 높은 순서대로)
+   [순위]. [항목명]: [비율]% ([절댓값])
+   1위 항목에는 ★ 표시.
+
+3. 비중 해석
+   "상위 N개 항목이 전체의 XX%를 차지한다" 같은 핵심 관찰 한 문장.
+   예상과 다른 의외의 항목이 있다면 별도로 언급.
+
+4. 한 줄 인사이트
+   이 비중 데이터가 시사하는 바를 딱 한 문장으로 마무리.
+
+■ 주의사항
+항목이 6개를 넘으면 하위 항목을 "기타"로 묶어줘.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFFFFF / 텍스트: #1E293B / 차트 팔레트 (색맹 친화적):
+#3B82F6 (블루), #10B981 (그린), #F59E0B (앰버), #EF4444 (레드), #8B5CF6 (퍼플), #64748B (슬레이트)
+
+[폰트]
+Noto Sans KR — 범례 Regular, 수치 Bold, 인사이트 Medium
+
+[무드]
+Our World in Data, Statista — 정교하고 정직한 데이터 시각화
+
+[레이아웃]
+중앙 대형 도넛 차트. 차트 중앙에 총합 수치 표기.
+좌측 또는 우측에 범례 (항목명 + % + 절댓값). 하단 인사이트 한 줄 강조 박스.
+
+[정보 밀도]
+보통 — 항목 최대 6개. 여백 30%.`
+            },
+            {
+                id: 16,
+                title: "🧩 문제·원인·해결 솔루션 맵",
+                category: "전략/기획",
+                preview: "문제의 표면 현상과 근본 원인을 분리하고 해결책까지 한 장에서 연결하는 전략형 인포그래픽입니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 문제·원인·해결 솔루션 맵]
+
+■ 분위기
+복잡한 문제를 한눈에 진단하는 전략 회의 자료처럼. 문제를 과장하지 말고 근거를 중심으로 원인과 해결책을 연결해줘.
+
+■ 섹션 구조
+1. 핵심 문제 정의
+   - 현재 가장 중요한 문제를 한 문장으로 압축.
+   - 문제를 보여주는 핵심 수치나 근거가 있다면 함께 제시.
+
+2. 원인 분석 (3개 이하)
+   [원인 1] 무엇이 문제를 만들었는지 한 문장
+   [원인 2] 무엇이 문제를 키웠는지 한 문장
+   [원인 3] 구조적으로 반복되는 이유 한 문장
+
+3. 해결 방향
+   각 원인과 연결되는 해결책을 1:1로 대응해 정리.
+   - 원인 1 → 해결책 1
+   - 원인 2 → 해결책 2
+   - 원인 3 → 해결책 3
+
+4. 기대 변화
+   해결책 실행 후 달라질 핵심 결과를 3가지 이내로 정리.
+
+■ 주의사항
+자료에 없는 원인이나 수치를 임의로 만들지 말 것. 추론이 필요한 부분은 '추정'으로 표시.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFFDFC / 텍스트: #2A2022 / 문제 강조: #B60B29
+원인 영역: #EEEAE5 / 해결 영역: #F7E8EB / 연결선: #B60B29
+
+[폰트]
+Pretendard 또는 Noto Sans KR — 문제 제목 ExtraBold, 본문 Medium
+
+[무드]
+전략 컨설팅 워크숍 보드 — 명확한 문제 구조와 연결 관계 강조
+
+[레이아웃]
+좌측 '문제' → 중앙 '원인 3개' → 우측 '해결책 3개' 흐름.
+원인과 해결책 사이를 선 또는 화살표로 직접 연결. 하단에 기대 변화 와이드 박스.
+
+[정보 밀도]
+표준 — 각 블록 1~2문장. 여백 25~30%.`
+            },
+            {
+                id: 17,
+                title: "🧭 SWOT 전략 매트릭스",
+                category: "전략/기획",
+                preview: "강점·약점·기회·위협을 4분면으로 정리하고 실제 전략까지 도출하는 의사결정형 인포그래픽입니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - SWOT 전략 매트릭스]
+
+■ 분위기
+단순히 SWOT 항목을 나열하지 말고, 실제 전략 선택으로 이어지는 분석 자료처럼 구성해줘.
+
+■ 섹션 구조
+1. 분석 대상
+   대상명과 분석 목적을 한 문장으로 설명.
+
+2. SWOT 4분면
+   S 강점: 내부적으로 잘하고 있는 것 3개 이하
+   W 약점: 내부적으로 개선이 필요한 것 3개 이하
+   O 기회: 외부 환경에서 활용할 수 있는 기회 3개 이하
+   T 위협: 외부 환경에서 대비해야 할 위험 3개 이하
+
+3. 전략 조합
+   - SO 전략: 강점을 활용해 기회를 잡는 방법
+   - WO 전략: 약점을 보완해 기회를 활용하는 방법
+   - ST 전략: 강점으로 위협에 대응하는 방법
+   - WT 전략: 약점과 위협을 동시에 줄이는 방어 전략
+
+4. 최우선 전략
+   가장 먼저 실행할 전략 1개와 선정 이유를 한 문장으로.
+
+■ 주의사항
+내부 요인과 외부 요인을 혼동하지 말고, 원문 근거가 없는 평가는 단정하지 말 것.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FAF8F5 / 텍스트: #2A2022 / S: #B60B29 / W: #8C6F75
+O: #C65F73 / T: #6E6260 / 보조: #D7D2CB
+
+[폰트]
+Pretendard — 분면 제목 Black, 항목 Medium, 전략 결론 Bold
+
+[무드]
+브랜드 전략 워크숍, 컨설팅 프레임워크 — 절제된 4분면 구성
+
+[레이아웃]
+중앙 2×2 SWOT 매트릭스. 하단에 SO/WO/ST/WT 전략 4개를 가로 카드로 배치.
+최우선 전략은 별도 강조 박스로 처리.
+
+[정보 밀도]
+표준~높음 — 분면당 2~3개 항목, 전략별 1문장. 여백 20~25%.`
+            },
+            {
+                id: 18,
+                title: "✅ 실행 체크리스트 보드",
+                category: "프로세스",
+                preview: "해야 할 일을 우선순위와 완료 기준까지 묶어 바로 실행할 수 있게 만드는 액션 중심 인포그래픽입니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 실행 체크리스트 보드]
+
+■ 분위기
+회의가 끝난 뒤 바로 실행할 수 있는 업무 보드처럼. 설명보다 행동 항목이 먼저 보이도록 구성해줘.
+
+■ 섹션 구조
+1. 목표
+   이번 실행 계획의 최종 목표를 한 문장으로.
+
+2. 핵심 실행 항목 (5~8개)
+   각 항목을 아래 형식으로 정리.
+   □ [해야 할 일]
+   - 우선순위: 높음 / 중간 / 낮음
+   - 담당 또는 대상: 자료에 있을 때만 표기
+   - 완료 기준: 무엇이 되면 끝난 것인지 한 문장
+
+3. 먼저 할 일 TOP 3
+   즉시 시작해야 할 항목 3개를 선정하고 이유를 짧게 설명.
+
+4. 완료 점검
+   전체 실행이 끝났는지 확인할 최종 체크 기준 3개.
+
+■ 주의사항
+자료에 일정이나 담당자가 없으면 임의로 만들지 말고 생략. 모호한 행동어 대신 확인 가능한 동사를 사용.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FFFFFF / 텍스트: #2A2022 / 체크 포인트: #B60B29
+보조 카드: #F3F0EC / 완료 표시: #8F071F / 구분선: #D7D2CB
+
+[폰트]
+Pretendard — 체크 항목 Bold, 세부 기준 Regular
+
+[무드]
+Notion 프로젝트 보드 + 실행 회의 체크리스트 — 실용적이고 명확한 느낌
+
+[레이아웃]
+좌측에 전체 체크리스트, 우측에 '먼저 할 일 TOP 3' 카드.
+하단 전체 폭에 완료 점검 3개 배치. 체크박스와 번호 뱃지를 적극 활용.
+
+[정보 밀도]
+표준 — 실행 항목 5~8개. 문장은 짧게, 여백 25~30%.`
+            },
+            {
+                id: 19,
+                title: "🔎 리서치 핵심 근거 맵",
+                category: "리서치/요약",
+                preview: "여러 자료에서 핵심 주장·수치·출처를 분리해 한눈에 검토할 수 있게 만드는 근거 중심 인포그래픽입니다.",
+                prompt: `[NotebookLM 인포그래픽 구성 지시 - 리서치 핵심 근거 맵]
+
+■ 분위기
+조사 결과를 검토하는 리서처의 브리핑 시트처럼. 화려한 표현보다 근거와 출처의 관계가 명확해야 해.
+
+■ 섹션 구조
+1. 조사 질문
+   이번 자료가 답하려는 핵심 질문을 한 문장으로.
+
+2. 핵심 주장 (3~5개)
+   [주장 N] 핵심 내용 한 문장
+   - 근거 수치 또는 사실: 원문에서 확인되는 내용
+   - 출처: 기관명 또는 문서명
+   - 기준 시점: 확인 가능할 때만 표기
+
+3. 근거 강도 구분
+   - 강함: 공식 통계·원문·1차 자료로 직접 확인
+   - 보통: 신뢰 가능한 2차 자료
+   - 확인 필요: 출처나 기준 시점이 불명확
+
+4. 사람이 다시 확인할 항목
+   원문 검토가 필요한 근거를 최대 3개로 정리.
+
+5. 한 줄 결론
+   현재 확보된 근거만으로 말할 수 있는 범위 안에서 결론 작성.
+
+■ 주의사항
+서로 다른 자료의 수치가 다르면 임의로 하나를 선택하지 말고 차이를 그대로 표시. 출처 없는 사실을 추가하지 말 것.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[디자인 스펙 — 시각화 참고용]
+
+[컬러]
+배경: #FBFAF8 / 텍스트: #292323 / 강조: #B60B29
+출처 카드: #EEEAE5 / 확인 필요: #F7E8EB / 구분선: #D7D2CB
+
+[폰트]
+Noto Sans KR 또는 Pretendard — 주장 Bold, 출처 Regular, 수치 ExtraBold
+
+[무드]
+정책 리서치 브리프, 팩트시트 — 근거와 출처가 우선인 편집 디자인
+
+[레이아웃]
+좌측에 핵심 주장 카드 3~5개, 우측에 근거·출처 태그를 연결.
+하단에는 '원문 확인 필요' 섹션을 별도 박스로 배치.
+
+[정보 밀도]
+높음 — 주장·수치·출처를 함께 보여주되 한 카드당 3~4줄 이내. 여백 20%.`
+            }
+  ];
+  let currentSearch=""; let currentCategory="전체"; let copyCount=0;
+  const gridView=document.getElementById('grid-view'), editorView=document.getElementById('editor-view'), hero=document.getElementById('hero-section');
+  function showGridView(){gridView.classList.remove('hidden');editorView.classList.add('hidden');hero.classList.remove('hidden');window.scrollTo(0,0);}
+  function showEditorView(id){const t=infographicPrompts.find(p=>p.id===id);if(!t)return;gridView.classList.add('hidden');hero.classList.add('hidden');editorView.classList.remove('hidden');document.getElementById('selected-template-title').textContent=t.title;document.getElementById('prompt-textarea').value=t.prompt;window.scrollTo(0,0);}
+  function renderCategories(){const cats=['전체',...new Set(infographicPrompts.map(p=>p.category))];document.getElementById('category-count').textContent=cats.length-1;document.getElementById('style-count').textContent=infographicPrompts.length;document.getElementById('category-tabs').innerHTML=cats.map(c=>`<button class="tab ${c===currentCategory?'active':''}" onclick="setCategory('${c}')">${c}</button>`).join('');}
+  function renderGrid(){const q=currentSearch.toLowerCase();const filtered=infographicPrompts.filter(p=>(currentCategory==='전체'||p.category===currentCategory)&&(`${p.title} ${p.preview} ${p.category}`.toLowerCase().includes(q)));const box=document.getElementById('template-grid');if(!filtered.length){box.innerHTML='<div class="empty">검색 결과가 없습니다.</div>';return;}box.innerHTML=filtered.map(p=>`<article class="card" onclick="showEditorView(${p.id})"><div class="cardtop"><span class="category">${p.category}</span><span class="arrow">→</span></div><h3>${p.title}</h3><p>${p.preview}</p></article>`).join('');}
+  function setCategory(c){currentCategory=c;renderCategories();renderGrid();}
+  function handleSearch(v){currentSearch=v;renderGrid();}
+  function fallbackCopy(text){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');onCopySuccess();}catch(e){showToast('복사에 실패했습니다. 직접 선택해 복사해 주세요.')}document.body.removeChild(ta);}
+  function handleCopy(){const text=document.getElementById('prompt-textarea').value;if(!text.trim())return;if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(onCopySuccess).catch(()=>fallbackCopy(text));}else fallbackCopy(text);}
+  function onCopySuccess(){copyCount++;document.getElementById('copy-count').textContent=copyCount;const btn=document.getElementById('copy-btn');btn.classList.add('done');btn.textContent='복사 완료 ✓';showToast('프롬프트가 복사되었습니다.');setTimeout(()=>{btn.classList.remove('done');btn.textContent='프롬프트 복사하기';},1600);}
+  function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.remove('show'),1900);}
+  document.addEventListener('DOMContentLoaded',()=>{renderCategories();renderGrid();});
+</script>
+</body>
+</html>
