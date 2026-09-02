@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>4일차 프롬프트 모음 · AI 발표자료 만들기</title>
+<title>4일차 프롬프트 모음 · AI로 업무 발표자료 만들기</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root{
     --bg:#f6f7f9; --card:#fff; --ink:#1a1d21; --dim:#5b636d;
-    --line:#e3e6ea; --accent:#B60B29; --accent2:#8F071F; --warn:#9A5B00;
-    --code:#f2f4f7; --ok:#6f5b60;
+    --line:#e3e6ea; --accent:#1f3a68; --accent2:#2f6fd0; --warn:#c2410c;
+    --code:#f2f4f7; --ok:#0f766e;
     --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,
       "Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;
     --mono:"D2Coding",Consolas,"Courier New",monospace;
@@ -33,100 +33,191 @@
     padding:3px 9px;border-radius:4px;align-self:center}
   .urlbar .addr{font-family:var(--sans);font-size:19px;font-weight:700;
     color:var(--warn);letter-spacing:-0.011em}
-  .urlbar .share{margin-left:auto;align-self:center;white-space:nowrap;
+  .urlbar .dl{margin-left:auto;align-self:center;white-space:nowrap;
     background:var(--accent2);color:#fff;text-decoration:none;
     font-size:13px;font-weight:600;padding:7px 14px;border-radius:6px}
-  .urlbar .share:hover{background:var(--accent);color:#fff}
+  .urlbar .dl:hover{background:var(--accent)}
   @media (max-width:520px){
     .urlbar .addr{font-size:16px}
-    .urlbar .share{margin-left:0}
+    .urlbar .dl{margin-left:0}
   }
-
   nav a{display:inline-block;padding:6px 12px;border-radius:20px;
     font-size:13px;color:var(--accent);text-decoration:none;background:var(--code)}
   nav a:hover{background:var(--accent);color:#fff}
-
-  .sub a{color:var(--accent2);font-weight:600;text-decoration:underline;
-    text-underline-offset:2px;word-break:break-all}
-  .sub a:hover{color:var(--accent)}
-
-  .step{color:var(--accent);font-size:15px;font-weight:700;
-    background:#f7e8eb;border-left:3px solid var(--accent2);
-    padding:8px 12px;border-radius:0 6px 6px 0;margin:10px 0 4px}
-
-  .linkbtn{display:inline-flex;align-items:center;gap:8px;
-    background:var(--accent);color:#fff;text-decoration:none;
-    font-size:14.5px;font-weight:700;padding:11px 18px;border-radius:8px;
-    margin:2px 0 14px}
-  .linkbtn:hover{background:var(--accent2)}
-  .linkbtn .ico{font-size:16px}
 
   section{background:var(--card);border:1px solid var(--line);border-radius:10px;
     padding:20px;margin:18px 0}
   h2{font-size:19px;margin:0 0 4px;color:var(--accent);font-weight:700;letter-spacing:-0.02em}
   .sub{color:var(--dim);font-size:13.5px;margin:0 0 14px}
   h3{font-size:15.5px;margin:18px 0 6px;font-weight:600}
+  h4{font-size:14px;margin:14px 0 4px;font-weight:600}
 
   .badge{display:inline-block;background:var(--accent2);color:#fff;font-size:12px;
     padding:2px 9px;border-radius:4px;margin-right:6px;vertical-align:2px}
   .badge.new{background:var(--warn)}
-  .badge.same{background:var(--ok)}
-
-  .src{display:inline-block;background:#f7e8eb;border:1px solid #ead2d7;
-    color:var(--accent);font-size:12.5px;font-weight:600;
-    padding:3px 10px;border-radius:5px;margin:0 0 10px}
+  .badge.gray{background:#7b828b}
 
   .box{position:relative;background:var(--code);border:1px solid var(--line);
-    border-radius:8px;padding:14px 14px 14px;margin:10px 0}
+    border-radius:8px;padding:14px;margin:10px 0}
   pre{margin:0;white-space:pre-wrap;word-break:break-word;
-    font-family:var(--mono);font-size:13.5px;line-height:1.62;letter-spacing:0}
+    font-family:var(--mono);font-size:13.5px;line-height:1.62;letter-spacing:0;padding-right:64px}
   .copy{position:absolute;top:8px;right:8px;border:1px solid var(--line);
     background:#fff;color:var(--accent);border-radius:6px;padding:4px 10px;
     font-size:12px;cursor:pointer}
   .copy:hover{background:var(--accent);color:#fff}
   .copy.done{background:var(--ok);color:#fff;border-color:var(--ok)}
 
-  .note{border-left:3px solid var(--accent2);background:#fbf2f4;padding:10px 14px;
+  .note{border-left:3px solid var(--accent2);background:#f2f6fc;padding:10px 14px;
     margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
   .warn{border-left:3px solid var(--warn);background:#fff5ef;padding:10px 14px;
+    margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
+  .tip{border-left:3px solid #9aa2ac;background:#f7f8fa;padding:10px 14px;
     margin:12px 0;font-size:14px;border-radius:0 6px 6px 0}
   .key{font-weight:700;color:var(--accent)}
 
   table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
-  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
   th{background:var(--code);font-weight:700}
+
+  .flow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:12px 0}
+  .flow span{background:#eef2f8;border:1px solid #d8e0ec;color:var(--accent);
+    padding:6px 9px;border-radius:6px;font-weight:700;font-size:13px}
+  .flow i{font-style:normal;color:var(--dim)}
+
+  .steps{counter-reset:step;display:grid;gap:8px;margin:12px 0}
+  .steps div{position:relative;padding:10px 12px 10px 42px;
+    border:1px solid var(--line);border-radius:8px;background:#fff;font-size:14px}
+  .steps div:before{
+    counter-increment:step;content:counter(step);
+    position:absolute;left:11px;top:9px;width:22px;height:22px;border-radius:50%;
+    display:grid;place-items:center;background:var(--accent);color:#fff;font-size:11px;font-weight:700}
+
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}
+  .cardbox{border:1px solid var(--line);border-radius:9px;padding:14px;background:#fbfcfd;font-size:14px}
+  .cardbox b{display:block;color:var(--accent);font-size:15px;margin-bottom:4px}
+  @media(max-width:650px){.grid{grid-template-columns:1fr}}
+
+  a.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+    font-weight:700;font-size:14px;padding:10px 16px;border-radius:8px;margin:6px 6px 6px 0}
+  a.btn:hover{background:var(--accent2)}
+  a.btn.ghost{background:#fff;color:var(--accent);border:1.5px solid var(--accent)}
+  a.btn.ghost:hover{background:var(--code)}
+
+  .chk td:first-child{width:34px;color:var(--accent2);font-weight:700;font-size:17px;text-align:center}
+
+  details.alt{border:1px solid var(--line);border-radius:8px;margin:12px 0;
+    background:#fff;overflow:hidden}
+  details.alt>summary{cursor:pointer;padding:11px 14px;font-size:14px;font-weight:600;
+    color:var(--accent);background:var(--code);list-style:none;user-select:none;
+    display:flex;align-items:center;gap:9px}
+  details.alt>summary::-webkit-details-marker{display:none}
+  details.alt>summary::before{content:"▶";display:inline-block;width:18px;
+    font-size:16px;line-height:1;color:var(--accent2)}
+  details.alt[open]>summary::before{content:"▼"}
+  details.alt>summary::after{content:"펼치기";margin-left:auto;flex:none;
+    font-size:12px;font-weight:700;color:#fff;background:var(--accent2);
+    padding:3px 12px;border-radius:20px}
+  details.alt[open]>summary::after{content:"접기";background:var(--dim)}
+  details.alt>summary:hover{background:#e4e9f0}
+  details.alt[open]>summary{border-bottom:1px solid var(--line)}
+  details.alt .inner{padding:2px 14px 12px}
+
+  .video{position:relative;width:100%;padding-top:56.25%;margin:12px 0;
+    border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000}
+  .video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 
   footer{color:var(--dim);font-size:13px;text-align:center;padding:30px 20px}
   @media print{nav{display:none}body{background:#fff}}
-
-.toolgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}.tool{border:1px solid var(--line);border-radius:9px;padding:15px;background:#fff}.tool b{display:block;color:var(--accent);font-size:16px;margin-bottom:4px}.tool p{margin:0 0 10px;color:var(--dim);font-size:13.5px}.tool a{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:7px 11px;border-radius:6px;font-size:13px;font-weight:700}.flow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:12px 0}.flow span{background:#f7e8eb;border:1px solid #ead2d7;color:var(--accent);padding:6px 9px;border-radius:6px;font-weight:700;font-size:13px}.flow i{font-style:normal;color:var(--dim)}@media(max-width:650px){.toolgrid{grid-template-columns:1fr}}
-.embed{border:1px solid var(--line);border-radius:10px;margin:14px 0;background:#fff;overflow:hidden}.embed summary{cursor:pointer;padding:14px 16px;font-weight:800;color:var(--accent);background:#fbf2f4}.embed>p{padding:0 16px;margin-top:12px}.embed iframe{width:100%;height:760px;border:0;border-top:1px solid var(--line);background:#fff}
 </style></head><body>
-<header><div class="wrap"><h1>4일차 · AI로 업무 발표자료 만들기</h1><p>좋은 프롬프트의 목적은 완벽한 결과가 아니라 재작업을 줄이는 것입니다 — 복붙용 프롬프트 모음</p></div></header>
-<nav><div class="urlbar"><span class="label">실습 페이지</span><span class="addr">4DAY · Gamma 실습</span><a class="share" href="#tools">🔗 사용 도구</a></div><div class="wrap">
-<a href="#start">시작 전</a><a href="#infographic">0 인포그래픽 다시 만들기</a><a href="#meta">1 질문받기</a><a href="#variants">유형 4종</a><a href="#story">2 구조 설계</a><a href="#gamma">3 Gamma 생성</a><a href="#check">4 검수</a><a href="#fix">5 부분 수정</a><a href="#extra">시간 남으면</a><a href="#library">프롬프트 라이브러리</a></div></nav>
+
+<header><div class="wrap">
+  <h1>4일차 · AI로 업무 발표자료 만들기</h1>
+  <p>바로 만들지 않습니다 — 요구사항 → 구조 → 디자인을 정한 뒤 Gamma로 만듭니다<br>
+  <b>오늘의 미션 : 3DAY 보고서 → 표지 1장 + 내용 5장 업무 발표자료</b></p>
+</div></header>
+
+<nav>
+<div class="urlbar">
+  <span class="label">실습 페이지</span>
+  <span class="addr">bit.ly/aiclass04</span>
+  <a class="dl" href="https://euniya2.github.io/aiclass/4day-report.docx" download>📄 실습 자료 내려받기</a>
+</div>
 <div class="wrap">
-<section id="start"><h2>시작 전 · 오늘의 흐름</h2><p class="sub">3일차 분석자료를 새로 조사하지 않고, 전달 가능한 5장 내외 업무 발표자료로 바꿉니다.</p>
-<div class="flow"><span>3DAY 분석자료</span><i>→</i><span>요구사항</span><i>→</i><span>스토리라인</span><i>→</i><span>장표별 상세지시</span><i>→</i><span>Gamma 생성</span><i>→</i><span>검수</span><i>→</i><span>부분 수정</span><i>→</i><span>완성</span></div>
-<div class="note"><b>오늘의 규칙</b> 생성 버튼을 먼저 누르지 않습니다. AI가 대신 결정해야 하는 영역을 줄인 뒤 생성합니다.</div>
-<h3>Gamma 프롬프트 6가지 질문</h3><table><tr><th>#</th><th>질문</th><th>프롬프트 요소</th></tr><tr><td>1</td><td>누가 보나요?</td><td><b>대상</b></td></tr><tr><td>2</td><td>왜 보여주나요?</td><td><b>목적</b></td></tr><tr><td>3</td><td>무엇을 기억해야 하나요?</td><td><b>핵심 메시지</b></td></tr><tr><td>4</td><td>어떤 순서로 보여줄까요?</td><td><b>전체 구조</b></td></tr><tr><td>5</td><td>각 장에서 무엇을 보여줄까요?</td><td><b>장표별 상세지시</b></td></tr><tr><td>6</td><td>무엇을 하지 말아야 하나요?</td><td><b>제약조건</b></td></tr></table>
-<div class="note">6가지는 기본 뼈대입니다. 실제 업무에서는 <b>발표시간 · 장수 · 필수 수치 · 강조사항</b>을 더해 AI의 해석 범위를 줄입니다.</div></section>
+  <a href="#set">시작 전</a>
+  <a href="#s0">0 노트북에서 확인</a>
+  <a href="#s1">1 메타프롬프트</a>
+  <a href="#s2">2 구조 스토리라인</a>
+  <a href="#s3">3 디자인 요청</a>
+  <a href="#s4">4 Gamma 제작</a>
+  <a href="#s5">5 Canva</a>
+  <a href="#s6">6 프롬프트 가이드</a>
+</div></nav>
 
-<section id="infographic"><h2><span class="badge new">먼저</span>3DAY 인포그래픽, 같은 자료로 다시 만들어보기</h2><p class="sub">4일차의 출발점입니다. 어제의 짧은 요청을 그대로 쓰지 않고, <b>대상 · 목적 · 핵심 메시지 · 구조 · 시각 기준 · 제약조건</b>까지 지정해 결과가 어떻게 달라지는지 확인합니다.</p>
-<a class="linkbtn" href="https://notebooklm.google.com/" target="_blank" rel="noopener"><span class="ico">↗</span>Gemini Notebook 열기</a>
-<h3>어제의 요청</h3><div class="box"><button class="copy">복사</button><pre>세 회사의 영업이익률 비교가 가장 눈에 띄게 한 장으로 만들어 주세요.
-업계 방송매출 추이와 공영홈쇼핑 5개년 실적도 함께 넣어 주세요.</pre></div>
-<h3>오늘은 이렇게 구체화합니다</h3>
-<table><tr><th>항목</th><th>지시 내용</th></tr>
-<tr><td><b>대상</b></td><td>공영홈쇼핑 내부 임직원</td></tr>
-<tr><td><b>목적</b></td><td>시장·실적 분석 인포그래픽 한 장</td></tr>
-<tr><td><b>핵심 메시지</b></td><td>2025년 흑자 전환, 그러나 경쟁사와 수익성 격차 존재</td></tr>
-<tr><td><b>구조</b></td><td>3사 영업이익률 → 방송사업매출 추이 → 5개년 실적</td></tr>
-<tr><td><b>시각 기준</b></td><td>비교 차트 / 추이 차트 / 핵심 숫자 강조</td></tr>
-<tr><td><b>제약조건</b></td><td>2021~2025년 모두 표시 · 연도 임의 생략 금지</td></tr></table>
-<h3>인포그래픽 재생성용 · 복붙 프롬프트</h3><div class="box"><button class="copy">복사</button><pre>공영홈쇼핑 내부 임직원이 시장과 실적을 빠르게 파악할 수 있는 인포그래픽 한 장을 만들어 주세요.
+<div class="wrap">
 
-핵심 메시지는 “2025년 흑자 전환, 그러나 경쟁사와 수익성 격차 존재”입니다.
+<section id="set">
+  <h2>시작 전</h2>
+  <p class="sub">새로 조사하지 않습니다. 3DAY 분석 결과를 전달 가능한 발표자료로 바꿉니다.</p>
+
+  <div class="flow">
+    <span>3DAY 보고서</span><i>→</i>
+    <span>노트북 인포그래픽·슬라이드</span><i>→</i>
+    <span>메타프롬프트</span><i>→</i>
+    <span>구조 스토리라인</span><i>→</i>
+    <span>디자인 요청</span><i>→</i>
+    <span>Gamma 제작</span><i>→</i>
+    <span>검수</span><i>→</i>
+    <span>부분 수정</span><i>→</i>
+    <span>완성</span>
+  </div>
+
+  <div class="warn"><b>오늘의 규칙</b> 생성 버튼을 먼저 누르지 않습니다. AI가 대신 결정해야 하는 영역을 줄인 뒤 생성합니다.</div>
+
+  <h3>준비물</h3>
+  <table>
+    <tr><th style="width:120px">Gemini</th><td>또는 ChatGPT · <b>일반 대화창</b>에서 진행합니다 · <a href="https://gemini.google.com/" target="_blank" rel="noopener">gemini.google.com</a></td></tr>
+    <tr><th>Gamma</th><td>가입·로그인 완료 · <a href="https://gamma.app/" target="_blank" rel="noopener">gamma.app</a></td></tr>
+    <tr><th>실습 자료</th><td>3DAY 보고서 <b>1개</b> — 위 <b>실습 자료 내려받기</b> 버튼</td></tr>
+  </table>
+
+  <div class="note"><b>자료는 1개만 넣습니다.</b></div>
+
+  <h3>Gamma 프롬프트 6가지 질문</h3>
+  <table>
+    <tr><th style="width:40px">#</th><th>질문</th><th style="width:150px">프롬프트 요소</th></tr>
+    <tr><td>1</td><td>누가 보나요?</td><td><b>대상</b></td></tr>
+    <tr><td>2</td><td>왜 보여주나요?</td><td><b>목적</b></td></tr>
+    <tr><td>3</td><td>무엇을 기억해야 하나요?</td><td><b>핵심 메시지</b></td></tr>
+    <tr><td>4</td><td>어떤 순서로 보여줄까요?</td><td><b>전체 구조</b></td></tr>
+    <tr><td>5</td><td>각 장에서 무엇을 보여줄까요?</td><td><b>장표별 상세지시</b></td></tr>
+    <tr><td>6</td><td>무엇을 하지 말아야 하나요?</td><td><b>제약조건</b></td></tr>
+  </table>
+  <div class="note">6가지는 기본 뼈대입니다. 실제 업무에서는 <b>발표시간 · 장수 · 필수 수치 · 강조사항</b>을 더해 AI의 해석 범위를 줄입니다.</div>
+</section>
+
+<section id="s0">
+  <h2><span class="badge">0</span>노트북에서 먼저 확인하기</h2>
+  <p class="sub">Gamma로 가기 전에, 어제 만든 인포그래픽을 다시 보고 슬라이드도 한 번 만들어봅니다. <b>Gamma 결과와 비교하기 위해서입니다.</b></p>
+
+  <h3>① 어제 만든 인포그래픽 확인</h3>
+  <a class="btn" href="https://padlet.com/qkdtjdus/ai-fnb2x6slwr6n36p6" target="_blank" rel="noopener">패들렛에서 결과물 보기 ↗</a>
+
+  <div class="warn"><b>보기 좋게 만들어졌다고 내용까지 정확한 것은 아닙니다.</b><br>
+  글씨가 깨지거나, 필요한 연도가 빠지거나, 숫자 없이 「정체」 같은 표현만 들어가기도 합니다.
+  <b>디자인부터 보지 말고 숫자와 연도부터 확인하세요.</b></div>
+
+  <h3>② 소스는 07 · 08 · 09만 켜기</h3>
+  <table>
+    <tr><th style="width:130px">켜는 소스</th><td><b>07 · 08 · 09</b> — 어제 채팅 답변을 메모로 저장해 소스로 바꾼 것</td></tr>
+    <tr><th>끄는 소스</th><td>01~06 원문 PDF — 켜두면 정리 전 내용까지 다시 들어옵니다</td></tr>
+  </table>
+  <div class="note">어제와 <b>같은 소스 구성</b>입니다. 바꾸지 않으셔도 됩니다.</div>
+
+  <h3>③ 인포그래픽 다시 만들어보기</h3>
+  <p class="sub">어제의 짧은 요청 대신, 대상 · 핵심 메시지 · 순서 · 시각 기준 · 제약조건까지 넣어봅니다.</p>
+  <div class="box"><button class="copy">복사</button><pre>공영홈쇼핑 내부 임직원이 시장과 실적을 빠르게 파악할 수 있는 인포그래픽 한 장을 만들어 주세요.
+
+핵심 메시지는 "2025년 흑자 전환, 그러나 경쟁사와 수익성 격차 존재"입니다.
 
 정보는 다음 순서로 배치해 주세요.
 1. 현대홈쇼핑·롯데홈쇼핑·공영홈쇼핑 3사의 영업이익률 비교
@@ -134,107 +225,635 @@
 3. 공영홈쇼핑 2021~2025년 5개년 실적
 
 회사 간 차이는 비교 차트로, 시간에 따른 변화는 추이 차트로 표현하고 핵심 숫자는 크게 강조해 주세요.
+텍스트가 잘리거나 겹치지 않도록 글자 수를 짧게 유지해 주세요.
 공영홈쇼핑 5개년 실적은 2021·2022·2023·2024·2025년을 모두 표시하고 연도를 임의로 생략하지 마세요.
 제공된 자료에 없는 수치나 사실은 추가하지 마세요.</pre></div>
-<div class="note"><b>확인 포인트</b> 생성 후 디자인부터 보지 않습니다. 2021~2025년이 모두 들어갔는지, 핵심 숫자가 맞는지, 3사 비교가 가장 먼저 보이는지부터 확인합니다.</div>
-<div class="warn"><b>4DAY 연결</b> 같은 자료인데 결과가 달라지는 이유를 확인한 뒤, 이 원리를 여러 장의 발표자료를 만드는 Gamma 프롬프트로 확장합니다.</div></section>
 
-<section id="meta"><h2><span class="badge">프롬프트 1</span>AI에게 먼저 질문받기</h2><p class="sub">프롬프트를 혼자 다 쓰지 않습니다. AI가 필요한 조건을 먼저 물어보게 합니다.</p>
-<div class="src">Gemini 또는 ChatGPT</div><div class="box"><button class="copy">복사</button><pre>첨부한 3일차 자료를 Gamma로 업무 발표자료로 만들려고 합니다.
+  <div class="tip"><b>확인 포인트</b> 2021~2025년이 모두 들어갔는지, 핵심 숫자가 맞는지, 3사 비교가 가장 먼저 보이는지부터 봅니다.</div>
+
+  <h3>④ 슬라이드 제작하기</h3>
+  <p class="sub">같은 소스로 슬라이드를 제작합니다.</p>
+
+  <div class="note"><b>형식과 길이는 원하는 대로 고르세요.</b> 소스가 <b>3개(07 · 08 · 09)</b>인지만 확인하시면 됩니다.</div>
+
+  <h4>「만들려는 슬라이드 자료에 대한 설명」 칸에 붙여넣기</h4>
+  <div class="box"><button class="copy">복사</button><pre>공영홈쇼핑 내부 임직원에게 보고하는 자료입니다.
+
+핵심 메시지는 "2025년 흑자 전환에 성공했지만 경쟁사와의 수익성 격차는 여전하다"입니다.
+
+반드시 포함할 내용
+- 현대·롯데·공영홈쇼핑 3사 영업이익률 비교
+- TV홈쇼핑 방송사업매출 추이
+- 공영홈쇼핑 2021~2025년 5개년 매출액과 영업이익
+- 2024년 적자에서 2025년 흑자로 전환한 변화
+- 앞으로 확인이 필요한 사항
+
+강조할 점: 흑자 전환만 부각하지 말고 경쟁사와의 격차가 함께 보이게 해 주세요.
+스타일: 격식 있는 내부 보고 스타일로, 각 장 제목은 결론이 드러나는 문장으로 써 주세요.
+회사 간 비교는 비교 차트로, 연도별 변화는 추이 차트로 보여 주세요.
+텍스트가 잘리거나 겹치지 않도록 글자 수를 짧게 유지해 주세요.
+공영홈쇼핑 5개년 실적은 2021·2022·2023·2024·2025년을 모두 표시하고 연도를 임의로 생략하지 마세요.
+제공된 자료에 없는 수치나 사실은 추가하지 마세요.</pre></div>
+
+  <div class="warn"><b>이 결과물을 지우지 마세요.</b> Gamma로 만든 것과 비교할 재료입니다.
+  같은 자료, 같은 핵심 메시지인데 <b>어디까지 정해주느냐에 따라 결과가 어떻게 달라지는지</b> 보게 됩니다.</div>
+</section>
+
+<section id="s1">
+  <h2><span class="badge">1</span>메타프롬프트 · AI에게 먼저 질문받기</h2>
+  <p class="sub">프롬프트를 혼자 완성하지 않습니다. AI가 필요한 조건을 먼저 묻게 한 뒤, 준비된 답변 세트를 한 번에 붙여넣습니다.</p>
+
+  <div class="warn"><b>Gemini 일반 대화창에서 시작합니다.</b> 이 창을 <b>끝까지</b> 씁니다. 새 창을 열면 앞의 내용을 AI가 기억하지 못합니다.</div>
+
+  <div class="steps">
+    <div><b>보고서 파일을 먼저 첨부합니다.</b> 프롬프트보다 파일이 먼저입니다.</div>
+    <div>아래 <b>① 메타프롬프트</b>를 붙여넣습니다.</div>
+    <div>AI가 질문을 던지면 <b>② 답변 세트</b>를 붙여넣습니다.</div>
+    <div><b>요구사항 정리표</b>가 나오면 다음 단계로 갑니다.</div>
+  </div>
+
+  <h3>① 메타프롬프트</h3>
+  <div class="note"><b>뭘 정해야 할지 모를 때 사용합니다.</b><br>
+  AI가 던지는 질문이 곧 <a href="#set"><b>「Gamma 프롬프트 6가지 질문」</b></a>입니다.
+  6가지(대상 · 목적 · 핵심 메시지 · 구조 · 장표별 지시 · 제약)를 외우지 않아도 AI가 대신 물어봐 줍니다.<br>
+  오늘은 답이 이미 정해져 있으므로, <b>아래 답변 세트</b>로 실습합니다.</div>
+  <div class="box"><button class="copy">복사</button><pre>첨부한 보고서를 Gamma로 업무 발표자료로 만들려고 합니다.
 바로 발표자료를 작성하지 마세요.
 먼저 저에게 필요한 질문을 해주세요.
-발표 대상, 목적, 핵심 메시지, 발표 시간, 필요한 장수, 반드시 포함할 내용과 수치, 강조할 내용, 제외할 내용, 원하는 표현 방법을 확인해주세요.
-제가 답변하면 그 내용을 반영해 Gamma에 그대로 입력할 수 있는 최종 프롬프트를 작성해주세요.
+
+발표 대상, 목적, 핵심 메시지, 발표 시간, 필요한 장수, 반드시 포함할 내용과 수치,
+강조할 내용, 제외할 내용, 원하는 표현 방법을 확인해주세요.
+
+제가 답변하면 그 내용을 요구사항으로 정리만 해주세요.
+슬라이드 구성이나 장별 내용은 아직 만들지 마세요.
 자료에 없는 사실이나 수치는 만들지 마세요.</pre></div>
-<div class="note"><b>실습 순서</b> 3일차 자료 준비 → 프롬프트 입력 → AI 질문 확인 → 답변 → 초안 프롬프트 받기. <b>아직 Gamma에 바로 넣지 않습니다.</b></div></section>
 
-<section id="variants"><h2>실습 프롬프트 · 같은 자료, 다른 전달 방향</h2><p class="sub">전체 프롬프트를 새로 쓰지 않아도 목적과 핵심 메시지를 바꾸면 결과가 달라집니다. 아래 4종은 바로 복사할 수 있는 예시입니다.</p>
-<h3><span class="badge">①</span>임원 보고형</h3><div class="box"><button class="copy">복사</button><pre>3일차에서 분석한 자료와 확인된 소스만 활용해서
-공영홈쇼핑 내부 임원 보고용 발표자료를 만들어줘.
-핵심 메시지는 ‘시장 축소 속에서도 2025년 흑자 전환에 성공했지만, 경쟁사와의 수익성 격차는 여전히 크다’로 잡아줘.
-5장 내외로, 결론 → 시장 변화 → 경쟁사 비교 → 현황 → 시사점 순서로 구성해줘.
-핵심 숫자가 먼저 보이게 하고, 제목은 결론이 드러나는 문장으로 써줘.
-3일차 자료에 없는 숫자나 사실은 추가하지 마.</pre></div>
-<h3><span class="badge">②</span>수익성 비교형</h3><div class="box"><button class="copy">복사</button><pre>같은 자료를 사용하되, 이번에는 경쟁사와 공영홈쇼핑의 수익성 격차를 가장 강하게 전달하는 발표자료로 만들어줘.
-현대홈쇼핑 7.10% / 롯데홈쇼핑 5.06% / 공영홈쇼핑 0.47% — 세 회사의 차이가 첫눈에 비교되도록 해줘.
-2024년 적자에서 2025년 흑자로 전환한 변화도 보여주되, 흑자 전환만 강조해 현재 수익성이 충분한 것처럼 보이지 않도록 해줘.
-비교 차트와 핵심 수치 중심으로 구성하고 부가 설명은 최소화해줘.
-자료에서 확인되지 않은 원인은 단정하지 마.</pre></div>
-<h3><span class="badge">③</span>시장 변화형</h3><div class="box"><button class="copy">복사</button><pre>같은 자료를 사용해서, 이번에는 TV홈쇼핑 시장 자체가 축소되고 있다는 메시지를 중심으로 발표자료를 만들어줘.
-업계 방송사업매출 감소 → 공영홈쇼핑 매출 추이 → 경쟁사 수익성 → 공영홈쇼핑 수익성 → 앞으로 확인해야 할 과제 순서로 구성해줘.
-시간의 흐름이 중요한 데이터는 추이형 차트로, 회사 간 차이가 중요한 데이터는 비교형 차트로 보여줘.
-하나의 슬라이드에는 하나의 핵심 메시지만 넣어줘.
-자료에서 확인된 사실과 해석을 구분하고, 자료에 없는 원인은 추가하지 마.</pre></div>
-<h3><span class="badge">④</span>반등 스토리형</h3><div class="box"><button class="copy">복사</button><pre>같은 자료를 사용해서, 공영홈쇼핑이 2024년 적자에서 2025년 흑자로 전환했다는 변화가 가장 먼저 보이는 발표자료를 만들어줘.
-긍정적인 성과만 보여주지 말고, 경쟁사의 영업이익률과 비교했을 때 아직 수익성 격차가 크다는 점까지 이어서 보여줘.
-반등 → 그러나 → 그래서 의 스토리 구조로 5장 내외로 구성해줘.
-첫 장에서 결론이 보이게 하고, 이후 슬라이드는 그 결론을 뒷받침하는 근거로 구성해줘.
-확인된 자료에 없는 내용은 추가하지 마.</pre></div></section>
+  <h3>② 답변 세트</h3>
+  <p class="sub">질문에 하나씩 답하면 시간이 부족합니다. 아래를 한 번에 붙여넣고, 각자 상황에 맞게 고쳐 쓰세요.</p>
+  <div class="box"><button class="copy">복사</button><pre>발표 대상:
+공영홈쇼핑 내부 임직원 (실무진과 팀장급)
 
-<section id="story"><h2><span class="badge">프롬프트 2</span>바로 만들지 말고 구조부터 받기</h2><p class="sub">방법 ①에서 받은 초안 프롬프트를 바로 Gamma에 넣기 전에 전체 스토리라인을 확인합니다.</p>
-<div class="box"><button class="copy">복사</button><pre>첨부한 자료를 5장 내외의 업무 발표자료로 만들려고 합니다.
+발표 목적:
+보고서 분석 결과의 핵심을 빠르게 공유하는 내부 보고입니다.
+의사결정을 요청하는 자리가 아니라 현재 위치를 같은 기준으로 인식시키는 것이 목적입니다.
+
+핵심 메시지:
+2025년 흑자 전환에 성공했지만 경쟁사와의 수익성 격차는 여전합니다.
+
+발표 시간:
+약 5분
+
+필요한 장수:
+표지 1장 + 내용 5장, 총 6장
+표지에는 발표 제목, 핵심 메시지 한 줄, 보고 대상과 일자만 넣고 데이터는 넣지 마세요.
+슬라이드당 핵심 메시지는 하나만 넣어주세요.
+
+반드시 포함할 내용과 수치:
+- 공영홈쇼핑 5개년 매출액과 영업이익 (2021 · 2022 · 2023 · 2024 · 2025년 전부)
+- 2025년 3사 영업이익률 (현대홈쇼핑 / 롯데홈쇼핑 / 공영홈쇼핑)
+- TV홈쇼핑 방송사업매출 추이와 PP 내 비중
+- 2024년 적자에서 2025년 흑자로 전환한 변화
+- 앞으로 확인이 필요한 사항
+
+강조할 내용:
+흑자 전환을 성과로만 보이게 하지 말고, 경쟁사와의 격차가 함께 보이도록 배치해주세요.
+연도는 한 해도 빠짐없이 표시하고 임의로 생략하지 마세요.
+
+제외할 내용:
+- 원자료에 없는 수치, 추정치, 미래 전망
+- 자료에서 확인되지 않은 원인 단정
+- 실행 아이디어와 개선 방안 (이번 발표는 현황 공유가 목적입니다)
+
+원하는 표현 방법:
+격식 있는 내부 보고 스타일, 데이터 중심으로 해주세요.
+회사 간 비교는 비교 차트, 연도별 변화는 추이 차트로 보여주세요.
+장식적 이미지보다 수치가 먼저 보이게 해주세요.
+제목은 명사형이 아니라, 제목만 읽어도 결론을 알 수 있는 문장형으로 써주세요.</pre></div>
+
+  <div class="warn"><b>확인</b> 요구사항 정리표만 나와야 합니다. 벌써 5장 구성을 만들었다면 →
+  <code>구성은 아직 만들지 마세요. 요구사항만 정리해주세요.</code></div>
+</section>
+
+<section id="s2">
+  <h2><span class="badge">2</span>구조 스토리라인 받기</h2>
+  <p class="sub">같은 채팅창에서 이어서 진행합니다. 자료를 다시 첨부하지 않아도 됩니다.</p>
+  <div class="note"><b>틀린 구조를 예쁘게 만들지 않기 위해서입니다.</b><br>
+  지금 고치면 문장 몇 줄이면 되지만, 만든 뒤에 순서를 바꾸려면 <b>전체를 다시 만들어야 합니다.</b></div>
+
+  <div class="box"><button class="copy">복사</button><pre>네, 이 요구사항으로 진행해주세요.
 바로 슬라이드를 만들지 말고 먼저 전체 스토리라인을 설계해주세요.
-각 장마다 ① 장표 제목 ② 핵심 메시지 한 문장을 제안해주세요.
-③ 반드시 포함할 내용과 근거 ④ 적합한 표·그래프·시각화 방법도 함께 제안해주세요.
-⑤ 앞뒤 장표와의 연결도 설명해주세요.
-첨부 자료에 없는 사실이나 수치는 만들지 마세요.</pre></div>
-<div class="flow"><span>질문받기</span><i>→</i><span>초안 프롬프트</span><i>→</i><span>스토리라인</span><i>→</i><span>사람이 구조 수정</span><i>→</i><span>최종 프롬프트</span><i>→</i><span>Gamma</span></div>
-<h3>장표별 상세지시를 더 촘촘하게 만들고 싶다면</h3><div class="box"><button class="copy">복사</button><pre>위에서 확정한 스토리라인을 기준으로 각 장의 제작 지시서를 더 구체적으로 작성해주세요.
-각 장마다 다음 항목을 빠짐없이 정리해주세요.
-- 장의 역할
-- 장표 제목
-- 핵심 메시지 한 문장
-- 반드시 포함할 비교 대상과 기간
-- 반드시 포함할 핵심 수치와 단위
-- 강조해야 할 메시지
-- 적합한 차트·표·시각화 방식
-- 본문 설명 분량
-- 다음 장과의 연결
-자료에 없는 사실이나 수치는 추가하지 마세요.</pre></div></section>
 
-<section id="gamma"><h2>Gamma로 생성하기</h2><p class="sub">생각부터 전부 맡기는 것이 아니라, 앞에서 확정한 설계를 시각자료로 구현하게 합니다.</p>
-<a class="linkbtn" href="https://gamma.app/" target="_blank" rel="noopener"><span class="ico">↗</span>Gamma 열기</a>
-<h3>Gamma용 최종 생성 프롬프트 예시</h3><div class="box"><button class="copy">복사</button><pre>공영홈쇼핑 내부 임직원을 대상으로 홈쇼핑 시장과 공영홈쇼핑의 실적을 설명하는 5장 내외 발표자료를 제작해주세요.
-핵심 메시지는 ‘2025년 흑자 전환에 성공했지만 경쟁사와의 수익성 격차는 여전히 존재한다’입니다.
-앞에서 확정한 스토리라인과 장표별 제작 지시서를 기준으로 제작해주세요.
-한 슬라이드에는 핵심 메시지 하나만 두고, 핵심 숫자가 먼저 보이도록 구성해주세요.
-원자료에 없는 사실이나 수치를 추가하지 마세요.</pre></div>
-<div class="warn"><b>생성 후 바로 사용하지 않습니다.</b> 내용 → 구조 → 디자인 순서로 검수합니다.</div></section>
+각 장마다 다음을 정리해주세요.
+1. 장표 제목
+2. 핵심 메시지 한 문장
+3. 반드시 포함할 내용과 근거
+4. 적합한 표·그래프·시각화 방법
+5. 앞뒤 장표와의 연결
 
-<section id="check"><h2>생성 결과 검수</h2><p class="sub">보기 좋은 자료보다 먼저 정확한 자료인지 확인합니다.</p><table><tr><th>순서</th><th>확인할 것</th></tr><tr><td><b>1 내용</b></td><td>수치가 맞는가 · 빠진 정보가 없는가 · 원자료에 없는 내용이 추가되지 않았는가</td></tr><tr><td><b>2 구조</b></td><td>순서가 자연스러운가 · 한 장에 메시지가 하나인가 · 내용이 반복되지 않는가</td></tr><tr><td><b>3 디자인</b></td><td>중요한 정보가 잘 보이는가 · 차트와 이미지가 적절한가 · 조직의 자료처럼 보이는가</td></tr></table>
-<div class="note"><b>전체 재생성보다 부분 수정.</b> 잘 나온 장까지 다시 바꾸지 않습니다.</div></section>
+자료에 없는 사실이나 수치는 만들지 마세요.</pre></div>
 
-<section id="fix"><h2><span class="badge">프롬프트 3</span>수정 방법을 모르겠다면 먼저 진단받기</h2><div class="box"><button class="copy">복사</button><pre>이 Gamma 슬라이드를 수정하고 싶습니다.
+  <div class="warn"><b>스토리라인은 사람마다 다르게 나옵니다.</b> 정답은 없고, 확인하는 기준만 같습니다.</div>
+
+  <h3>30초만 확인하세요 · 안 고쳐도 됩니다</h3>
+  <table>
+    <tr><th style="width:44px">①</th><td>첫 장에 <b>결론</b>이 있나요?</td></tr>
+    <tr><th>②</th><td>표지 포함 <b>6장</b>인가요?</td></tr>
+    <tr><th>③</th><td>같은 이야기를 <b>두 번</b> 하는 장이 있나요?</td></tr>
+    <tr><th>④</th><td>자료에 <b>없는 숫자</b>가 들어왔나요?</td></tr>
+  </table>
+  <div class="note">X가 없으면 바로 3단계로 가셔도 됩니다.</div>
+
+  <h3>고치고 싶다면 · 말로 하면 됩니다</h3>
+  <table>
+    <tr><th style="width:170px">결론이 뒤에 있다</th><td><code>1장을 결론으로 올려주세요. 이후 장은 그 결론을 뒷받침하는 근거로 배치해주세요.</code></td></tr>
+    <tr><th>장이 너무 많다</th><td><code>표지 포함 6장으로 줄여주세요. 겹치는 장을 합쳐주세요.</code></td></tr>
+    <tr><th>같은 얘기가 두 장</th><td><code>○장과 ○장이 같은 이야기입니다. 하나로 합치고 마지막 장은 확인이 필요한 사항으로 바꿔주세요.</code></td></tr>
+    <tr><th>없는 숫자가 있다</th><td><code>"○○"는 원자료에 없는 값입니다. 빼고 자료에 있는 수치만 사용해주세요.</code></td></tr>
+    <tr><th>차트가 다 똑같다</th><td><code>회사 간 비교는 비교 차트로, 연도별 변화는 추이 차트로 구분해주세요.</code></td></tr>
+  </table>
+  <div class="note">수정 요청 끝에는 항상 <code>나머지 장은 그대로 유지해주세요.</code>를 붙입니다.</div>
+
+  <details class="alt"><summary>더 다듬고 싶다면 — 진단받기 · 한 장 상세화</summary>
+  <div class="inner">
+
+  <h3>뭘 고칠지 모르겠다면 · AI에게 먼저 물어보기</h3>
+  <div class="box"><button class="copy">복사</button><pre>지금 설계한 스토리라인으로 발표자료를 만든다고 할 때 아쉬운 점이 있는지 살펴봐주세요.
+결론 위치, 장수, 중복, 자료에 없는 수치, 시각화 방식 관점에서 검토해주세요.
+바로 수정하지는 말고 무엇을 고치면 좋을지만 알려주세요.</pre></div>
+
+  <h3>한 장만 더 자세하게</h3>
+  <div class="box"><button class="copy">복사</button><pre>3장을 조금 더 자세하게 정리해주세요.
+어떤 수치를 어떤 차트로 보여줄지, 설명은 몇 줄로 할지까지 구체적으로 써주세요.
+다른 장은 그대로 두세요.</pre></div>
+  <div class="note">가장 중요한 장 <b>하나만</b> 고르세요. 장 번호만 바꾸면 됩니다.</div>
+
+  </div>
+  </details>
+</section>
+
+<section id="s3">
+  <h2><span class="badge">3</span>디자인 요청 · 어떻게 보여줄지 정하기</h2>
+  <p class="sub">내용은 정해졌습니다. 이제 <b>내용을 바꾸지 않고</b> 레이아웃·차트·강조 방식만 구체화합니다.</p>
+  <div class="note"><b>같은 내용도 어떻게 보여주느냐에 따라 전달이 달라집니다.</b><br>
+  여기서 정하지 않으면 AI가 알아서 정합니다. 생성한 뒤 장마다 고치는 것보다 <b>미리 한 번에 정하는 편이 빠릅니다.</b></div>
+
+  <h3>이번 발표자료에서 참고하기 좋은 유형</h3>
+  <table>
+    <tr><th style="width:150px">장표</th><th style="width:230px">추천 유형</th><th>활용 포인트</th></tr>
+    <tr><td>1장 · 핵심 결론</td><td>원포인트 메시지</td><td>결론 한 문장 + 핵심 숫자 크게</td></tr>
+    <tr><td>2장 · 시장 변화</td><td>로드맵 마일스톤 / KPI 스냅샷</td><td>연도별 추이와 변화 폭 강조</td></tr>
+    <tr><td>3장 · 경쟁사 비교</td><td>A vs B 비교 분석 / KPI 스냅샷</td><td>같은 기준의 수치를 나란히</td></tr>
+    <tr><td>4장 · 공영홈쇼핑 현황</td><td>Before &amp; After 변화 / 추이형</td><td>2024 적자 → 2025 흑자 전환 시각화</td></tr>
+    <tr><td>5장 · 시사점</td><td>실행 체크리스트 / 팩트 체크 브리핑</td><td>핵심 과제와 추가 확인사항</td></tr>
+  </table>
+  <div class="note">장마다 다른 디자인을 쓰라는 뜻이 아닙니다. <b>전체 톤앤매너는 통일</b>하고, 각 장의 정보 구조만 다르게 갑니다.</div>
+  <div class="tip">오늘은 실적 자료라 숫자가 많지만, <b>내 업무 자료에는 숫자가 없을 수도 있습니다.</b>
+  그때는 순서 · 단계 · 항목을 보여주는 형태를 고르시면 됩니다.</div>
+
+  <div class="box"><button class="copy">복사</button><pre>앞에서 확정한 스토리라인을 그대로 유지하면서
+발표자료의 시각적 표현 방식을 구체화해주세요.
+
+각 장에 아래 구성 방식 중 가장 적합한 것을 골라 적용해주세요.
+- 원포인트 메시지: 결론 한 문장과 핵심 숫자를 크게
+- KPI 스냅샷: 핵심 지표를 카드 형태로 나열
+- A vs B 비교 분석: 같은 기준의 수치를 나란히 배치
+- Before & After 변화: 변화 전후를 대비
+- 로드맵 마일스톤: 시간 흐름을 따라 배치
+- 팩트 체크 브리핑: 확인된 사실과 확인이 필요한 사항을 구분
+- 실행 체크리스트: 항목을 체크 형태로 정리
+
+전체 디자인 방향은 다음과 같습니다.
+- 격식 있는 내부 보고 스타일. 화려한 홍보물이 아닌 경영보고 톤
+- 핵심 숫자와 결론이 가장 먼저 보이게
+- 회사 간 비교는 비교 차트 또는 수치 카드, 연도 변화는 추이형 차트
+- 각 장의 제목은 결론형 문장, 한 장에 핵심 메시지 하나
+- 불필요한 3D 그래픽과 장식용 이미지는 사용하지 않음
+- 전체의 컬러·타이포·도형 스타일은 일관되게 유지
+
+각 장마다 다음을 정리해주세요.
+1. 추천 레이아웃
+2. 가장 크게 보여줄 요소
+3. 추천 차트 또는 도형
+4. 숫자 강조 방법
+5. 텍스트 배치
+6. 시각적으로 피해야 할 요소
+
+중요: 내용을 새로 만들지 마세요. 확정한 스토리라인과 수치를 바꾸지 마세요.
+원자료에 없는 사실이나 수치는 추가하지 마세요.</pre></div>
+
+  <div class="warn">이 단계는 <b>발표자료를 만드는 단계가 아닙니다.</b> 아직 Gamma로 가지 않습니다.</div>
+</section>
+
+<section id="s4">
+  <h2><span class="badge">4</span>Gamma 제작</h2>
+  <p class="sub">지금까지 정한 것을 하나로 합쳐 Gamma에 넣습니다.</p>
+
+  <h3>① 최종 프롬프트로 합치기</h3>
+  <div class="note"><b>설계 문서와 실행 지시문은 다릅니다.</b><br>
+  지금까지 나온 것은 <b>사람이 읽는 형태</b>입니다. 흩어져 있는 요구사항 · 구조 · 디자인을
+  <b>Gamma가 바로 실행할 수 있는 하나의 지시문</b>으로 바꿉니다.</div>
+  <div class="box"><button class="copy">복사</button><pre>지금까지 확정한 내용을 하나로 통합해주세요.
+
+다음이 모두 들어가야 합니다.
+1. 발표 대상과 목적
+2. 핵심 메시지
+3. 표지 1장 + 내용 5장, 총 6장 구성
+4. 각 장의 제목과 핵심 메시지
+5. 각 장에 반드시 포함할 수치
+6. 각 장의 레이아웃·차트·강조 방식
+7. 전체 디자인 방향
+8. 제약조건
+
+설계 설명이나 앞뒤 연결 설명은 빼고, Gamma가 바로 실행할 수 있는 지시문으로만 써주세요.
+요약하거나 생략하지 말고, Gamma에 그대로 붙여넣을 수 있는 형태로 작성해주세요.
+표지에는 데이터를 넣지 마세요.
+두 수치를 나누거나 빼서 만든 비율·배수·증감률을 새로 계산하지 마세요.
+(예: "경쟁사 대비 1/10 수준", "2022년 대비 -8.9% 감소") 원자료에 그대로 적힌 숫자만 사용해주세요.
+공영홈쇼핑 5개년 실적은 2021·2022·2023·2024·2025년을 모두 표시하고 연도를 임의로 생략하지 마세요.
+웹에서 추가 자료를 조사하지 마세요. 제공된 내용과 수치만 사용해주세요.
+추가 자료나 원본 파일을 요청하지 말고, 지시문에 적힌 수치만으로 바로 만들 수 있게 작성해주세요.
+원자료에 없는 사실이나 수치는 추가하지 마세요.</pre></div>
+
+  <div class="warn"><b>복사하기 전에 4개만 확인하세요</b><br>
+  ① 2021~2025년 다섯 연도가 다 적혀 있는가<br>
+  ② 현대 · 롯데 · 공영 3사가 다 있는가<br>
+  ③ "원자료에 없는 수치 추가 금지"가 남아 있는가<br>
+  ④ 표지 1장 + 내용 5장인가<br>
+  ⑤ <b>"1/10 수준", "-8.9% 감소"처럼 계산해서 만든 숫자가 들어가 있지 않은가</b><br>
+  여기서 AI가 만들어준 <b>결과물 전체</b>가 Gamma에 넣을 최종 프롬프트입니다. 짧게 요약해서 넣지 않습니다.</div>
+
+  <h3>② Gamma에 넣기</h3>
+  <a class="btn" href="https://gamma.app/" target="_blank" rel="noopener">Gamma 열기 ↗</a>
+  <div class="steps">
+    <div>위에서 받은 <b>최종 프롬프트 전체</b>를 복사합니다.</div>
+    <div>Gamma에서 <b>새로 만들기 → 텍스트로 붙여넣기</b>를 선택합니다.</div>
+    <div>최종 프롬프트를 그대로 붙여넣습니다. <b>파일은 첨부하지 않습니다.</b></div>
+    <div><b>카드 구성을 먼저 확인합니다.</b> 6장인지, 제목이 정한 대로인지 봅니다.</div>
+    <div>테마를 고르고 생성합니다.</div>
+  </div>
+
+  <div class="warn"><b>반드시 「텍스트로 붙여넣기」로 들어가세요.</b><br>
+  「Agent로 생성」으로 들어가면 <b>"이 수치들의 출처 파일을 올려달라"</b>고 되묻고 멈춥니다.
+  Agent는 직접 조사해서 인용하는 방식이라 근거 파일을 찾기 때문입니다.<br>
+  이미 되묻는 화면이 떴다면 아래를 그대로 답하시면 진행됩니다.</div>
+
+  <div class="box"><button class="copy">복사</button><pre>별도 자료 업로드 없이 진행해주세요.
+위 지시문에 적힌 수치가 확정된 값입니다. 그대로 사용해 바로 생성해주세요.</pre></div>
+
+  <div class="warn"><b>아직 디자인을 고치지 마세요.</b> 생성되자마자 테마부터 만지고 싶어집니다. 내용과 구조를 먼저 확인합니다.</div>
+
+  <details class="alt"><summary>바로 쓸 수 있는 Gamma 프롬프트 예시</summary>
+  <div class="inner">
+  <p class="sub">아래를 그대로 복사해 Gamma에 붙여넣으면 발표자료가 만들어집니다. 앞 단계를 건너뛰고 결과부터 보고 싶을 때 쓰세요.</p>
+  <div class="box"><button class="copy">복사</button><pre>공영홈쇼핑 내부 임원 보고용 발표자료를 제작해주세요.
+
+[발표 목적]
+보고서에서 분석한 TV홈쇼핑 시장 변화, 경쟁사 실적,
+공영홈쇼핑 실적을 바탕으로 현재 상황과 핵심 시사점을
+빠르게 보고하기 위한 자료입니다.
+
+[핵심 메시지]
+시장 축소 속에서도 공영홈쇼핑은 2025년 흑자 전환에 성공했지만,
+경쟁사와 비교하면 수익성 격차는 여전히 큽니다.
+
+[전체 구성]
+표지 1장 + 내용 5장, 총 6장으로 구성해주세요.
+
+표지
+- 제목: 2025년 실적 및 시장 현황 보고
+- 부제: 흑자 전환에 성공했으나 경쟁사와의 수익성 격차는 여전합니다
+- 보고 대상과 일자만 함께 넣고, 표지에는 데이터를 넣지 마세요.
+
+1장. 결론
+- 제목: 2025년 흑자 전환, 그러나 경쟁사와의 수익성 격차는 여전합니다.
+- 가장 중요한 결론을 먼저 보여주세요.
+- 공영홈쇼핑의 흑자 전환과 경쟁사 대비 영업이익률 격차를 함께 보여주세요.
+- 핵심 숫자가 가장 먼저 보이도록 구성해주세요.
+- 원포인트 메시지형 레이아웃을 참고해주세요.
+
+2장. 시장 변화
+- 제목: TV홈쇼핑 시장은 계속 축소되고 있습니다.
+- TV홈쇼핑 7개사 방송사업매출 추이를 보여주세요.
+  2022년 2조 8,999억 원 → 2023년 2조 7,290억 원(-5.9%) → 2024년 2조 6,425억 원(-3.2%)
+- 2024년 기준 전체 PP 매출 내 TV홈쇼핑 비중 37.0%를 함께 보여주세요.
+- 시간의 흐름이 보이도록 추이 차트를 사용해주세요.
+- 시장 감소의 원인이 자료에서 직접 확인되지 않으면 임의로 설명하지 마세요.
+
+3장. 경쟁사 비교
+- 제목: 흑자 전환에도 경쟁사와 수익성 차이는 큽니다.
+- 2025년 기준 3사 영업이익률을 보여주세요.
+  현대홈쇼핑 7.10% / 롯데홈쇼핑 5.06% / 공영홈쇼핑 0.47%
+- 회사 간 차이를 한눈에 볼 수 있는 비교 차트를 사용해주세요.
+- 비교 기준이 다른 수치는 같은 기준처럼 표현하지 마세요.
+
+4장. 공영홈쇼핑 현황
+- 제목: 2024년 적자에서 2025년 흑자로 전환했습니다.
+- 공영홈쇼핑 5개년 매출액과 영업이익을 모두 표시해주세요.
+  2021년 매출 2,046.4억 원 / 영업이익 147.3억 원
+  2022년 매출 1,964.3억 원 / 영업이익 148.1억 원
+  2023년 매출 1,862.0억 원 / 영업이익 31.3억 원
+  2024년 매출 1,870.4억 원 / 영업손실 -11.4억 원
+  2025년 매출 1,882.8억 원 / 영업이익 8.9억 원
+- 다섯 개 연도가 모두 빠짐없이 표시되도록 해주세요.
+- 연도별 흐름은 추이 차트로 보여주세요.
+- 2025년 흑자 전환이 눈에 띄도록 강조해주세요.
+
+5장. 시사점
+- 제목: 흑자 전환 이후에는 수익성 격차를 줄이는 과제가 남아 있습니다.
+- 앞 장의 수치를 근거로 핵심 시사점을 정리해주세요.
+  (2025년 영업이익률 0.47%는 경쟁사 5~7%대와 큰 차이가 있습니다)
+- 자료에서 직접 확인되지 않은 원인은 단정하지 마세요.
+- 추가 확인이 필요한 내용은 [추가 확인 필요]로 표시해주세요.
+
+[전체 디자인 방향]
+- 공영홈쇼핑 내부 임원 보고용
+- 화려한 홍보물보다 간결한 경영보고 스타일
+- 핵심 숫자와 결론을 가장 먼저 보이게 구성
+- 회사 간 비교는 비교 차트 또는 수치 카드
+- 연도 변화는 선그래프 등 추이형 차트
+- 각 장의 제목은 결론형 문장
+- 한 장에 하나의 핵심 메시지만 배치
+- 불필요한 3D 그래픽과 장식용 이미지는 사용하지 않음
+- 전체의 컬러·타이포·도형 스타일은 일관되게 유지
+
+[반드시 지킬 조건]
+- 위에 적힌 수치만 사용해주세요. 추가 자료나 원본 파일을 요청하지 마세요.
+- 두 수치를 나누거나 빼서 만든 비율·배수·증감률을 새로 계산하지 마세요.
+  (예: "경쟁사 대비 1/10 수준", "2022년 대비 -8.9% 감소")
+- 원자료에 없는 숫자나 사실은 추가하지 마세요.
+- 자료에서 확인되지 않은 원인을 임의로 만들어내지 마세요.
+- 경쟁사와 공영홈쇼핑의 비교 기준이 다른 경우 같은 기준처럼 표현하지 마세요.
+- 2021~2025년 데이터는 임의로 연도를 생략하지 마세요.
+- 웹에서 추가 자료를 조사하지 마세요. 위에 적힌 내용만 사용해주세요.</pre></div>
+  <div class="note">이건 <b>예시</b>입니다. 직접 만든 프롬프트가 있으면 그걸 쓰세요. 여기 적힌 장별 구성이 정답은 아닙니다.</div>
+  </div>
+  </details>
+
+  <h3>자료만 넣고 바로 만들면 — Agent 생성 과정</h3>
+  <p class="sub">Gamma Agent에 자료를 올리고 <b>「이 자료로 발표자료 만들어줘」</b> 한 줄만 준 경우입니다.</p>
+  <div class="steps">
+    <div><b>생성 모드 선택</b></div>
+    <div><b>파일 업로드 + 프롬프트 입력</b> — "이 자료로 발표자료 만들어줘"</div>
+    <div><b>슬라이드 선택사항 체크</b> — 장수(사용자 지정 가능) · 자료 텍스트 처리 방식</div>
+    <div><b>작성 가이드 선택</b> — 콘텐츠와 시각적 요소 · 이미지 타입 <span style="color:var(--warn);font-weight:700">(이미지 생성 시 크레딧 차감)</span></div>
+    <div><b>프레젠테이션 생성</b></div>
+  </div>
+  <div class="video"><iframe src="https://www.youtube.com/embed/GAiUt1fPvV0"
+    title="Gamma Agent 바로 생성" allowfullscreen
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+  <a class="btn ghost" href="https://youtu.be/GAiUt1fPvV0" target="_blank" rel="noopener">▶ YouTube에서 바로 보기 ↗</a>
+  <div class="note"><b>예쁜 쪽을 고르는 것이 아닙니다.</b> 아래 세 가지만 비교해보세요.<br>
+  ① 장수가 맞는가 &nbsp; ② 제목이 결론을 담고 있는가 &nbsp; ③ 필요한 연도와 수치가 다 있는가</div>
+
+  <div class="tip"><b>이미지 설정을 켜도 이미지가 안 나올 수 있습니다.</b> 프롬프트에 "장식용 이미지는 사용하지 않음"이 들어 있기 때문입니다.
+  <b>설정보다 프롬프트가 우선합니다.</b> 내부 보고자료에는 이 상태가 맞습니다.</div>
+
+  <h3 id="check" style="font-size:17px;color:var(--accent);margin-top:26px">③ 검수하기</h3>
+  <p class="sub">생성됐다고 바로 쓰지 않습니다. <b>내용 → 구조 → 디자인</b> 순서로 확인합니다.</p>
+
+  <div class="grid">
+    <div class="cardbox"><b>1. 내용</b>수치가 원자료와 일치하는가?<br>2021~2025년이 빠짐없이 들어갔는가?<br>원자료에 없는 내용이 추가되지 않았는가?</div>
+    <div class="cardbox"><b>2. 구조</b>첫 장에서 결론이 보이는가?<br>한 장에 핵심 메시지가 하나인가?<br>같은 내용이 반복되지 않는가?</div>
+    <div class="cardbox"><b>3. 디자인</b>핵심 숫자가 먼저 보이는가?<br>비교 데이터는 비교하기 쉬운가?<br>장식이 정보보다 강하지 않은가?</div>
+    <div class="cardbox"><b>검수 원칙</b>예쁜지보다 먼저 <b>맞는지</b>를 봅니다. 내용이 틀리면 디자인이 좋아도 다시 고쳐야 합니다.</div>
+  </div>
+
+  <h3>눈으로 찾지 말고 AI에게 물어보세요</h3>
+  <p class="sub">Gamma 오른쪽 <b>Agent 패널</b>에서 실행합니다. 창을 옮기지 않아도 됩니다.</p>
+  <div class="note">Agent 패널 입력창의 <b>＋ 버튼</b>으로 원본 보고서(PDF)를 첨부한 뒤 실행하면 대조가 정확해집니다.</div>
+  <div class="box"><button class="copy">복사</button><pre>이 발표자료를 검토해주세요.
+
+1. 원자료에 없는 내용이 들어간 곳이 있는지
+   (계산해서 만든 수치, 추정치, 확인되지 않은 원인이나 결론)
+2. 원자료에 있는데 발표자료에서 빠진 중요한 내용이 있는지
+3. 한 장에 메시지가 두 개 이상인 장이 있는지
+
+바로 수정하지 말고 어느 장에 무엇이 문제인지만 알려주세요.</pre></div>
+
+  <details class="alt"><summary>원본을 첨부할 수 없다면 — 수치를 같이 넣어 물어보기</summary>
+  <div class="inner">
+  <div class="box"><button class="copy">복사</button><pre>아래 원자료 수치와 이 발표자료를 대조해주세요.
+
+[원자료 수치]
+공영홈쇼핑 5개년 (매출액 / 영업이익)
+- 2021년 2,046.4억 원 / 147.3억 원
+- 2022년 1,964.3억 원 / 148.1억 원
+- 2023년 1,862.0억 원 / 31.3억 원
+- 2024년 1,870.4억 원 / 영업손실 -11.4억 원
+- 2025년 1,882.8억 원 / 8.9억 원
+
+2025년 영업이익률: 현대홈쇼핑 7.10% / 롯데홈쇼핑 5.06% / 공영홈쇼핑 0.47%
+
+TV홈쇼핑 7개사 방송사업매출
+- 2022년 2조 8,999억 원 → 2023년 2조 7,290억 원(-5.9%) → 2024년 2조 6,425억 원(-3.2%)
+- 2024년 전체 PP 매출 내 비중 37.0%
+
+[확인할 것]
+1. 발표자료의 수치가 위와 일치하는지
+2. 위에 없는 수치나 표현이 들어간 곳이 있는지 (계산해서 만든 값, 추정치 포함)
+3. 위에 있는데 발표자료에서 빠진 연도나 수치가 있는지
+
+바로 수정하지 말고 어느 장에 무엇이 문제인지만 알려주세요.</pre></div>
+  </div>
+  </details>
+
+  <div class="tip">아무 문제도 안 나올 수 있습니다. 그래도 괜찮습니다. <b>물어보기 전에는 몰랐다는 것</b>이 중요합니다.</div>
+
+  <h3 id="fix" style="font-size:17px;color:var(--accent);margin-top:26px">④ 부분 수정</h3>
+  <p class="sub">전체를 다시 만들지 않습니다. 다시 만들면 잘 나온 장까지 바뀝니다.</p>
+
+  <div class="warn"><b>수정 요청 4가지</b> 현재 문제 → 유지할 것 → 바꿀 것 → 건드리지 말 것<br>
+  마지막 <b>제한</b>이 빠지면 다른 장까지 바뀝니다.</div>
+
+  <h4>검수 결과를 한 번에 반영하기</h4>
+  <div class="box"><button class="copy">복사</button><pre>이 발표자료를 검토하고 수정해주세요.
+
+원자료에 없는 내용을 모두 삭제해주세요.
+계산해서 만든 수치, 추정치, 확인되지 않은 원인이나 결론이 여기 해당합니다.
+
+원자료에 그대로 있는 내용만 남기고,
+문제가 없는 부분은 제목·차트·레이아웃을 그대로 두세요.
+무엇을 고쳤는지 마지막에 목록으로 알려주세요.</pre></div>
+
+  <h4>원하는 장만 골라서 고치기</h4>
+  <div class="box"><button class="copy">복사</button><pre>○번 슬라이드만 수정해주세요.
+
+원자료에 없는 내용을 삭제하고, 원자료에 그대로 있는 내용만 남겨주세요.
+제목과 차트, 레이아웃은 그대로 두세요.
+다른 슬라이드는 변경하지 마세요.</pre></div>
+  <div class="note">검수 결과에서 <b>고치고 싶은 장 하나만</b> 골라 번호를 넣으세요. 나머지는 그대로 둡니다.</div>
+
+  <h4>기본형</h4>
+  <div class="box"><button class="copy">복사</button><pre>현재 장표의 제목과 수치는 유지해주세요.
+본문 설명이 길어 핵심이 잘 보이지 않습니다.
+가장 중요한 내용이 먼저 보이도록 정보의 우선순위를 조정해주세요.
+기존 수치는 변경하지 말고 불필요한 설명만 줄여주세요.
+다른 장표는 수정하지 마세요.</pre></div>
+
+  <details class="alt"><summary>증상별 수정 프롬프트 — 연도 누락 · 없는 수치 · 문장 · 정보량 · 진단</summary>
+  <div class="inner">
+
+  <h4>원자료에 있는데 빠진 내용이 있을 때</h4>
+  <div class="box"><button class="copy">복사</button><pre>이 장에서 원자료에 있는데 빠진 항목이 있습니다.
+빠진 항목을 모두 표시해주세요.
+원자료에 있는 내용만 사용하고, 확인되지 않는 부분은 임의로 채우지 말고 [확인 필요]로 표시해주세요.
+다른 장표는 수정하지 마세요.</pre></div>
+
+  <h4>원자료에 없는 내용이 들어왔을 때</h4>
+  <div class="box"><button class="copy">복사</button><pre>"○○"는 원자료에 없는 내용입니다.
+해당 표현을 빼고 원자료에 그대로 있는 내용만 사용해주세요.
+다른 장표는 수정하지 마세요.</pre></div>
+
+  <h4>문장이 길 때</h4>
+  <div class="box"><button class="copy">복사</button><pre>수치와 의미는 유지하고 발표자료용 문장으로 줄여주세요.
+제목은 결론형으로, 설명은 한 문장 이내로 줄여주세요.
+원자료의 의미를 바꾸거나 새로운 원인을 추가하지 마세요.
+다른 장표는 수정하지 마세요.</pre></div>
+
+  <h4>정보가 너무 많을 때</h4>
+  <div class="box"><button class="copy">복사</button><pre>이 장의 정보량이 많습니다.
+핵심만 남겨 한 장으로 줄이는 것이 나은지, 두 장으로 나누는 것이 나은지 먼저 판단해주세요.
+판단 이유를 한 문장으로 설명한 뒤 수정 방향을 제안해주세요.
+핵심 수치와 사실은 유지하고 다른 장표는 수정하지 마세요.</pre></div>
+
+  <h4>어디를 고칠지 모르겠다면</h4>
+  <div class="box"><button class="copy">복사</button><pre>이 Gamma 슬라이드를 수정하고 싶습니다.
 바로 수정안을 작성하지 말고 먼저 문제점을 분석해주세요.
 내용, 구조, 메시지 전달, 정보량, 시각화 관점에서 검토하고 수정 우선순위를 알려주세요.
 그다음 제가 원하는 수정 방향을 확인한 뒤 Gamma에 입력할 수정 프롬프트를 작성해주세요.
 원자료에 없는 사실이나 수치는 추가하지 마세요.</pre></div>
-<h3>부분 수정 기본형 · 문제 → 유지 → 수정 → 제한</h3><div class="box"><button class="copy">복사</button><pre>현재 장표의 제목과 수치는 유지해주세요.
-본문 설명이 길어 핵심이 잘 보이지 않습니다.
-2024년 적자와 2025년 흑자 전환이 가장 먼저 보이도록 정보의 우선순위를 조정해주세요.
-기존 수치는 변경하지 말고 불필요한 설명만 줄여주세요.
+
+  </div>
+  </details>
+
+  <div class="note"><b>손이 더 빠른 것도 있습니다.</b> 표지 추가, 글자 크기, 색상, 위치 같은 것은 프롬프트를 다시 쓰는 것보다 Gamma에서 직접 고치는 편이 빠릅니다. AI에게 시킬 것과 직접 할 것을 나누는 것도 판단입니다.</div>
+</section>
+
+<section id="s5">
+  <h2><span class="badge gray">5</span>Canva 소개</h2>
+  <p class="sub">AI가 만든 결과물을 <b>수정 가능한 상태</b>로 만드는 흐름입니다. 오늘 실습으로 진행하지 않고 짧게 소개합니다.</p>
+
+  <div class="flow">
+    <span>제미나이에서 만든 슬라이드</span><i>→</i>
+    <span>이미지로 제작된 슬라이드</span><i>→</i>
+    <span>Canva로 가져오기</span><i>→</i>
+    <span>Magic Layers로 요소 분리</span><i>→</i>
+    <span>필요한 부분만 수정</span>
+  </div>
+
+  <div class="grid">
+    <div class="cardbox"><b>왜 보나요</b>AI 결과물이 이미지처럼 통째로 묶여 있으면 한 글자도 못 고칩니다. 요소를 분리해야 내 것으로 고칠 수 있습니다.</div>
+    <div class="cardbox"><b>지킬 것 / 바꿀 것</b><b>지킬 것</b> 사실 · 숫자 · 출처 · 분석 결과 · 핵심 메시지<br><b>바꿀 것</b> 배치 · 크기 · 색상 · 이미지 · 차트 · 강조 방식</div>
+  </div>
+
+  <a class="btn" href="https://www.canva.com/" target="_blank" rel="noopener">Canva 열기 ↗</a>
+  <a class="btn ghost" href="https://canva.link/4cq0m8bker09a8l" target="_blank" rel="noopener">Magic Layers 확인 ↗</a>
+
+  <div class="tip">계정과 요금제에 따라 사용 가능한 기능이 다를 수 있습니다.</div>
+</section>
+
+<section id="s6">
+  <h2><span class="badge gray">6</span>프롬프트 가이드 소개</h2>
+  <p class="sub">슬라이드 설계 20종 · 인포그래픽 설계 20종. 멋진 스타일을 골라 붙이는 곳이 아니라, <b>내 목적에 맞는 정보 구조를 빠르게 고르는 도구</b>입니다.</p>
+
+  <a class="btn" href="https://euniya2.github.io/aiclass/lib/slide.html" target="_blank" rel="noopener">슬라이드 가이드 열기 ↗</a>
+  <a class="btn" href="https://euniya2.github.io/aiclass/lib/infographic.html" target="_blank" rel="noopener">인포그래픽 가이드 열기 ↗</a>
+
+  <div class="grid">
+    <div class="cardbox"><b>슬라이드 설계 20종</b>원포인트 메시지 · KPI 스냅샷 · A vs B 비교 · Before &amp; After · 로드맵 마일스톤 · 문제→원인→해결 · 리스크 레이더 · 실행 체크리스트 등</div>
+    <div class="cardbox"><b>인포그래픽 설계 20종</b>비교 분석형 · 성장 로드맵 · 프로세스 단계 · 비즈니스 성과 보고형 · SWOT 매트릭스 · 리서치 근거 맵 등</div>
+  </div>
+
+  <h3>활용 순서</h3>
+  <div class="steps">
+    <div><b>목적부터 고릅니다.</b> 비교인지, 추이인지, 결론 강조인지 먼저 정합니다.</div>
+    <div><b>내용을 먼저 정리합니다.</b> 핵심 메시지와 정보 구조를 확정합니다.</div>
+    <div><b>그다음 화면 구조를 고릅니다.</b> 확정된 내용을 어떻게 보여줄지 정합니다.</div>
+    <div><b>전체가 아니라 필요한 장표에 적용합니다.</b></div>
+    <div><b>결과를 그대로 쓰지 않고 검수합니다.</b> 숫자 · 기간 · 비교 기준이 유지되는지 확인합니다.</div>
+  </div>
+
+  <h3>활용 예시 · 한 장의 정보 구조 바꾸기</h3>
+  <div class="box"><button class="copy">복사</button><pre>현재 3번 슬라이드는 경쟁사와 공영홈쇼핑의 영업이익률을 비교하는 장표입니다.
+
+아래 구성 방식 중 이 장에 가장 적합한 것을 골라 정보 구조만 다시 설계해주세요.
+- 원포인트 메시지: 결론 한 문장과 핵심 숫자를 크게
+- KPI 스냅샷: 핵심 지표를 카드로 나열
+- A vs B 비교 분석: 같은 기준의 수치를 나란히
+- Before & After 변화: 변화 전후를 대비
+- 로드맵 마일스톤: 시간 흐름을 따라 배치
+
+현재 내용과 수치는 바꾸지 말고, 왜 그 구성을 골랐는지 한 문장으로 설명한 뒤
+추천 레이아웃과 시각화 방법을 제안해주세요.
+원자료에 없는 수치나 사실은 추가하지 마세요.
 다른 장표는 수정하지 마세요.</pre></div>
-<h3>이미지만 교체</h3><div class="box"><button class="copy">복사</button><pre>현재 장표의 내용과 레이아웃은 유지해주세요.
-이미지만 교체해주세요.
-일반적인 사무실 이미지 대신 홈쇼핑 상품기획과 시장분석 업무를 연상할 수 있는 이미지를 사용해주세요.
-텍스트와 데이터는 수정하지 마세요.</pre></div>
-<h3>문장만 줄이기</h3><div class="box"><button class="copy">복사</button><pre>수치와 의미는 유지하고 발표자료용 문장으로 줄여주세요.
-제목은 결론형으로, 설명은 한 문장 이내로 줄여주세요.
-원자료의 의미를 바꾸거나 새로운 원인을 추가하지 마세요.</pre></div>
-<h3>정보가 너무 많을 때</h3><div class="box"><button class="copy">복사</button><pre>이 장의 정보량이 많습니다.
-핵심만 남겨 한 장으로 줄이는 것이 나은지, 두 장으로 나누는 것이 나은지 먼저 판단해주세요.
-판단 이유를 한 문장으로 설명한 뒤 수정 방향을 제안해주세요.
-핵심 수치와 사실은 유지하고 다른 장표는 수정하지 마세요.</pre></div></section>
 
-<section id="extra"><h2>시간이 남으면 · 생성본을 더 다듬는 도구</h2><p class="sub">모든 기능을 배우는 시간이 아닙니다. 필요한 한 장을 더 잘 고치거나 복잡한 정보를 단순화하는 용도로 짧게 소개합니다.</p>
-<div class="toolgrid"><div class="tool"><b>Canva AI · Magic Layers</b><p>AI 결과물이 이미지처럼 묶여 있을 때 요소를 분리해 텍스트·이미지·도형·배경을 직접 수정하는 흐름을 소개합니다. 계정과 요금제에 따라 기능 제공 범위가 다를 수 있습니다.</p><a href="https://www.canva.com/" target="_blank" rel="noopener">Canva 열기 ↗</a></div><div class="tool"><b>Napkin AI</b><p>긴 설명을 붙여넣으면 과정·비교·관계·구조 형태의 시각자료 후보를 만들어 발표자료 한 장을 보완합니다. 별도 프롬프트 작성은 하지 않습니다.</p><a href="https://www.napkin.ai/" target="_blank" rel="noopener">Napkin AI 열기 ↗</a></div></div>
-<h3>Canva에서 한 장만 공영홈쇼핑답게 수정</h3><table><tr><th>수정 요소</th><th>예시</th></tr><tr><td>이미지</td><td>공영희·영언니 등 목적에 맞는 시각 요소</td></tr><tr><td>메인 컬러</td><td><b>#B60B29</b></td></tr><tr><td>서브 컬러</td><td><b>#D7D2CB</b></td></tr><tr><td>정리</td><td>불필요한 요소 삭제</td></tr><tr><td>강조</td><td>핵심 숫자 우선</td></tr><tr><td>레이아웃</td><td>필요한 부분만 배치 변경</td></tr></table>
-<h3>Napkin AI는 프롬프트를 따로 작성하지 않습니다</h3><div class="note"><b>사용 흐름</b> 시각화하고 싶은 문장이나 설명을 그대로 붙여넣기 → Napkin AI가 제안하는 시각자료 확인 → 과정·비교·관계·구조 중 내용에 맞는 형태 선택 → 필요한 문구와 배치만 수정 → 이미지 또는 자료로 활용</div><table><tr><th>내용 성격</th><th>활용 예</th></tr><tr><td>과정</td><td>업무 흐름 · 단계 · 프로세스</td></tr><tr><td>비교</td><td>두 방식의 차이 · 장단점</td></tr><tr><td>관계</td><td>요소 간 연결 · 영향 관계</td></tr><tr><td>구조</td><td>분류 · 계층 · 구성 체계</td></tr></table><div class="warn"><b>수업에서는</b> 별도의 프롬프트 작성 실습으로 만들지 않고, 텍스트를 붙여넣으면 시각자료 후보가 만들어지는 흐름만 짧게 시연합니다.</div></section>
+  <h3><span class="badge gray">더</span> 같은 자료로 다른 방향 만들어보기</h3>
+  <div class="grid">
+    <div class="cardbox"><b>수익성 비교형</b>경쟁사와 공영홈쇼핑의 영업이익률 차이가 첫눈에 보이도록</div>
+    <div class="cardbox"><b>시장 변화형</b>시장 축소 흐름을 먼저 보여주고 공영홈쇼핑으로 연결</div>
+    <div class="cardbox"><b>반등 스토리형</b>2024년 적자에서 2025년 흑자로의 변화를 중심으로</div>
+    <div class="cardbox"><b>바꾸는 법</b>전체를 새로 쓰지 않습니다. <b>목적과 핵심 메시지 한 줄만</b> 바꿔 1단계부터 다시 돌립니다.</div>
+  </div>
+</section>
 
-<section id="tools"><h2>오늘 사용하는 사이트</h2><div class="toolgrid"><div class="tool"><b>Gemini</b><p>메타프롬프트, 구조 설계, 수정 요청을 만드는 데 활용합니다.</p><a href="https://gemini.google.com/" target="_blank" rel="noopener">Gemini 열기 ↗</a></div><div class="tool"><b>ChatGPT</b><p>Gemini 대신 질문받기·구조 설계·수정 프롬프트 작성에 활용할 수 있습니다.</p><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT 열기 ↗</a></div><div class="tool"><b>Gamma</b><p>확정한 구조와 상세지시를 발표자료 초안으로 생성합니다.</p><a href="https://gamma.app/" target="_blank" rel="noopener">Gamma 열기 ↗</a></div><div class="tool"><b>Canva / Napkin AI</b><p>시간이 남으면 한 장을 직접 다듬거나 복잡한 내용을 시각화하는 확장 도구로 사용합니다.</p><a href="#extra">확장 실습 보기</a></div></div></section>
+<section id="last">
+  <h2>마지막 체크</h2>
+  <table class="chk">
+    <tr><td>□</td><td>핵심 숫자가 원자료와 일치하는가?</td></tr>
+    <tr><td>□</td><td>2021~2025년이 빠짐없이 들어갔는가?</td></tr>
+    <tr><td>□</td><td>원자료에 없는 내용을 만들지 않았는가?</td></tr>
+    <tr><td>□</td><td>제목만 읽어도 핵심 메시지를 알 수 있는가?</td></tr>
+    <tr><td>□</td><td>한 장에 내용이 너무 많지 않고 보고 대상에 맞는가?</td></tr>
+    <tr><td>□</td><td>내가 직접 설명할 수 있는 자료인가?</td></tr>
+  </table>
 
-<section id="library"><h2>마지막 추가 · 모닝클래스 프롬프트 라이브러리</h2><p class="sub">슬라이드 설계 프롬프트 20종과 인포그래픽 설계 프롬프트 20종은 Google Drive 폴더에서 확인합니다.</p><div class="tool" style="margin-top:16px"><b>모닝클래스 프롬프트 자료 모음</b><p>① 모닝클래스 슬라이드 설계 프롬프트 20종<br>② 모닝클래스 인포그래픽 설계 프롬프트 20종</p><a href="https://drive.google.com/drive/folders/1cCngLifRQuRvmk2O7JuvgyVPb4sv7t7D?usp=sharing" target="_blank" rel="noopener">Google Drive에서 프롬프트 자료 열기 ↗</a></div><div class="note"><b>활용 순서</b> 4DAY 기본 실습을 먼저 완료 → 시간이 남으면 Canva·Napkin AI 확인 → 마지막에 Google Drive의 프롬프트 자료에서 다른 표현 유형을 골라 확장합니다.</div></section>
+  <div class="warn"><b>업무자료를 AI에 넣기 전에</b><br>
+  ① 개인정보가 포함되어 있나요? &nbsp; ② 사내 비공개·기밀 자료인가요? &nbsp; ③ 외부 서비스에 업로드해도 되는 자료인가요?</div>
 
-<section><h2>마지막 체크</h2><table><tr><td>□</td><td>핵심 숫자가 원자료와 일치하는가?</td></tr><tr><td>□</td><td>중요한 연도나 내용이 빠지지 않았는가?</td></tr><tr><td>□</td><td>원자료에 없는 내용을 만들지 않았는가?</td></tr><tr><td>□</td><td>핵심 메시지가 한눈에 보이는가?</td></tr><tr><td>□</td><td>한 장에 내용이 너무 많지 않고 보고 대상에 맞는가?</td></tr></table><div class="note"><b>기억할 것은 툴이 아니라 흐름입니다.</b> 자료 → 구조 → 상세지시 → 생성 → 검수 → 부분수정 → 완성</div></section>
-<footer>AI 모닝 클래스 · 4일차 프롬프트 모음<br>※ 해당 문서는 배포 및 공유를 제한합니다</footer></div>
-<script>(function(){var nav=document.querySelector('nav');if(!nav)return;function setNavHeight(){var h=nav.offsetHeight+16;if(!(h>40&&h<260))return;document.documentElement.style.setProperty('--navh',h+'px')}requestAnimationFrame(setNavHeight);window.addEventListener('load',setNavHeight);window.addEventListener('resize',setNavHeight);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(setNavHeight)})();document.querySelectorAll('.copy').forEach(function(btn){btn.addEventListener('click',function(){var txt=btn.parentElement.querySelector('pre').innerText;var done=function(){btn.textContent='복사됨';btn.classList.add('done');setTimeout(function(){btn.textContent='복사';btn.classList.remove('done')},1400)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else{fallback()}function fallback(){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.')}document.body.removeChild(ta)}})});</script></body></html>
+  <h3>내일을 위해</h3>
+  <div class="note">완성한 발표자료를 <b>지금 내보내기 해두세요.</b> Gamma → 공유 → PDF 또는 PPT. 내일 이 자료로 시작합니다.</div>
+
+  <div class="note"><b>기억할 것은 툴이 아니라 흐름입니다.</b><br>
+  자료 → 메타프롬프트 → 구조 → 디자인 → 최종 프롬프트 → 생성 → 검수 → 부분 수정 → 완성<br>
+  <b>좋은 프롬프트의 목적은 완벽한 결과가 아니라 재작업을 줄이는 것입니다.</b></div>
+</section>
+
+</div>
+<footer>AI 모닝 클래스 · 4일차 프롬프트 모음<br>※ 해당 문서는 배포 및 공유를 제한합니다</footer>
+
+<script>
+(function(){
+  var nav=document.querySelector('nav');
+  if(!nav)return;
+  function setNavHeight(){
+    var h=nav.offsetHeight+16;
+    if(!(h>40&&h<260))return;
+    document.documentElement.style.setProperty('--navh',h+'px');
+  }
+  requestAnimationFrame(setNavHeight);
+  window.addEventListener('load',setNavHeight);
+  window.addEventListener('resize',setNavHeight);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(setNavHeight);
+})();
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var txt=btn.parentElement.querySelector('pre').innerText;
+    var done=function(){
+      btn.textContent='복사됨';btn.classList.add('done');
+      setTimeout(function(){btn.textContent='복사';btn.classList.remove('done')},1400);
+    };
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');done()}catch(e){alert('복사에 실패했습니다. 직접 선택해 복사해 주세요.')}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done,fallback)
+    }else{fallback()}
+  });
+});
+</script>
+</body></html>
